@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { ThemeProvider } from "styled-components";
-import { Footer, Header } from "./components";
+import { Footer, Header, ScrollToTop } from "./components";
 import { useLocalStorage } from "./hooks";
 import Router from "./router/Router";
 import { Page } from "./styles/globals";
@@ -20,6 +20,7 @@ function App() {
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <GlobalStyle />
+      <ScrollToTop />
       <Page>
         <Header theme={theme} toggleTheme={toggleTheme} />
         <Router />
