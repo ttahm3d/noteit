@@ -1,6 +1,7 @@
 import Header from "./Header/Header";
-import Loader from "./Loader/Loader";
 import Footer from "./Footer/Footer";
+import Loader from "./Loader/Loader";
 import ScrollToTop from "./ScrollToTop/ScrollToTop";
+import Sidebar from "./Sidebar/Sidebar";
 
-export { Header, Loader, Footer, ScrollToTop };
+export { Header, Footer, Loader, ScrollToTop, Sidebar };
