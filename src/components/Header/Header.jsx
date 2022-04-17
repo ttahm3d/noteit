@@ -2,12 +2,14 @@ import styled from "styled-components";
 import { FiSun } from "react-icons/fi";
 import { IoMdMoon } from "react-icons/io";
 import NoteIt from "../../assets/NoteIt.svg";
+import { AiOutlineMenu } from "react-icons/ai";
 import { IconButton } from "../Button/Button";
 
-export default function ({ theme, toggleTheme }) {
+export default function ({ theme, toggleTheme, toggleSidebar }) {
   return (
     <HeaderComponent>
       <Navbar>
+        <MenuButton icon={<AiOutlineMenu />} onClick={toggleSidebar} />
         <Logo>
           <img src={NoteIt} alt="NoteIt Logo" />
         </Logo>
@@ -42,4 +44,8 @@ const Logo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const MenuButton = styled(IconButton)`
+  font-size: 1.25rem;
 `;

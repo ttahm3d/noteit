@@ -73,7 +73,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: "IBM Plex Sans Arabic", sans-serif;
     color:  ${(props) => props.theme.colors.gray12};
   }
-
 `;
 
 export { GlobalStyle, lightTheme, darkTheme, light };

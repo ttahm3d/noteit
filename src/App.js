@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { Footer, Header, ScrollToTop } from "./components";
 import { useLocalStorage } from "./hooks";
@@ -8,6 +8,8 @@ import { GlobalStyle, lightTheme, darkTheme, light } from "./styles/theme";
 
 function App() {
   const [theme, setTheme] = useLocalStorage("noteit-theme");
+  const [showSidebar, setShowSidebar] = useState(false);
+  const toggleSidebar = () => setShowSidebar((s) => !s);
 
   useEffect(() => {
     if (theme) setTheme(theme);
@@ -22,7 +24,11 @@ function App() {
       <GlobalStyle />
       <ScrollToTop />
       <Page>
-        <Header theme={theme} toggleTheme={toggleTheme} />
+        <Header
+          theme={theme}
+          toggleTheme={toggleTheme}
+          toggleSidebar={toggleSidebar}
+        />
         <Router />
         <Footer />
       </Page>
