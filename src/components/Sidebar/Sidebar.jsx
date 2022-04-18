@@ -1,31 +1,25 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { MdOutlineArchive } from "react-icons/md";
+import { MdOutlineArchive, MdOutlineEditNote } from "react-icons/md";
 
-export default function () {
-  const sidebarItems = [
-    {
-      id: 1,
-      text: "Home",
-      path: "/",
-      icon: <MdOutlineArchive />,
-    },
-    {
-      id: 2,
-      text: "Archive",
-      path: "/archive",
-      icon: <MdOutlineArchive />,
-    },
-  ];
+const sidebarItems = [
+  {
+    id: 1,
+    text: "Notes",
+    path: "/notes",
+    icon: <MdOutlineEditNote />,
+  },
+  {
+    id: 2,
+    text: "Archive",
+    path: "/archive",
+    icon: <MdOutlineArchive />,
+  },
+];
 
-  const activeStyle = {
-    backgroundColor: "var(--gray5)",
-    color: "var(--gray12)",
-    fontWeight: "500",
-  };
-
+export default function ({ showSidebar, toggleSidebar }) {
   return (
-    <StyledSidebar>
+    <StyledSidebar showSidebar={showSidebar}>
       <SidebarItemsContainer>
         {sidebarItems.map((sidebarItem) => (
           <li key={sidebarItem.id}>
@@ -42,7 +36,20 @@ export default function () {
   );
 }
 
-const StyledSidebar = styled.aside``;
+const StyledSidebar = styled.aside`
+  border-right: 1px solid ${(props) => props.theme.colors.gray4};
+  background-color: ${(props) => props.theme.colors.gray2};
+
+  @media screen and (max-width: 64em) {
+    position: fixed;
+    z-index: 7;
+    height: 100%;
+    top: 69.6px;
+    width: 10rem;
+    left: ${({ showSidebar }) => (showSidebar ? "0" : "-100%")};
+    transition: 0.3s all linear;
+  }
+`;
 
 const SidebarItemsContainer = styled.ul`
   display: flex;
@@ -60,12 +67,6 @@ const SidebarItem = styled(NavLink)`
   padding: 1rem;
   cursor: pointer;
   transition: 0.3s linear background;
-  /* text-decoration: ${(props) => {
-    console.log(props);
-    return props.style
-      ? (isActive) => (isActive ? "underline" : "none")
-      : "none";
-  }}; */
 
   &[aria-current] {
     background-color: ${(props) => props.theme.colors.gray5};

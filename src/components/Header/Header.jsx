@@ -4,6 +4,7 @@ import { IoMdMoon } from "react-icons/io";
 import NoteIt from "../../assets/NoteIt.svg";
 import { AiOutlineMenu } from "react-icons/ai";
 import { IconButton } from "../Button/Button";
+import { Link } from "react-router-dom";
 
 export default function ({ theme, toggleTheme, toggleSidebar }) {
   return (
@@ -11,7 +12,9 @@ export default function ({ theme, toggleTheme, toggleSidebar }) {
       <Navbar>
         <MenuButton icon={<AiOutlineMenu />} onClick={toggleSidebar} />
         <Logo>
-          <img src={NoteIt} alt="NoteIt Logo" />
+          <Link to="/">
+            <img src={NoteIt} alt="NoteIt Logo" />
+          </Link>
         </Logo>
         <NavItems>
           <IconButton
@@ -48,4 +51,5 @@ const Logo = styled.div`
 
 const MenuButton = styled(IconButton)`
   font-size: 1.25rem;
+  margin-right: 1rem;
 `;
