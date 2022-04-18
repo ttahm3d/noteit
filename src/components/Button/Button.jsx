@@ -11,7 +11,7 @@ export { IconButton };
 const Button = styled.button`
   outline: 2px solid transparent;
   background-color: ${(props) => props.theme.colors.gray2};
-  color: ${(props) => props.theme.colors.gray9};
+  color: ${(props) => props.theme.colors.gray12};
   font-weight: 500;
   outline-offset: 2px;
 
