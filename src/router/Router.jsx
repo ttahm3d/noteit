@@ -4,6 +4,7 @@ import { Loader } from "../components";
 
 const Homepage = lazy(() => import("../pages/homepage/Homepage"));
 const Archive = lazy(() => import("../pages/archive/Archive"));
+const Notes = lazy(() => import("../pages/notes/Notes"));
 
 export default function Router() {
   return (
@@ -11,6 +12,7 @@ export default function Router() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/archive" element={<Archive />} />
+        <Route path="/notes" element={<Notes />} />
       </Routes>
     </Suspense>
   );
