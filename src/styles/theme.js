@@ -69,7 +69,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
-    background-color: ${(props) => props.theme.colors.gray1};
+    background-color: ${(props) => props.theme.colors.gray2};
     font-family: "IBM Plex Sans Arabic", sans-serif;
     color:  ${(props) => props.theme.colors.gray12};
   }
