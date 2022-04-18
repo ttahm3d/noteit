@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { MdOutlineArchive, MdOutlineEditNote } from "react-icons/md";
+import {
+  MdOutlineArchive,
+  MdOutlineEditNote,
+  MdDeleteOutline,
+} from "react-icons/md";
 
 const sidebarItems = [
   {
@@ -14,6 +18,12 @@ const sidebarItems = [
     text: "Archive",
     path: "/archive",
     icon: <MdOutlineArchive />,
+  },
+  {
+    id: 3,
+    text: "Trash",
+    path: "/trash",
+    icon: <MdDeleteOutline />,
   },
 ];
 

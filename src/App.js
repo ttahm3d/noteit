@@ -38,7 +38,6 @@ function App() {
           )}
           <Router />
         </MainContainer>
-        <Router />
         <Footer />
       </Page>
     </ThemeProvider>
