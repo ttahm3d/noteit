@@ -5,7 +5,7 @@ import {
   MdOutlineEditNote,
   MdDeleteOutline,
 } from "react-icons/md";
-import { PrimaryButton } from "../Button/Button";
+import { Button } from "../Button/Button";
 
 const sidebarItems = [
   {
@@ -32,7 +32,9 @@ export default function ({ showSidebar, toggleSidebar }) {
   return (
     <StyledSidebar showSidebar={showSidebar}>
       <SidebarSection>
-        <PrimaryButton>Add Note</PrimaryButton>
+        <Button variant="primary__block" fullWidth>
+          Add Note
+        </Button>
       </SidebarSection>
       <SidebarSection>
         <SidebarItemsContainer>
@@ -57,16 +59,18 @@ const StyledSidebar = styled.aside`
   background-color: ${(props) => props.theme.colors.gray2};
   position: fixed;
   z-index: 7;
+  /* height: calc(100% - 110.4px);
+   */
   height: 100%;
   top: 65px;
   width: 15rem;
   left: ${({ showSidebar }) => (showSidebar ? "0" : "-100%")};
   transition: ${({ showSidebar }) =>
-    showSidebar ? "0.5s all linear" : "0.5s all linear"}; ;
+    showSidebar ? "0.5s left linear" : "0.5s left linear"}; ;
 `;
 
 const SidebarSection = styled.div`
-  padding: 1rem 0.5rem;
+  padding: 1rem;
 `;
 
 const SidebarItemsContainer = styled.ul`
@@ -75,7 +79,6 @@ const SidebarItemsContainer = styled.ul`
   padding: 0;
   flex-direction: column;
   list-style: none;
-  gap: 0.25rem;
 `;
 
 const SidebarItem = styled(NavLink)`
@@ -84,10 +87,10 @@ const SidebarItem = styled(NavLink)`
   align-items: center;
   color: ${(props) => props.theme.colors.gray11};
   padding: 0.5rem;
-  cursor: pointer;
   transition: 0.3s linear background;
   border-radius: 0.25rem;
   font-weight: 500;
+  cursor: pointer;
 
   &[aria-current] {
     background-color: ${(props) => props.theme.colors.blue5};
