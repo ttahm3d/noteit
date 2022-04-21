@@ -31,7 +31,10 @@ export default function ({ theme, toggleTheme, toggleSidebar }) {
 const HeaderComponent = styled.header`
   padding: 0.75rem 1rem;
   border-bottom: 1px solid ${(props) => props.theme.colors.gray6};
+  background-color: ${(props) => props.theme.colors.gray2};
   z-index: 9;
+  position: sticky;
+  top: 0;
 `;
 
 const Navbar = styled.nav`

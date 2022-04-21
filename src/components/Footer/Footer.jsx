@@ -12,6 +12,8 @@ export default function () {
 }
 
 const FooterContainer = styled.footer`
+  position: sticky;
+  bottom: 0;
   padding: 2rem 1rem;
   margin-top: auto;
   box-shadow: 0 0 4px ${(props) => props.theme.colors.gray6};
