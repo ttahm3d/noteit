@@ -32,13 +32,6 @@ const darkTheme = {
   },
 };
 
-const light = {
-  colors: {
-    bg: "#fbfbfb",
-    fg: "#1890ff",
-  },
-};
-
 const GlobalStyle = createGlobalStyle`
   *,
   *::after,
@@ -75,4 +68,4 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export { GlobalStyle, lightTheme, darkTheme, light };
+export { GlobalStyle, lightTheme, darkTheme };

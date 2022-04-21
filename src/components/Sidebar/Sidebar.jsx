@@ -5,6 +5,7 @@ import {
   MdOutlineEditNote,
   MdDeleteOutline,
 } from "react-icons/md";
+import { PrimaryButton } from "../Button/Button";
 
 const sidebarItems = [
   {
@@ -30,35 +31,42 @@ const sidebarItems = [
 export default function ({ showSidebar, toggleSidebar }) {
   return (
     <StyledSidebar showSidebar={showSidebar}>
-      <SidebarItemsContainer>
-        {sidebarItems.map((sidebarItem) => (
-          <li key={sidebarItem.id}>
-            <SidebarItem
-              to={sidebarItem.path}
-              style={({ isActive }) => console.log(isActive)}>
-              <div className="icon">{sidebarItem.icon}</div>
-              <div>{sidebarItem.text}</div>
-            </SidebarItem>
-          </li>
-        ))}
-      </SidebarItemsContainer>
+      <SidebarSection>
+        <PrimaryButton>Add Note</PrimaryButton>
+      </SidebarSection>
+      <SidebarSection>
+        <SidebarItemsContainer>
+          {sidebarItems.map((sidebarItem) => (
+            <li key={sidebarItem.id} onClick={toggleSidebar}>
+              <SidebarItem
+                to={sidebarItem.path}
+                style={({ isActive }) => console.log(isActive)}>
+                <div className="icon">{sidebarItem.icon}</div>
+                <div>{sidebarItem.text}</div>
+              </SidebarItem>
+            </li>
+          ))}
+        </SidebarItemsContainer>
+      </SidebarSection>
     </StyledSidebar>
   );
 }
 
 const StyledSidebar = styled.aside`
-  border-right: 1px solid ${(props) => props.theme.colors.gray4};
+  border-right: 1px solid ${(props) => props.theme.colors.gray6};
   background-color: ${(props) => props.theme.colors.gray2};
+  position: fixed;
+  z-index: 7;
+  height: 100%;
+  top: 65px;
+  width: 15rem;
+  left: ${({ showSidebar }) => (showSidebar ? "0" : "-100%")};
+  transition: ${({ showSidebar }) =>
+    showSidebar ? "0.5s all linear" : "0.5s all linear"}; ;
+`;
 
-  @media screen and (max-width: 64em) {
-    position: fixed;
-    z-index: 7;
-    height: 100%;
-    top: 69.6px;
-    width: 10rem;
-    left: ${({ showSidebar }) => (showSidebar ? "0" : "-100%")};
-    transition: 0.3s all linear;
-  }
+const SidebarSection = styled.div`
+  padding: 1rem 0.5rem;
 `;
 
 const SidebarItemsContainer = styled.ul`
@@ -67,6 +75,7 @@ const SidebarItemsContainer = styled.ul`
   padding: 0;
   flex-direction: column;
   list-style: none;
+  gap: 0.25rem;
 `;
 
 const SidebarItem = styled(NavLink)`
@@ -74,20 +83,25 @@ const SidebarItem = styled(NavLink)`
   gap: 0.5rem;
   align-items: center;
   color: ${(props) => props.theme.colors.gray11};
-  padding: 1rem;
+  padding: 0.5rem;
   cursor: pointer;
   transition: 0.3s linear background;
+  border-radius: 0.25rem;
+  font-weight: 500;
 
   &[aria-current] {
-    background-color: ${(props) => props.theme.colors.gray5};
+    background-color: ${(props) => props.theme.colors.blue5};
     color: ${(props) => props.theme.colors.gray12};
-    font-weight: 500;
+  }
+
+  :hover {
+    background-color: ${(props) => props.theme.colors.blue4};
   }
 
   .icon {
     display: flex;
     align-content: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 `;

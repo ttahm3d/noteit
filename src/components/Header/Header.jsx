@@ -11,11 +11,11 @@ export default function ({ theme, toggleTheme, toggleSidebar }) {
     <HeaderComponent>
       <Navbar>
         <MenuButton icon={<AiOutlineMenu />} onClick={toggleSidebar} />
-        <Logo>
-          <Link to="/">
+        <Link to="/">
+          <Logo>
             <img src={NoteIt} alt="NoteIt Logo" />
-          </Link>
-        </Logo>
+          </Logo>
+        </Link>
         <NavItems>
           <IconButton
             icon={theme === "light" ? <IoMdMoon /> : <FiSun />}
@@ -30,7 +30,7 @@ export default function ({ theme, toggleTheme, toggleSidebar }) {
 
 const HeaderComponent = styled.header`
   padding: 0.75rem 1rem;
-  box-shadow: 0 0 4px ${(props) => props.theme.colors.gray6};
+  border-bottom: 1px solid ${(props) => props.theme.colors.gray6};
   z-index: 9;
 `;
 
