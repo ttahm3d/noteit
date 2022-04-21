@@ -19,6 +19,8 @@ const lightTheme = {
     ...green,
     ...orange,
     ...blue,
+    white: "#fff",
+    black: "#111",
   },
 };
 
@@ -29,6 +31,8 @@ const darkTheme = {
     ...greenDark,
     ...orangeDark,
     ...blueDark,
+    white: "#fff",
+    black: "#111",
   },
 };
 
@@ -65,6 +69,8 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${(props) => props.theme.colors.gray2};
     font-family: "IBM Plex Sans Arabic", sans-serif;
     color:  ${(props) => props.theme.colors.gray12};
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 `;
 
