@@ -7,10 +7,15 @@ const IconButton = (props) => {
 };
 
 const Button = (props) => {
-  const { variant, fullwidth } = props;
+  const { variant, fullwidth, margin, rounded } = props;
 
   return (
-    <StyledButton variant={variant} fullwidth>
+    <StyledButton
+      variant={variant}
+      fullwidth
+      margin
+      radius={rounded}
+      {...props}>
       {props.children}
     </StyledButton>
   );
@@ -24,14 +29,26 @@ const StyledButton = styled.button`
     if (props.variant === "primary__block") return props.theme.colors.blue10;
     if (props.variant === "secondary__block")
       return props.theme.colors.orange10;
+    if (props.variant === "primary__cta") return props.theme.colors.blue4;
     if (!props.variant) return props.theme.colors.gray2;
   }};
   color: ${(props) => {
     if (props.variant === "primary__block") return props.theme.colors.white;
     if (props.variant === "secondary__block") return props.theme.colors.white;
+    if (props.variant === "primary__cta") return props.theme.colors.blue11;
+    if (props.variant === "secondary__cta") return props.theme.colors.orange11;
     if (!props.variant) return props.theme.colors.gray12;
   }};
-  border: 0;
+  border-radius: ${({ radius }) => (radius ? `${radius}rem` : "0")};
+  border: ${(props) => {
+    if (props.variant === "primary__block") return "none";
+    if (props.variant === "secondary__block") return "none";
+    if (props.variant === "primary__cta")
+      return `1px solid ${props.theme.colors.blue11}`;
+    if (props.variant === "secondary__cta")
+      return `1px solid ${props.theme.colors.orange11}`;
+    if (!props.variant) return 0;
+  }};
   font-weight: 500;
   outline-offset: 2px;
   padding: 0.25rem 0.75rem;
@@ -42,6 +59,8 @@ const StyledButton = styled.button`
       if (props.variant === "primary__block") return props.theme.colors.blue9;
       if (props.variant === "secondary__block")
         return props.theme.colors.orange9;
+      if (props.variant === "primary__cta") return props.theme.colors.blue5;
+      if (props.variant === "secondary__cta") return props.theme.colors.orange5;
       if (!props.variant) return props.theme.colors.gray4;
     }};
   }
@@ -51,6 +70,8 @@ const StyledButton = styled.button`
       if (props.variant === "primary__block") return props.theme.colors.blue9;
       if (props.variant === "secondary__block")
         return props.theme.colors.orange9;
+      if (props.variant === "primary__cta") return props.theme.colors.blue6;
+      if (props.variant === "secondary__cta") return props.theme.colors.orange6;
       if (!props.variant) return props.theme.colors.gray4;
     }};
     transform: scale(1.01);
