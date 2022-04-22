@@ -6,6 +6,8 @@ const Homepage = lazy(() => import("../pages/homepage/Homepage"));
 const Archive = lazy(() => import("../pages/archive/Archive"));
 const Notes = lazy(() => import("../pages/notes/Notes"));
 const Trash = lazy(() => import("../pages/trash/Trash"));
+const Login = lazy(() => import("../pages/auth/login/Login"));
+const Signup = lazy(() => import("../pages/auth/signup/Signup"));
 
 export default function Router() {
   return (
@@ -15,6 +17,8 @@ export default function Router() {
         <Route path="/archive" element={<Archive />} />
         <Route path="/notes" element={<Notes />} />
         <Route path="/trash" element={<Trash />} />
+        <Route path="/auth/signup" element={<Signup />} />
+        <Route path="/auth/login" element={<Login />} />
       </Routes>
     </Suspense>
   );
