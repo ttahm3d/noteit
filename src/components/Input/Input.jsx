@@ -92,8 +92,9 @@ const ShowButton = styled.div`
   right: 0px;
   font-size: 1.2rem;
   cursor: pointer;
+  background-color: ${(props) => props.theme.colors.gray5};
 
   :hover {
-    background-color: ${(props) => props.theme.colors.gray3};
+    background-color: ${(props) => props.theme.colors.gray6};
   }
 `;
