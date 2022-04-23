@@ -30,6 +30,7 @@ const StyledButton = styled.button`
     if (props.variant === "secondary__block")
       return props.theme.colors.orange10;
     if (props.variant === "primary__cta") return props.theme.colors.blue4;
+    if (props.variant === "secondary__cta") return props.theme.colors.orange4;
     if (!props.variant) return props.theme.colors.gray2;
   }};
   color: ${(props) => {
@@ -44,9 +45,9 @@ const StyledButton = styled.button`
     if (props.variant === "primary__block") return "none";
     if (props.variant === "secondary__block") return "none";
     if (props.variant === "primary__cta")
-      return `1px solid ${props.theme.colors.blue11}`;
+      return `1px solid ${props.theme.colors.blue6}`;
     if (props.variant === "secondary__cta")
-      return `1px solid ${props.theme.colors.orange11}`;
+      return `1px solid ${props.theme.colors.orange6}`;
     if (!props.variant) return 0;
   }};
   font-weight: 500;

@@ -3,10 +3,12 @@ import { FiSun } from "react-icons/fi";
 import { IoMdMoon } from "react-icons/io";
 import NoteIt from "../../assets/NoteIt.svg";
 import { AiOutlineMenu } from "react-icons/ai";
-import { IconButton } from "../Button/Button";
-import { Link } from "react-router-dom";
+import { Button, IconButton } from "../Button/Button";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function ({ theme, toggleTheme, toggleSidebar }) {
+  const navigate = useNavigate();
+
   return (
     <HeaderComponent>
       <Navbar>
@@ -17,6 +19,12 @@ export default function ({ theme, toggleTheme, toggleSidebar }) {
           </Logo>
         </Link>
         <NavItems>
+          <Button
+            variant="secondary__cta"
+            rounded="0.25"
+            onClick={() => navigate("/auth/login")}>
+            Login
+          </Button>
           <IconButton
             icon={theme === "light" ? <IoMdMoon /> : <FiSun />}
             onClick={toggleTheme}
@@ -44,6 +52,8 @@ const Navbar = styled.nav`
 
 const NavItems = styled.div`
   margin-left: auto;
+  display: flex;
+  gap: 1rem;
 `;
 
 const Logo = styled.div`
