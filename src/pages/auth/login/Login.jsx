@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Button, Input } from "../../../components";
+import { Button, Input, NavigationLink } from "../../../components";
 import { Container } from "../../../styles/globals";
 
 export default function Login() {
@@ -9,7 +9,9 @@ export default function Login() {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+
   const toggleShowPassword = () => setShowPassword((s) => !s);
+
   const handleChange = (event) => {
     setLoginForm({
       ...loginForm,
@@ -71,6 +73,10 @@ export default function Login() {
             Login
           </LoginBtn>
         </form>
+        <div>
+          Don't have an account ?{" "}
+          <NavigationLink to="/auth/signup">Create one now</NavigationLink>
+        </div>
       </FormContainer>
     </Container>
   );

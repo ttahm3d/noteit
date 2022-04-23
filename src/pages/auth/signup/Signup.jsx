@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Button, Input } from "../../../components";
+import { Button, Input, NavigationLink } from "../../../components";
+import { useAuth } from "../../../context/auth";
 import { Container } from "../../../styles/globals";
 
 export default function Signup() {
@@ -11,12 +12,36 @@ export default function Signup() {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const { signUp } = useAuth();
+
   const toggleShowPassword = () => setShowPassword((s) => !s);
+
   const handleChange = (event) => {
     setSignupForm({
       ...signupForm,
       [event.target.name]: event.target.value,
     });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const { error } = signUp(
+      {
+        email: signupForm.email,
+        password: signupForm.password,
+      },
+      {
+        data: {
+          firstName: signupForm.firstName,
+          lastName: signupForm.lastName,
+        },
+      }
+    );
+    if (error) {
+      alert(error);
+    } else {
+      alert("SignUp successful. Check your email for confirmation link");
+    }
   };
 
   const formItems = [
@@ -64,7 +89,7 @@ export default function Signup() {
     <Container>
       <FormContainer>
         <FormHeading>Signup</FormHeading>
-        <form>
+        <form onSubmit={handleSubmit}>
           {formItems.map((inputItem) => (
             <Input
               key={inputItem.id}
@@ -78,8 +103,14 @@ export default function Signup() {
               toggleShowPassword={inputItem?.toggleShowPassword}
             />
           ))}
-          <SignupBtn variant="primary__cta">Signup</SignupBtn>
+          <SignupBtn variant="primary__cta" rounded={0.25}>
+            Signup
+          </SignupBtn>
         </form>
+        <div>
+          Already have an account?{" "}
+          <NavigationLink to="/auth/signup">Login now</NavigationLink>
+        </div>
       </FormContainer>
     </Container>
   );
