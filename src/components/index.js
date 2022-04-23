@@ -5,6 +5,7 @@ import ScrollToTop from "./ScrollToTop/ScrollToTop";
 import Sidebar from "./Sidebar/Sidebar";
 import { IconButton, Button } from "./Button/Button";
 import Input from "./Input/Input";
+import NavigationLink from "./Links/Link";
 
 export {
   Input,
@@ -15,4 +16,5 @@ export {
   Sidebar,
   IconButton,
   Button,
+  NavigationLink,
 };
