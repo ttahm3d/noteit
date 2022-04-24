@@ -1,7 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { useAuth } from "../../../context/auth";
 import { Button, Input, NavigationLink } from "../../../components";
 import { Container } from "../../../styles/globals";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [loginForm, setLoginForm] = useState({
@@ -9,6 +11,8 @@ export default function Login() {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
 
   const toggleShowPassword = () => setShowPassword((s) => !s);
 
@@ -21,11 +25,12 @@ export default function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(loginForm);
+    signIn(loginForm);
     setLoginForm({
       email: "",
       password: "",
     });
+    navigate("/");
   };
 
   const formItems = [

@@ -5,9 +5,15 @@ import NoteIt from "../../assets/NoteIt.svg";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Button, IconButton } from "../Button/Button";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth";
 
 export default function ({ theme, toggleTheme, toggleSidebar }) {
   const navigate = useNavigate();
+
+  const { user, signOut } = useAuth();
+
+  const userId = user?.id;
+  const firstName = user?.user_metadata?.firstName;
 
   return (
     <HeaderComponent>
@@ -19,12 +25,25 @@ export default function ({ theme, toggleTheme, toggleSidebar }) {
           </Logo>
         </Link>
         <NavItems>
-          <Button
-            variant="secondary__cta"
-            rounded="0.25"
-            onClick={() => navigate("/auth/login")}>
-            Login
-          </Button>
+          {userId ? (
+            <>
+              <UserInfo>
+                <div>Hi</div>
+                <div>{firstName}</div>
+              </UserInfo>
+              <Button variant="secondary__cta" rounded="0.25" onClick={signOut}>
+                Logout
+              </Button>
+            </>
+          ) : (
+            <Button
+              variant="secondary__cta"
+              rounded="0.25"
+              onClick={() => navigate("/auth/login")}>
+              Login
+            </Button>
+          )}
+
           <IconButton
             icon={theme === "light" ? <IoMdMoon /> : <FiSun />}
             onClick={toggleTheme}
@@ -65,4 +84,10 @@ const Logo = styled.div`
 const MenuButton = styled(IconButton)`
   font-size: 1.25rem;
   margin-right: 1rem;
+`;
+
+const UserInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 `;

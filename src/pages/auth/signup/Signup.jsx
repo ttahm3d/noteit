@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button, Input, NavigationLink } from "../../../components";
 import { useAuth } from "../../../context/auth";
 import { Container } from "../../../styles/globals";
+import { supabase } from "../../../SupabaseClient.js";
 
 export default function Signup() {
   const [signupForm, setSignupForm] = useState({
@@ -10,6 +11,14 @@ export default function Signup() {
     lastName: "",
     email: "",
     password: "",
+  });
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
+  const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: "",
   });
   const [showPassword, setShowPassword] = useState(false);
   const { signUp } = useAuth();
