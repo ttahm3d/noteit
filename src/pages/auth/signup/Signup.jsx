@@ -1,53 +1,48 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Button, Input, NavigationLink } from "../../../components";
+import { Alert, Button, Input, NavigationLink } from "../../../components";
 import { useAuth } from "../../../context/auth";
 import { Container } from "../../../styles/globals";
-import { supabase } from "../../../SupabaseClient.js";
 
 export default function Signup() {
-  const [signupForm, setSignupForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-  });
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
-  const [userData, setUserData] = useState({
-    firstName: "",
-    lastName: "",
-  });
-  const [showPassword, setShowPassword] = useState(false);
-  const { signUp } = useAuth();
-
-  const toggleShowPassword = () => setShowPassword((s) => !s);
-
-  const handleChange = (event) => {
-    setSignupForm({
-      ...signupForm,
+  const handleCredentialsChange = (event) => {
+    setCredentials({
+      ...credentials,
       [event.target.name]: event.target.value,
     });
   };
 
-  const handleSubmit = (event) => {
+  const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: "",
+  });
+  const handleUserDataChange = (event) => {
+    setUserData({
+      ...userData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [error, setError] = useState(null);
+
+  const { signUp } = useAuth();
+
+  const toggleShowPassword = () => setShowPassword((s) => !s);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const { error } = signUp(
-      {
-        email: signupForm.email,
-        password: signupForm.password,
-      },
-      {
-        data: {
-          firstName: signupForm.firstName,
-          lastName: signupForm.lastName,
-        },
-      }
-    );
+    const { error } = await signUp(credentials, {
+      data: userData,
+    });
     if (error) {
-      alert(error);
+      setShowAlert(true);
+      setError(error.msg);
     } else {
       alert("SignUp successful. Check your email for confirmation link");
     }
@@ -59,8 +54,8 @@ export default function Signup() {
       label: "First Name",
       name: "firstName",
       type: "text",
-      value: signupForm.firstName,
-      onChangeHandler: (e) => handleChange(e),
+      value: userData.firstName,
+      onChangeHandler: (e) => handleUserDataChange(e),
       required: true,
     },
     {
@@ -68,8 +63,8 @@ export default function Signup() {
       label: "Last Name",
       name: "lastName",
       type: "text",
-      value: signupForm.lastName,
-      onChangeHandler: (e) => handleChange(e),
+      value: userData.lastName,
+      onChangeHandler: (e) => handleUserDataChange(e),
       required: true,
     },
     {
@@ -77,8 +72,8 @@ export default function Signup() {
       label: "email",
       name: "email",
       type: "email",
-      value: signupForm.email,
-      onChangeHandler: (e) => handleChange(e),
+      value: credentials.email,
+      onChangeHandler: (e) => handleCredentialsChange(e),
       required: true,
     },
     {
@@ -86,8 +81,8 @@ export default function Signup() {
       label: "password",
       name: "password",
       type: "password",
-      value: signupForm.password,
-      onChangeHandler: (e) => handleChange(e),
+      value: credentials.password,
+      onChangeHandler: (e) => handleCredentialsChange(e),
       required: true,
       showPassword: showPassword,
       toggleShowPassword: toggleShowPassword,
@@ -120,6 +115,12 @@ export default function Signup() {
           Already have an account?{" "}
           <NavigationLink to="/auth/signup">Login now</NavigationLink>
         </div>
+        <Alert
+          message={error}
+          showAlert={showAlert}
+          timeout={3000}
+          closeAlert={() => setShowAlert(false)}
+        />
       </FormContainer>
     </Container>
   );
