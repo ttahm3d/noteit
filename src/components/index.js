@@ -6,8 +6,10 @@ import Sidebar from "./Sidebar/Sidebar";
 import { IconButton, Button } from "./Button/Button";
 import Input from "./Input/Input";
 import NavigationLink from "./Links/Link";
+import Alert from "./Alert/Alert";
 
 export {
+  Alert,
   Input,
   Header,
   Footer,
