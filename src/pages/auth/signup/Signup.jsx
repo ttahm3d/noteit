@@ -41,8 +41,8 @@ export default function Signup() {
       data: userData,
     });
     if (error) {
+      setError(error.message);
       setShowAlert(true);
-      setError(error.msg);
     } else {
       alert("SignUp successful. Check your email for confirmation link");
     }

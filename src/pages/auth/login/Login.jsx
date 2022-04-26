@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { useAuth } from "../../../context/auth";
-import { Button, Input, NavigationLink } from "../../../components";
+import { Alert, Button, Input, NavigationLink } from "../../../components";
 import { Container } from "../../../styles/globals";
 import { useNavigate } from "react-router-dom";
 
@@ -14,6 +14,9 @@ export default function Login() {
   const { signIn } = useAuth();
   const navigate = useNavigate();
 
+  const [showAlert, setShowAlert] = useState(false);
+  const [error, setError] = useState(null);
+
   const toggleShowPassword = () => setShowPassword((s) => !s);
 
   const handleChange = (event) => {
@@ -23,14 +26,18 @@ export default function Login() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    signIn(loginForm);
-    setLoginForm({
-      email: "",
-      password: "",
-    });
-    navigate("/");
+    try {
+      const { error } = await signIn(loginForm);
+      if (error) {
+        setError(error.message);
+        setShowAlert(true);
+      } else {
+        navigate("/");
+        setLoginForm({ email: "", password: "" });
+      }
+    } catch (e) {}
   };
 
   const formItems = [
@@ -82,6 +89,12 @@ export default function Login() {
           Don't have an account ?{" "}
           <NavigationLink to="/auth/signup">Create one now</NavigationLink>
         </div>
+        <Alert
+          message={error}
+          showAlert={showAlert}
+          timeout={3000}
+          closeAlert={() => setShowAlert(false)}
+        />
       </FormContainer>
     </Container>
   );
