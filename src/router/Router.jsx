@@ -1,6 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import { Loader } from "../components";
+import RedirectAuth from "./RedirectAuth";
+import RequireAuth from "./RequireAuth";
 
 const Homepage = lazy(() => import("../pages/homepage/Homepage"));
 const Archive = lazy(() => import("../pages/archive/Archive"));
@@ -14,11 +16,16 @@ export default function Router() {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/archive" element={<Archive />} />
-        <Route path="/notes" element={<Notes />} />
-        <Route path="/trash" element={<Trash />} />
-        <Route path="/auth/signup" element={<Signup />} />
-        <Route path="/auth/login" element={<Login />} />
+
+        <Route element={<RequireAuth />}>
+          <Route path="/archive" element={<Archive />} />
+          <Route path="/notes" element={<Notes />} />
+          <Route path="/trash" element={<Trash />} />
+        </Route>
+        <Route element={<RedirectAuth />}>
+          <Route path="/auth/signup" element={<Signup />} />
+          <Route path="/auth/login" element={<Login />} />
+        </Route>
       </Routes>
     </Suspense>
   );
