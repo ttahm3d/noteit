@@ -28,7 +28,7 @@ const sidebarItems = [
   },
 ];
 
-export default function ({ showSidebar, toggleSidebar }) {
+export default function Sidebar({ showSidebar, toggleSidebar }) {
   return (
     <StyledSidebar showSidebar={showSidebar}>
       <SidebarSection>

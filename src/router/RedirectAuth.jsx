@@ -1,7 +1,7 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/auth";
 
-export default function () {
+export default function RedirectAuth() {
   const { user } = useAuth();
   const location = useLocation();
 

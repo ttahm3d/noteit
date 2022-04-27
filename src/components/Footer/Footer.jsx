@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import NoteIt from "../../assets/NoteIt.svg";
 
-export default function () {
+export default function Footer() {
   return (
     <FooterContainer>
       <Logo>

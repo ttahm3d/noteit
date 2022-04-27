@@ -7,7 +7,7 @@ import { Button, IconButton } from "../Button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 
-export default function ({ theme, toggleTheme, toggleSidebar }) {
+export default function Header({ theme, toggleTheme, toggleSidebar }) {
   const navigate = useNavigate();
 
   const { user, signOut } = useAuth();
