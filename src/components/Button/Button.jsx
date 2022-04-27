@@ -26,12 +26,12 @@ export { IconButton, Button };
 const StyledButton = styled.button`
   outline: 2px solid transparent;
   background-color: ${(props) => {
-    if (props.variant === "primary__block") return props.theme.colors.blue10;
+    if (props.variant === "primary__block") return props.theme.colors.blue9;
     if (props.variant === "secondary__block")
       return props.theme.colors.orange10;
     if (props.variant === "primary__cta") return props.theme.colors.blue4;
     if (props.variant === "secondary__cta") return props.theme.colors.orange4;
-    if (!props.variant) return props.theme.colors.gray2;
+    if (!props.variant) return props.theme.colors.blue2;
   }};
   color: ${(props) => {
     if (props.variant === "primary__block") return props.theme.colors.white;
@@ -62,7 +62,7 @@ const StyledButton = styled.button`
         return props.theme.colors.orange9;
       if (props.variant === "primary__cta") return props.theme.colors.blue5;
       if (props.variant === "secondary__cta") return props.theme.colors.orange5;
-      if (!props.variant) return props.theme.colors.gray4;
+      if (!props.variant) return props.theme.colors.blue4;
     }};
   }
 
@@ -73,7 +73,7 @@ const StyledButton = styled.button`
         return props.theme.colors.orange9;
       if (props.variant === "primary__cta") return props.theme.colors.blue6;
       if (props.variant === "secondary__cta") return props.theme.colors.orange6;
-      if (!props.variant) return props.theme.colors.gray4;
+      if (!props.variant) return props.theme.colors.blue5;
     }};
     transform: scale(1.01);
   }

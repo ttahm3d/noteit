@@ -55,8 +55,8 @@ export default function ({ showSidebar, toggleSidebar }) {
 }
 
 const StyledSidebar = styled.aside`
-  border-right: 1px solid ${(props) => props.theme.colors.gray6};
-  background-color: ${(props) => props.theme.colors.gray2};
+  border-right: 1px solid ${(props) => props.theme.colors.blue6};
+  background-color: ${(props) => props.theme.colors.blue2};
   position: fixed;
   z-index: 7;
   /* height: calc(100% - 110.4px);
@@ -93,12 +93,12 @@ const SidebarItem = styled(NavLink)`
   cursor: pointer;
 
   &[aria-current] {
-    background-color: ${(props) => props.theme.colors.blue5};
+    background-color: ${(props) => props.theme.colors.violet5};
     color: ${(props) => props.theme.colors.gray12};
   }
 
   :hover {
-    background-color: ${(props) => props.theme.colors.blue4};
+    background-color: ${(props) => props.theme.colors.violet4};
   }
 
   .icon {

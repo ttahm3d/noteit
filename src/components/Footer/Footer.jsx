@@ -14,7 +14,7 @@ export default function () {
 const FooterContainer = styled.footer`
   padding: 2rem 1rem;
   margin-top: auto;
-  box-shadow: 0 0 4px ${(props) => props.theme.colors.gray6};
+  border-top: 1px solid ${(props) => props.theme.colors.blue6};
 `;
 
 const Logo = styled.div``;
