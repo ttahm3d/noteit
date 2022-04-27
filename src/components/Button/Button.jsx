@@ -12,8 +12,8 @@ const Button = (props) => {
   return (
     <StyledButton
       variant={variant}
-      fullwidth
-      margin
+      fullwidth={fullwidth}
+      margin={margin}
       radius={rounded}
       {...props}>
       {props.children}

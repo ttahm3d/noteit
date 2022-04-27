@@ -13,7 +13,7 @@ export default function Alert({
     setTimeout(() => {
       closeAlert();
     }, timeout);
-  }, [showAlert]);
+  }, [showAlert, closeAlert, timeout]);
 
   return (
     <>
