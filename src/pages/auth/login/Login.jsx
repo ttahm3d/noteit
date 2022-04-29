@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useAuth } from "../../../context/auth";
 import { Alert, Button, Input, NavigationLink } from "../../../components";
 import { Container } from "../../../styles/globals";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [loginForm, setLoginForm] = useState({
@@ -13,6 +13,8 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const { signIn } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const path = location.state?.from?.pathname || "/";
 
   const [showAlert, setShowAlert] = useState(false);
   const [error, setError] = useState(null);
@@ -34,7 +36,7 @@ export default function Login() {
         setError(error.message);
         setShowAlert(true);
       } else {
-        navigate("/");
+        navigate(path);
         setLoginForm({ email: "", password: "" });
       }
     } catch (e) {}
