@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Alert, Button, Input, NavigationLink } from "../../../components";
 import { useAuth } from "../../../context/auth";
@@ -26,12 +27,12 @@ export default function Signup() {
       [event.target.name]: event.target.value,
     });
   };
-
   const [showPassword, setShowPassword] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [error, setError] = useState(null);
 
   const { signUp } = useAuth();
+  const navigate = useNavigate();
 
   const toggleShowPassword = () => setShowPassword((s) => !s);
 
@@ -45,6 +46,7 @@ export default function Signup() {
       setShowAlert(true);
     } else {
       alert("SignUp successful. Check your email for confirmation link");
+      navigate("/auth/login");
     }
   };
 
