@@ -31,7 +31,7 @@ const StyledButton = styled.button`
       return props.theme.colors.orange10;
     if (props.variant === "primary__cta") return props.theme.colors.violet4;
     if (props.variant === "secondary__cta") return props.theme.colors.orange4;
-    if (!props.variant) return props.theme.colors.violet2;
+    if (!props.variant) return props.theme.colors.blue2;
   }};
   color: ${(props) => {
     if (props.variant === "primary__block") return props.theme.colors.white;
@@ -62,7 +62,7 @@ const StyledButton = styled.button`
         return props.theme.colors.orange9;
       if (props.variant === "primary__cta") return props.theme.colors.violet5;
       if (props.variant === "secondary__cta") return props.theme.colors.orange5;
-      if (!props.variant) return props.theme.colors.violet4;
+      if (!props.variant) return props.theme.colors.blue4;
     }};
   }
 
@@ -73,7 +73,7 @@ const StyledButton = styled.button`
         return props.theme.colors.orange9;
       if (props.variant === "primary__cta") return props.theme.colors.violet6;
       if (props.variant === "secondary__cta") return props.theme.colors.orange6;
-      if (!props.variant) return props.theme.colors.violet5;
+      if (!props.variant) return props.theme.colors.blue5;
     }};
     transform: scale(1.01);
   }

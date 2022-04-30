@@ -32,7 +32,7 @@ export default function Sidebar({ showSidebar, toggleSidebar }) {
   return (
     <StyledSidebar showSidebar={showSidebar}>
       <SidebarSection>
-        <Button variant="primary__block" fullWidth>
+        <Button variant="primary__block" fullwidth>
           Add Note
         </Button>
       </SidebarSection>
@@ -59,8 +59,6 @@ const StyledSidebar = styled.aside`
   background-color: ${(props) => props.theme.colors.blue2};
   position: fixed;
   z-index: 7;
-  /* height: calc(100% - 110.4px);
-   */
   height: 100%;
   top: 65px;
   width: 15rem;
@@ -70,7 +68,7 @@ const StyledSidebar = styled.aside`
 `;
 
 const SidebarSection = styled.div`
-  padding: 1rem;
+  padding: 1rem 0.25rem;
 `;
 
 const SidebarItemsContainer = styled.ul`
