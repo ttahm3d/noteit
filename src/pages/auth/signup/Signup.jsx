@@ -109,13 +109,13 @@ export default function Signup() {
               toggleShowPassword={inputItem?.toggleShowPassword}
             />
           ))}
-          <SignupBtn variant="primary__cta" rounded={0.25}>
+          <SignupBtn variant="primary__cta" rounded={0.25} fullwidth>
             Signup
           </SignupBtn>
         </form>
         <div>
-          Already have an account?{" "}
-          <NavigationLink to="/auth/signup">Login now</NavigationLink>
+          Already have an account?&nbsp;&nbsp;
+          <NavigationLink to="/auth/login">Login now</NavigationLink>
         </div>
         <Alert
           message={error}

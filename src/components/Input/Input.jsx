@@ -66,17 +66,17 @@ const StyledInput = styled.input`
   padding: 0.25rem;
   border-radius: 0.25rem;
   font-size: 1rem;
-  background-color: ${(props) => props.theme.colors.gray3};
-  border: 1px solid ${(props) => props.theme.colors.gray7};
-  color: ${(props) => props.theme.colors.gray12};
+  background-color: ${(props) => props.theme.colors.blue3};
+  border: 1px solid ${(props) => props.theme.colors.blue7};
+  color: ${(props) => props.theme.colors.blue12};
 
   :focus {
-    background-color: ${(props) => props.theme.colors.gray5};
-    outline: 1px solid ${(props) => props.theme.colors.gray8};
+    background-color: ${(props) => props.theme.colors.blue5};
+    outline: 1px solid ${(props) => props.theme.colors.blue8};
   }
 
   :disabled {
-    background-color: ${(props) => props.theme.colors.gray3};
+    background-color: ${(props) => props.theme.colors.blue3};
     cursor: not-allowed;
   }
 `;
@@ -91,9 +91,9 @@ const ShowButton = styled.div`
   right: 1px;
   font-size: 1.2rem;
   cursor: pointer;
-  background-color: ${(props) => props.theme.colors.gray6};
+  background-color: ${(props) => props.theme.colors.blue6};
 
   :hover {
-    background-color: ${(props) => props.theme.colors.gray7};
+    background-color: ${(props) => props.theme.colors.blue7};
   }
 `;

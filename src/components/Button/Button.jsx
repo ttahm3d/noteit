@@ -26,17 +26,17 @@ export { IconButton, Button };
 const StyledButton = styled.button`
   outline: 2px solid transparent;
   background-color: ${(props) => {
-    if (props.variant === "primary__block") return props.theme.colors.blue9;
+    if (props.variant === "primary__block") return props.theme.colors.violet9;
     if (props.variant === "secondary__block")
       return props.theme.colors.orange10;
-    if (props.variant === "primary__cta") return props.theme.colors.blue4;
+    if (props.variant === "primary__cta") return props.theme.colors.violet4;
     if (props.variant === "secondary__cta") return props.theme.colors.orange4;
-    if (!props.variant) return props.theme.colors.blue2;
+    if (!props.variant) return props.theme.colors.violet2;
   }};
   color: ${(props) => {
     if (props.variant === "primary__block") return props.theme.colors.white;
     if (props.variant === "secondary__block") return props.theme.colors.white;
-    if (props.variant === "primary__cta") return props.theme.colors.blue11;
+    if (props.variant === "primary__cta") return props.theme.colors.violet11;
     if (props.variant === "secondary__cta") return props.theme.colors.orange11;
     if (!props.variant) return props.theme.colors.gray12;
   }};
@@ -45,7 +45,7 @@ const StyledButton = styled.button`
     if (props.variant === "primary__block") return "none";
     if (props.variant === "secondary__block") return "none";
     if (props.variant === "primary__cta")
-      return `1px solid ${props.theme.colors.blue6}`;
+      return `1px solid ${props.theme.colors.violet6}`;
     if (props.variant === "secondary__cta")
       return `1px solid ${props.theme.colors.orange6}`;
     if (!props.variant) return 0;
@@ -57,23 +57,23 @@ const StyledButton = styled.button`
 
   :hover {
     background-color: ${(props) => {
-      if (props.variant === "primary__block") return props.theme.colors.blue9;
+      if (props.variant === "primary__block") return props.theme.colors.violet9;
       if (props.variant === "secondary__block")
         return props.theme.colors.orange9;
-      if (props.variant === "primary__cta") return props.theme.colors.blue5;
+      if (props.variant === "primary__cta") return props.theme.colors.violet5;
       if (props.variant === "secondary__cta") return props.theme.colors.orange5;
-      if (!props.variant) return props.theme.colors.blue4;
+      if (!props.variant) return props.theme.colors.violet4;
     }};
   }
 
   :active {
     background-color: ${(props) => {
-      if (props.variant === "primary__block") return props.theme.colors.blue9;
+      if (props.variant === "primary__block") return props.theme.colors.violet9;
       if (props.variant === "secondary__block")
         return props.theme.colors.orange9;
-      if (props.variant === "primary__cta") return props.theme.colors.blue6;
+      if (props.variant === "primary__cta") return props.theme.colors.violet6;
       if (props.variant === "secondary__cta") return props.theme.colors.orange6;
-      if (!props.variant) return props.theme.colors.blue5;
+      if (!props.variant) return props.theme.colors.violet5;
     }};
     transform: scale(1.01);
   }

@@ -83,12 +83,12 @@ export default function Login() {
               toggleShowPassword={inputItem?.toggleShowPassword}
             />
           ))}
-          <LoginBtn variant="primary__cta" rounded="0.25">
+          <LoginBtn variant="primary__cta" rounded="0.25" fullwidth>
             Login
           </LoginBtn>
         </form>
         <div>
-          Don't have an account ?{" "}
+          Don't have an account?&nbsp;&nbsp;
           <NavigationLink to="/auth/signup">Create one now</NavigationLink>
         </div>
         <Alert
