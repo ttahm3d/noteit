@@ -6,6 +6,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { Button, IconButton } from "../Button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
+import { Container } from "../../styles/globals";
 
 export default function Header({ theme, toggleTheme, toggleSidebar }) {
   const navigate = useNavigate();
@@ -17,40 +18,45 @@ export default function Header({ theme, toggleTheme, toggleSidebar }) {
 
   return (
     <HeaderComponent>
-      <Navbar>
-        <MenuButton icon={<AiOutlineMenu />} onClick={toggleSidebar} />
-        <Link to="/">
-          <Logo>
-            <img src={NoteIt} alt="NoteIt Logo" />
-          </Logo>
-        </Link>
-        <NavItems>
-          {userId ? (
-            <>
-              <UserInfo>
-                <div>Hi</div>
-                <div>{firstName}</div>
-              </UserInfo>
-              <Button variant="secondary__cta" rounded="0.25" onClick={signOut}>
-                Logout
+      <Container>
+        <Navbar>
+          <MenuButton icon={<AiOutlineMenu />} onClick={toggleSidebar} />
+          <Link to="/">
+            <Logo>
+              <img src={NoteIt} alt="NoteIt Logo" />
+            </Logo>
+          </Link>
+          <NavItems>
+            {userId ? (
+              <>
+                <UserInfo>
+                  <div>Hi</div>
+                  <div>{firstName}</div>
+                </UserInfo>
+                <Button
+                  variant="secondary__cta"
+                  rounded="0.25"
+                  onClick={signOut}>
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <Button
+                variant="secondary__cta"
+                rounded="0.25"
+                onClick={() => navigate("/auth/login")}>
+                Login
               </Button>
-            </>
-          ) : (
-            <Button
-              variant="secondary__cta"
-              rounded="0.25"
-              onClick={() => navigate("/auth/login")}>
-              Login
-            </Button>
-          )}
+            )}
 
-          <IconButton
-            icon={theme === "light" ? <IoMdMoon /> : <FiSun />}
-            onClick={toggleTheme}
-            title="Change theme"
-          />
-        </NavItems>
-      </Navbar>
+            <IconButton
+              icon={theme === "light" ? <IoMdMoon /> : <FiSun />}
+              onClick={toggleTheme}
+              title="Change theme"
+            />
+          </NavItems>
+        </Navbar>
+      </Container>
     </HeaderComponent>
   );
 }
