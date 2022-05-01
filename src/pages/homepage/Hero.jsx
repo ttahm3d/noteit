@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../../components";
 import { useAuth } from "../../context/auth";
+import waves from "../../assets/waves.svg";
 
 export default function Hero() {
   const navigate = useNavigate();
