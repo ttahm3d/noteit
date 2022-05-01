@@ -3,20 +3,47 @@ import { FiSun } from "react-icons/fi";
 import { IoMdMoon } from "react-icons/io";
 import NoteIt from "../../assets/NoteIt.svg";
 import { AiOutlineMenu } from "react-icons/ai";
-import { IconButton } from "../Button/Button";
-import { Link } from "react-router-dom";
+import { Button, IconButton } from "../Button/Button";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth";
 
-export default function ({ theme, toggleTheme, toggleSidebar }) {
+export default function Header({ theme, toggleTheme, toggleSidebar }) {
+  const navigate = useNavigate();
+
+  const { user, signOut } = useAuth();
+
+  const userId = user?.id;
+  const firstName = user?.user_metadata?.firstName;
+
   return (
     <HeaderComponent>
       <Navbar>
         <MenuButton icon={<AiOutlineMenu />} onClick={toggleSidebar} />
-        <Logo>
-          <Link to="/">
+        <Link to="/">
+          <Logo>
             <img src={NoteIt} alt="NoteIt Logo" />
-          </Link>
-        </Logo>
+          </Logo>
+        </Link>
         <NavItems>
+          {userId ? (
+            <>
+              <UserInfo>
+                <div>Hi</div>
+                <div>{firstName}</div>
+              </UserInfo>
+              <Button variant="secondary__cta" rounded="0.25" onClick={signOut}>
+                Logout
+              </Button>
+            </>
+          ) : (
+            <Button
+              variant="secondary__cta"
+              rounded="0.25"
+              onClick={() => navigate("/auth/login")}>
+              Login
+            </Button>
+          )}
+
           <IconButton
             icon={theme === "light" ? <IoMdMoon /> : <FiSun />}
             onClick={toggleTheme}
@@ -30,8 +57,11 @@ export default function ({ theme, toggleTheme, toggleSidebar }) {
 
 const HeaderComponent = styled.header`
   padding: 0.75rem 1rem;
-  box-shadow: 0 0 4px ${(props) => props.theme.colors.gray6};
+  border-bottom: 1px solid ${(props) => props.theme.colors.blue6};
+  background-color: ${(props) => props.theme.colors.blue2};
   z-index: 9;
+  position: sticky;
+  top: 0;
 `;
 
 const Navbar = styled.nav`
@@ -41,6 +71,8 @@ const Navbar = styled.nav`
 
 const NavItems = styled.div`
   margin-left: auto;
+  display: flex;
+  gap: 1rem;
 `;
 
 const Logo = styled.div`
@@ -52,4 +84,10 @@ const Logo = styled.div`
 const MenuButton = styled(IconButton)`
   font-size: 1.25rem;
   margin-right: 1rem;
+`;
+
+const UserInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 `;

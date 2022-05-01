@@ -3,11 +3,10 @@ import styled from "styled-components";
 const MainContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  min-height: 100vh;
 
-  @media screen and (min-width: 64em) {
+  /* @media screen and (min-width: 64em) {
     grid-template-columns: 1fr 5fr;
-  }
+  } */
 `;
 
 const Container = styled.section`

@@ -3,5 +3,20 @@ import Footer from "./Footer/Footer";
 import Loader from "./Loader/Loader";
 import ScrollToTop from "./ScrollToTop/ScrollToTop";
 import Sidebar from "./Sidebar/Sidebar";
+import { IconButton, Button } from "./Button/Button";
+import Input from "./Input/Input";
+import NavigationLink from "./Links/Link";
+import Alert from "./Alert/Alert";
 
-export { Header, Footer, Loader, ScrollToTop, Sidebar };
+export {
+  Alert,
+  Input,
+  Header,
+  Footer,
+  Loader,
+  ScrollToTop,
+  Sidebar,
+  IconButton,
+  Button,
+  NavigationLink,
+};

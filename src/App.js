@@ -33,9 +33,7 @@ function App() {
           toggleSidebar={toggleSidebar}
         />
         <MainContainer>
-          {pathname !== "/" && (
-            <Sidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
-          )}
+          <Sidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
           <Router />
         </MainContainer>
         <Footer />

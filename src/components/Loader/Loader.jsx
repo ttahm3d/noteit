@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 
-export default function () {
+export default function Loader() {
   return (
     <LoaderContainer>
       <LoaderRing />
