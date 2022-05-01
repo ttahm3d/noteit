@@ -10,7 +10,7 @@ const MainContainer = styled.div`
 `;
 
 const Container = styled.section`
-  width: min(100% - 2rem, 95em);
+  width: min(100% - 2rem, 90em);
   margin: 0 auto;
 `;
 

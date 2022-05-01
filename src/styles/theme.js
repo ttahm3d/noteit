@@ -12,6 +12,10 @@ import {
   grayDark,
   violet,
   violetDark,
+  slate,
+  slateDark,
+  mauveDark,
+  mauve,
 } from "@radix-ui/colors";
 
 const lightTheme = {
@@ -22,6 +26,8 @@ const lightTheme = {
     ...orange,
     ...blue,
     ...violet,
+    ...slate,
+    ...mauve,
     white: "#fff",
     black: "#111",
   },
@@ -35,6 +41,8 @@ const darkTheme = {
     ...orangeDark,
     ...blueDark,
     ...violetDark,
+    ...slateDark,
+    ...mauveDark,
     white: "#fff",
     black: "#111",
   },
@@ -70,9 +78,9 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
-    background-color: ${(props) => props.theme.colors.blue2};
+    background-color: ${(props) => props.theme.colors.blue1};
     font-family: "IBM Plex Sans Arabic", sans-serif;
-    color:  ${(props) => props.theme.colors.gray12};
+    color:  ${(props) => props.theme.colors.slate12};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
