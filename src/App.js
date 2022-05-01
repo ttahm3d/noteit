@@ -20,6 +20,8 @@ function App() {
   const toggleTheme = () =>
     theme === "light" ? setTheme("dark") : setTheme("light");
 
+  const closeSidebar = () => setShowSidebar(false);
+
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <GlobalStyle />
@@ -29,9 +31,14 @@ function App() {
           theme={theme}
           toggleTheme={toggleTheme}
           toggleSidebar={toggleSidebar}
+          closeSidebar={closeSidebar}
         />
         <MainContainer>
-          <Sidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
+          <Sidebar
+            showSidebar={showSidebar}
+            toggleSidebar={toggleSidebar}
+            closeSidebar={closeSidebar}
+          />
           <Router />
         </MainContainer>
         <Footer />

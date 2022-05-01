@@ -8,7 +8,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import { Container } from "../../styles/globals";
 
-export default function Header({ theme, toggleTheme, toggleSidebar }) {
+export default function Header({
+  theme,
+  toggleTheme,
+  toggleSidebar,
+  closeSidebar,
+}) {
   const navigate = useNavigate();
 
   const { user, signOut } = useAuth();
@@ -22,7 +27,7 @@ export default function Header({ theme, toggleTheme, toggleSidebar }) {
         <Navbar>
           <MenuButton icon={<AiOutlineMenu />} onClick={toggleSidebar} />
           <Link to="/">
-            <Logo>
+            <Logo onClick={closeSidebar}>
               <img src={NoteIt} alt="NoteIt Logo" />
             </Logo>
           </Link>
