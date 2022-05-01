@@ -6,6 +6,7 @@ import {
   MdDeleteOutline,
 } from "react-icons/md";
 import { Button } from "../Button/Button";
+import { useAuth } from "../../context/auth";
 
 const sidebarItems = [
   {
@@ -29,13 +30,18 @@ const sidebarItems = [
 ];
 
 export default function Sidebar({ showSidebar, toggleSidebar }) {
+  const { user } = useAuth();
+
   return (
     <StyledSidebar showSidebar={showSidebar}>
-      <SidebarSection>
-        <Button variant="primary__block" fullwidth>
-          Add Note
-        </Button>
-      </SidebarSection>
+      {user?.id && (
+        <SidebarSection>
+          <Button variant="primary__block" fullwidth>
+            Add Note
+          </Button>
+        </SidebarSection>
+      )}
+
       <SidebarSection>
         <SidebarItemsContainer>
           {sidebarItems.map((sidebarItem) => (

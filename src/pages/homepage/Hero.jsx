@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../../components";
+import { useAuth } from "../../context/auth";
 
 export default function Hero() {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   return (
     <HeroContainer>
@@ -18,7 +20,13 @@ export default function Hero() {
           It is <span className="blue">free</span> to use and provides{" "}
           <span className="blue">realtime sync</span> between various devices.
         </div>
-        <CtaButton variant="secondary__block">Signup for Free</CtaButton>
+        {!user?.id && (
+          <CtaButton
+            variant="secondary__block"
+            onClick={() => navigate("/auth/signup")}>
+            Signup for Free
+          </CtaButton>
+        )}
       </HeroText>
       <HeroImage>
         <img

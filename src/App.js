@@ -4,7 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { Footer, Header, ScrollToTop, Sidebar } from "./components";
 import { useLocalStorage } from "./hooks";
 import Router from "./router/Router";
-import { Container, MainContainer, Page } from "./styles/globals";
+import { MainContainer, Page } from "./styles/globals";
 import { GlobalStyle, lightTheme, darkTheme, light } from "./styles/theme";
 
 function App() {
@@ -19,8 +19,6 @@ function App() {
 
   const toggleTheme = () =>
     theme === "light" ? setTheme("dark") : setTheme("light");
-
-  const { pathname } = useLocation();
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
