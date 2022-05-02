@@ -3,6 +3,7 @@ import { FiSun } from "react-icons/fi";
 import { IoMdMoon } from "react-icons/io";
 import NoteIt from "../../assets/NoteIt.svg";
 import { AiOutlineMenu } from "react-icons/ai";
+import { MdOutlineLogout } from "react-icons/md";
 import { Button, IconButton } from "../Button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
@@ -38,12 +39,13 @@ export default function Header({
                   <div>Hi</div>
                   <div>{firstName}</div>
                 </UserInfo>
-                <Button
+                <IconButton
+                  style={{ padding: "0.25rem" }}
                   variant="secondary__cta"
                   rounded="0.25"
-                  onClick={signOut}>
-                  Logout
-                </Button>
+                  onClick={signOut}
+                  icon={<MdOutlineLogout />}
+                />
               </>
             ) : (
               <Button
@@ -67,7 +69,7 @@ export default function Header({
 }
 
 const HeaderComponent = styled.header`
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 0;
   border-bottom: 1px solid ${(props) => props.theme.colors.blue6};
   background-color: ${(props) => props.theme.colors.blue2};
   z-index: 9;
