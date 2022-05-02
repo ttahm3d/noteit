@@ -62,7 +62,7 @@ export default function Sidebar({ showSidebar, toggleSidebar }) {
 
 const StyledSidebar = styled.aside`
   border-right: 1px solid ${(props) => props.theme.colors.blue6};
-  background-color: ${(props) => props.theme.colors.blue2};
+  background-color: ${(props) => props.theme.colors.blue1};
   position: fixed;
   z-index: 7;
   height: 100%;

@@ -140,5 +140,9 @@ const FormHeading = styled.h3`
 `;
 
 const LoginBtn = styled(Button)`
-  margin: 2rem 0 1rem;
+  margin: 2rem 0 0;
+
+  :last-child {
+    margin-bottom: 2rem;
+  }
 `;
