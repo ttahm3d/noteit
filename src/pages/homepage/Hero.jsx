@@ -20,11 +20,17 @@ export default function Hero() {
           It is <span className="blue">free</span> to use and provides{" "}
           <span className="blue">realtime sync</span> between various devices.
         </div>
-        {!user?.id && (
+        {!user?.id ? (
           <CtaButton
             variant="secondary__block"
             onClick={() => navigate("/auth/signup")}>
             Signup for Free
+          </CtaButton>
+        ) : (
+          <CtaButton
+            variant="primary__block"
+            onClick={() => navigate("/notes")}>
+            Start Taking Notes
           </CtaButton>
         )}
       </HeroText>
