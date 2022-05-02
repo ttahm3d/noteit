@@ -70,7 +70,11 @@ const StyledSidebar = styled.aside`
   width: 15rem;
   left: ${({ showSidebar }) => (showSidebar ? "0" : "-100%")};
   transition: ${({ showSidebar }) =>
-    showSidebar ? "0.5s left linear" : "0.5s left linear"}; ;
+    showSidebar ? "0.5s left linear" : "0.5s left linear"};
+
+  @media screen and (max-width: 64em) {
+    top: 59px;
+  }
 `;
 
 const SidebarSection = styled.div`
