@@ -7,10 +7,14 @@ import { IconButton, Button } from "./Button/Button";
 import Input from "./Input/Input";
 import NavigationLink from "./Links/Link";
 import Alert from "./Alert/Alert";
+import Modal from "./Modal/Modal";
+import NoteForm from "./NoteForm/NoteForm";
 
 export {
   Alert,
   Input,
+  Modal,
+  NoteForm,
   Header,
   Footer,
   Loader,

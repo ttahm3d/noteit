@@ -46,22 +46,23 @@ const ModalHeader = styled.div`
   padding-bottom: 0.5rem;
   align-items: center;
   font-size: 1.2rem;
-  background-color: ${(props) => props.theme.colors.slate4};
+  background-color: ${(props) => props.theme.colors.violet9};
 `;
 
 const CloseIcon = styled(IconButton)`
   margin-left: auto;
-  background-color: ${(props) => props.theme.colors.slate7};
+  background-color: ${(props) => props.theme.colors.violet3};
+  color: ${(props) => props.theme.colors.violet10};
 
   :hover {
-    background-color: ${(props) => props.theme.colors.slate8};
+    background-color: ${(props) => props.theme.colors.violet4};
   }
 
   :active {
-    background-color: ${(props) => props.theme.colors.slate9};
+    background-color: ${(props) => props.theme.colors.violet5};
   }
 `;
 
 const ModalText = styled.div`
-  padding: 1rem;
+  /* padding: 1rem; */
 `;

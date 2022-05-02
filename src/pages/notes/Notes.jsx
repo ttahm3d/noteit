@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Button } from "../../components";
-import Modal from "../../components/Modal/Modal";
+import { Button, Modal, NoteForm } from "../../components";
 import { Container } from "../../styles/globals";
 
 export default function Notes() {
@@ -15,11 +14,8 @@ export default function Notes() {
       <Button variant="primary__block" onClick={toggleModal}>
         Text
       </Button>
-      <Modal
-        showModal={showModal}
-        header="sample header"
-        closeModal={closeModal}>
-        This is sample modal
+      <Modal showModal={showModal} header="Add a Note" closeModal={closeModal}>
+        <NoteForm />
       </Modal>
     </Container>
   );
