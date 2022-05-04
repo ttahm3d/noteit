@@ -54,17 +54,14 @@ const NotesContainer = styled.div`
   }
 
   .ql-toolbar button.ql-active {
+    border: 1px solid red;
     background-color: ${(props) => props.theme.colors.blue10};
     border-radius: 8px;
-    fill: ${(props) => props.theme.colors.white};
+    stroke: ${(props) => props.theme.colors.white};
   }
 
   .ql-snow.ql-toolbar button.ql-active {
     color: ${(props) => props.theme.colors.white};
-  }
-
-  .ql-toolbar button .ql-fill {
-    fill: ${(props) => props.theme.colors.slate11};
   }
 
   .ql-toolbar button .ql-stroke,
@@ -77,7 +74,6 @@ const NotesContainer = styled.div`
   .ql-snow .ql-stroke,
   .ql-snow.ql-toolbar button.ql-active .ql-stroke {
     stroke: ${(props) => props.theme.colors.slate12};
-    background-color: ${(props) => props.theme.colors.white};
   }
 
   .ql-snow.ql-toolbar button:hover .ql-fill,

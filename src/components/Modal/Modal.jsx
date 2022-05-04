@@ -47,6 +47,7 @@ const ModalHeader = styled.div`
   align-items: center;
   font-size: 1.2rem;
   background-color: ${(props) => props.theme.colors.violet9};
+  color: ${(props) => props.theme.colors.white};
 `;
 
 const CloseIcon = styled(IconButton)`
