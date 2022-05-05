@@ -11,7 +11,10 @@ export default function Modal({ children, header, showModal, closeModal }) {
           <StyledModal onClick={(e) => e.stopPropagation()}>
             <ModalHeader>
               <div>{header}</div>
-              <CloseIcon onClick={closeModal} icon={<AiOutlineClose />} />
+              <CloseIcon
+                onClick={closeModal}
+                icon={<AiOutlineClose fill="red" />}
+              />
             </ModalHeader>
             <ModalText>{children}</ModalText>
           </StyledModal>
@@ -46,21 +49,22 @@ const ModalHeader = styled.div`
   padding-bottom: 0.5rem;
   align-items: center;
   font-size: 1.2rem;
-  background-color: ${(props) => props.theme.colors.violet9};
+  background-color: ${(props) => props.theme.colors.slate9};
   color: ${(props) => props.theme.colors.white};
 `;
 
 const CloseIcon = styled(IconButton)`
   margin-left: auto;
-  background-color: ${(props) => props.theme.colors.violet3};
-  color: ${(props) => props.theme.colors.violet10};
+  background-color: ${(props) => props.theme.colors.red2};
+  border: 1px solid ${(props) => props.theme.colors.red7};
+  color: ${(props) => props.theme.colors.red7};
 
   :hover {
-    background-color: ${(props) => props.theme.colors.violet4};
+    background-color: ${(props) => props.theme.colors.red5};
   }
 
   :active {
-    background-color: ${(props) => props.theme.colors.violet5};
+    background-color: ${(props) => props.theme.colors.red6};
   }
 `;
 
