@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import { Loader } from "../components";
 import RedirectAuth from "./RedirectAuth";
@@ -12,8 +12,6 @@ const Login = lazy(() => import("../pages/auth/login/Login"));
 const Signup = lazy(() => import("../pages/auth/signup/Signup"));
 
 export default function Router() {
-  const location = useLocation();
-  console.log(location);
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
