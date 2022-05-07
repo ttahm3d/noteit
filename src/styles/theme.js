@@ -22,6 +22,8 @@ import {
   crimsonDark,
   yellow,
   yellowDark,
+  plum,
+  plumDark,
 } from "@radix-ui/colors";
 
 const lightTheme = {
@@ -37,6 +39,7 @@ const lightTheme = {
     ...lime,
     ...crimson,
     ...yellow,
+    ...plum,
     white: "#fff",
     black: "#111",
   },
@@ -55,6 +58,7 @@ const darkTheme = {
     ...limeDark,
     ...crimsonDark,
     ...yellowDark,
+    ...plumDark,
     white: "#fff",
     black: "#111",
   },
