@@ -49,13 +49,13 @@ const ModalHeader = styled.div`
   padding-bottom: 0.5rem;
   align-items: center;
   font-size: 1.2rem;
-  background-color: ${(props) => props.theme.colors.lime8};
-  color: ${(props) => props.theme.colors.white};
+  /* background-color: ${(props) => props.theme.colors.lime3}; */
+  /* color: ${(props) => props.theme.colors.white}; */
 `;
 
 const CloseIcon = styled(IconButton)`
   margin-left: auto;
-  background-color: ${(props) => props.theme.colors.red5};
+  background-color: ${(props) => props.theme.colors.red5} !important;
   border: 1px solid ${(props) => props.theme.colors.red7};
   color: ${(props) => props.theme.colors.red7};
 
