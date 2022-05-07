@@ -1,12 +1,48 @@
 import { useState } from "react";
 import { Button, Modal, NoteForm } from "../../components";
+import { useNotes } from "../../context/notes";
 import { Container } from "../../styles/globals";
 
 export default function Notes() {
   const [showModal, setShowModal] = useState(false);
+  const [note, setNote] = useState({
+    title: "",
+    color: "gray",
+    body: "",
+  });
+  const { addNote } = useNotes();
 
   const toggleModal = () => setShowModal((s) => !s);
   const closeModal = () => setShowModal(false);
+
+  const closeAndClearForm = () => {
+    setNote({
+      title: "",
+      color: "gray",
+      body: "",
+    });
+    closeModal();
+  };
+
+  const saveNote = () => {
+    addNote(note);
+    closeAndClearForm();
+  };
+
+  const actions = [
+    {
+      id: "cancel",
+      text: "Cancel",
+      action: () => closeAndClearForm(),
+      variant: "primary__outline",
+    },
+    {
+      id: "add",
+      text: "Save Note",
+      action: () => saveNote(),
+      variant: "primary__block",
+    },
+  ];
 
   return (
     <Container>
@@ -14,8 +50,11 @@ export default function Notes() {
       <Button variant="primary__block" onClick={toggleModal}>
         Text
       </Button>
-      <Modal showModal={showModal} header="Add a Note" closeModal={closeModal}>
-        <NoteForm />
+      <Modal
+        showModal={showModal}
+        header="Add a Note"
+        closeModal={closeAndClearForm}>
+        <NoteForm note={note} setNote={setNote} actions={actions} />
       </Modal>
     </Container>
   );

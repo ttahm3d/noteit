@@ -1,17 +1,10 @@
 import styled from "styled-components";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useState } from "react";
+import { Button } from "../Button/Button";
 
-export default function NoteForm() {
-  const [note, setNote] = useState({
-    title: "",
-    color: "gray",
-    body: "",
-  });
-  const colorsList = ["yellow", "crimson", "violet", "orange", "green", "gray"];
-
-  console.log(note);
+export default function NoteForm({ note, setNote, actions }) {
+  const colorsList = ["yellow", "crimson", "orange", "green", "gray", "plum"];
 
   const modules = {
     toolbar: [
@@ -26,20 +19,20 @@ export default function NoteForm() {
   };
 
   return (
-    <NotesContainer color={note.color}>
+    <NotesContainer color={note?.color}>
       <TitleInput
-        value={note.title}
+        value={note?.title}
         required={true}
         name="title"
         type="text"
-        color={note.color}
+        color={note?.color}
         placeholder="Enter Title"
         onChange={(e) => setNote({ ...note, title: e.target.value })}
       />
       <ReactQuill
         modules={modules}
         placeholder="Enter Note..."
-        value={note.body}
+        value={note?.body}
         preserveWhitespace={true}
         onChange={(e) => setNote({ ...note, body: e })}
       />
@@ -47,12 +40,25 @@ export default function NoteForm() {
         {colorsList.map((notecolor) => (
           <ColorCircle
             notecolor={notecolor}
-            color={note.color}
+            color={note?.color}
             key={notecolor}
             onClick={() => setNote({ ...note, color: notecolor })}
           />
         ))}
       </ColorPickerContainer>
+      {actions.length > 0 ? (
+        <ActionsContainer>
+          {actions?.map((action) => (
+            <Button
+              variant={action.variant}
+              key={action.id}
+              rounded={0.25}
+              onClick={action.action}>
+              {action.text}
+            </Button>
+          ))}
+        </ActionsContainer>
+      ) : null}
     </NotesContainer>
   );
 }
@@ -63,7 +69,7 @@ const NotesContainer = styled.div`
     display: flex;
     flex-direction: column;
     font-family: inherit;
-    background-color: ${({ theme, color }) => `${theme.colors[color + "5"]}`};
+    background-color: ${({ theme, color }) => `${theme.colors[color + "4"]}`};
     color: ${({ theme, color }) => `${theme.colors[color + "12"]}`};
   }
 
@@ -104,8 +110,8 @@ const NotesContainer = styled.div`
 
   /* Active toolbar icon */
   .ql-toolbar button.ql-active {
-    background-color: ${({ theme, color }) => `${theme.colors[color + "5"]}`};
-    border: 1px solid ${({ theme, color }) => `${theme.colors[color + "7"]}`};
+    background-color: ${({ theme, color }) => `${theme.colors[color + "6"]}`};
+    border: 2px solid ${({ theme, color }) => `${theme.colors[color + "7"]}`};
     border-radius: 0.25rem;
   }
 
@@ -160,6 +166,7 @@ const ColorPickerContainer = styled.div`
   display: flex;
   padding: 1rem;
   gap: 1rem;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.slate7};
 `;
 
 const ColorCircle = styled.div`
@@ -172,4 +179,11 @@ const ColorCircle = styled.div`
   outline: ${({ theme, notecolor, color }) =>
     notecolor === color && `3px solid ${theme.colors[notecolor + "7"]}`};
   outline-offset: 0.25rem;
+`;
+
+const ActionsContainer = styled.div`
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
 `;
