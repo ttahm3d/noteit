@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import { Button } from "../Button/Button";
 
 export default function NoteForm({ note, setNote, actions }) {
-  const colorsList = ["yellow", "crimson", "orange", "green", "gray", "plum"];
+  const colorsList = ["yellow", "crimson", "orange", "green", "plum", "blue"];
 
   const modules = {
     toolbar: [
