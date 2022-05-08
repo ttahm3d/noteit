@@ -9,12 +9,14 @@ import NavigationLink from "./Links/Link";
 import Alert from "./Alert/Alert";
 import Modal from "./Modal/Modal";
 import NoteForm from "./NoteForm/NoteForm";
+import NoteCard from "./NoteCard/NoteCard";
 
 export {
   Alert,
   Input,
   Modal,
   NoteForm,
+  NoteCard,
   Header,
   Footer,
   Loader,

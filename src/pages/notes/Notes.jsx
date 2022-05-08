@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Button, Modal, NoteForm } from "../../components";
+import { Button, Modal, NoteCard, NoteForm } from "../../components";
 import { useNotes } from "../../context/notes";
+import styled from "styled-components";
 import { Container } from "../../styles/globals";
-import { supabase } from "../../SupabaseClient";
 
 export default function Notes() {
   const [showModal, setShowModal] = useState(false);
@@ -48,6 +48,11 @@ export default function Notes() {
   return (
     <Container>
       <h3>Notes page</h3>
+      <NotesContainer>
+        {notes.map((note) => (
+          <NoteCard note={note} key={note.id} />
+        ))}
+      </NotesContainer>
       <Button variant="primary__block" onClick={toggleModal}>
         Text
       </Button>
@@ -60,3 +65,9 @@ export default function Notes() {
     </Container>
   );
 }
+
+const NotesContainer = styled.section`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 1rem;
+`;
