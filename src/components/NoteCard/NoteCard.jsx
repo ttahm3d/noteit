@@ -2,9 +2,12 @@ import DOMPurify from "dompurify";
 import { IconButton } from "../Button/Button";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import styled from "styled-components";
+import { useNotes } from "../../context/notes";
 
 export default function NoteCard({ note }) {
-  const { title, body, color } = note;
+  const { id, title, body, color } = note;
+
+  const { deleteNote } = useNotes();
 
   const actions = [
     {
@@ -15,7 +18,7 @@ export default function NoteCard({ note }) {
     {
       id: "delete",
       icon: <AiOutlineDelete />,
-      clickHandler: () => console.log("delete this"),
+      clickHandler: () => deleteNote(id),
     },
   ];
 
@@ -84,13 +87,14 @@ const ActionContainer = styled.div`
   top: 0rem;
   right: 0rem;
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
 `;
 
 const ActionButton = styled(IconButton)`
-  padding: 0.55rem 0.25rem;
+  padding: 0.55rem 0.35rem;
   background-color: ${({ theme, color }) => `${theme.colors[color + "4"]}`};
   color: ${({ theme, color }) => `${theme.colors[color + "9"]}`};
+  border: 1px solid ${({ theme, color }) => `${theme.colors[color + "7"]}`};
 
   :hover {
     background-color: ${({ theme, color }) => `${theme.colors[color + "5"]}`};

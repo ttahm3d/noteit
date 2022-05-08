@@ -44,8 +44,22 @@ const NotesProvider = ({ children }) => {
     fetchNotes();
   };
 
+  const deleteNote = async (noteId) => {
+    const { error } = await supabase
+      .from("notes")
+      .delete()
+      .match({ id: noteId })
+      .eq("userId", userId);
+    if (error) {
+      toast.error("Error in Deleteing note");
+    } else {
+      toast.success("The note has been deleted");
+    }
+    fetchNotes();
+  };
+
   return (
-    <NotesContext.Provider value={{ notes, addNote }}>
+    <NotesContext.Provider value={{ notes, addNote, deleteNote }}>
       {children}
     </NotesContext.Provider>
   );
