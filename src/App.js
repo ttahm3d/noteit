@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { Footer, Header, ScrollToTop, Sidebar } from "./components";
+import { Toaster } from "react-hot-toast";
 import { useLocalStorage } from "./hooks";
 import Router from "./router/Router";
 import { MainContainer, Page } from "./styles/globals";
@@ -41,6 +42,7 @@ function App() {
           <Router />
         </MainContainer>
         <Footer />
+        <Toaster position="top-center" reverseOrder={false} />
       </Page>
     </ThemeProvider>
   );

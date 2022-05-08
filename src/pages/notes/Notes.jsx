@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Modal, NoteForm } from "../../components";
 import { useNotes } from "../../context/notes";
 import { Container } from "../../styles/globals";
+import { supabase } from "../../SupabaseClient";
 
 export default function Notes() {
   const [showModal, setShowModal] = useState(false);
@@ -10,7 +11,7 @@ export default function Notes() {
     color: "gray",
     body: "",
   });
-  const { addNote } = useNotes();
+  const { notes, addNote } = useNotes();
 
   const toggleModal = () => setShowModal((s) => !s);
   const closeModal = () => setShowModal(false);

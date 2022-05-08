@@ -101,7 +101,6 @@ const NotesContainer = styled.div`
   .ql-toolbar.ql-snow .ql-formats {
     display: flex;
     margin-right: 0;
-    /* background-color: red; */
   }
 
   .ql-toolbar button {
@@ -110,18 +109,13 @@ const NotesContainer = styled.div`
 
   /* Active toolbar icon */
   .ql-toolbar button.ql-active {
-    background-color: ${({ theme, color }) => `${theme.colors[color + "6"]}`};
-    border: 2px solid ${({ theme, color }) => `${theme.colors[color + "7"]}`};
+    background-color: ${({ theme, color }) => `${theme.colors[color + "7"]}`};
+    border: 2px solid ${({ theme, color }) => `${theme.colors[color + "8"]}`};
     border-radius: 0.25rem;
   }
 
   .ql-snow.ql-toolbar button.ql-active {
     color: red;
-  }
-
-  .ql-toolbar button .ql-stroke,
-  .ql-picker-label .ql-stroke {
-    stroke: ${({ theme, color }) => `${theme.colors[color + "11"]}`};
   }
 
   .ql-snow.ql-toolbar button:hover .ql-stroke,
