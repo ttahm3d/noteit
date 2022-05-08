@@ -1,18 +1,22 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { useLocalStorage } from "../../hooks";
 import { supabase } from "../../SupabaseClient";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [userId, setUserId] = useLocalStorage("user-id");
 
   useEffect(() => {
     const session = supabase.auth.session();
     setUser(session?.user ?? null);
+    setUserId(user?.id);
 
     const { data: authListener } = supabase.auth.onAuthStateChange(
       async (_, session) => {
         setUser(session?.user ?? null);
+        setUserId(user?.id);
       }
     );
 
