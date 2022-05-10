@@ -35,6 +35,7 @@ const StyledModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s linear;
 `;
 
 const StyledModal = styled.div`
@@ -49,8 +50,6 @@ const ModalHeader = styled.div`
   padding-bottom: 0.5rem;
   align-items: center;
   font-size: 1.2rem;
-  /* background-color: ${(props) => props.theme.colors.lime3}; */
-  /* color: ${(props) => props.theme.colors.white}; */
 `;
 
 const CloseIcon = styled(IconButton)`
@@ -68,6 +67,4 @@ const CloseIcon = styled(IconButton)`
   }
 `;
 
-const ModalText = styled.div`
-  /* padding: 1rem; */
-`;
+const ModalText = styled.div``;
