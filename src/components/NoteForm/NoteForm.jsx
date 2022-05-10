@@ -70,7 +70,7 @@ const NotesContainer = styled.div`
     flex-direction: column;
     font-family: inherit;
     background-color: ${({ theme, color }) => `${theme.colors[color + "4"]}`};
-    color: ${({ theme, color }) => `${theme.colors[color + "12"]}`};
+    color: ${({ theme, color }) => `${theme.colors[color + "11"]}`};
   }
 
   .ql-editor.ql-blank::before {
@@ -135,6 +135,7 @@ const NotesContainer = styled.div`
 const TitleInput = styled.input`
   padding: 1rem;
   font-size: 1rem;
+  font-weight: 700;
   width: 100%;
   background-color: ${({ theme, color }) => `${theme.colors[color + "3"]}`};
   border: 0;
