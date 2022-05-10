@@ -19,7 +19,8 @@ const NotesProvider = ({ children }) => {
     const { data, error } = await supabase
       .from("notes")
       .select()
-      .eq("userId", userId);
+      .eq("userId", userId)
+      .order("updated_at", { ascending: false });
 
     if (error) {
       throw new Error(error);
@@ -58,8 +59,28 @@ const NotesProvider = ({ children }) => {
     fetchNotes();
   };
 
+  const editNote = async (note) => {
+    const { error } = await supabase
+      .from("notes")
+      .update({
+        title: note?.title,
+        body: note?.body,
+        color: note?.color,
+        updated_at: new Date(),
+      })
+      .match({ id: note?.id })
+      .eq("userId", userId)
+      .eq("id", note?.id);
+    if (error) {
+      toast.error("Error in Deleteing note");
+    } else {
+      toast.success("The note has been deleted");
+    }
+    fetchNotes();
+  };
+
   return (
-    <NotesContext.Provider value={{ notes, addNote, deleteNote }}>
+    <NotesContext.Provider value={{ notes, addNote, deleteNote, editNote }}>
       {children}
     </NotesContext.Provider>
   );

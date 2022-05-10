@@ -9,10 +9,10 @@ export default function Notes() {
   const [isEdit, setIsEdit] = useState(false);
   const [note, setNote] = useState({
     title: "",
-    color: "gray",
+    color: "blue",
     body: "",
   });
-  const { notes, addNote } = useNotes();
+  const { notes, addNote, editNote } = useNotes();
 
   const toggleModal = () => setShowModal((s) => !s);
   const closeModal = () => setShowModal(false);
@@ -28,6 +28,11 @@ export default function Notes() {
 
   const saveNote = () => {
     addNote(note);
+    closeAndClearForm();
+  };
+
+  const saveChanges = () => {
+    editNote(note);
     closeAndClearForm();
   };
 
@@ -56,7 +61,7 @@ export default function Notes() {
     {
       id: "add",
       text: "Save Changes",
-      action: () => console.log("update function comes here"),
+      action: () => saveChanges(),
       variant: "primary__block",
     },
   ];
