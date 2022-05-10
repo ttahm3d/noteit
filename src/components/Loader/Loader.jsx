@@ -25,10 +25,10 @@ const spinAnimation = keyframes`
 `;
 
 const LoaderRing = styled.div`
-  border: 0.5rem solid var(--gray3);
-  border-top: 0.5rem solid var(--blue10);
+  border: 0.5rem solid ${({ theme }) => theme.colors.blue3};
+  border-top: 0.5rem solid ${({ theme }) => theme.colors.blue9};
   border-radius: 50%;
   width: 80px;
   height: 80px;
-  animation: ${spinAnimation} 2s linear infinite;
+  animation: ${spinAnimation} 0.5s linear infinite;
 `;
