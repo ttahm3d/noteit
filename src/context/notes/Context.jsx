@@ -18,13 +18,19 @@ const NotesProvider = ({ children }) => {
   const [notes, setNotes] = useState([]);
   const [userId] = useLocalStorage("user-id");
 
+  console.log(userId);
+
   useEffect(() => {
     fetchNotes();
   }, []);
 
   const fetchNotes = async () => {
     setLoading(true);
-    const { data, error } = await fetchNotesHandler(userId);
+    const { data, error } = await supabase
+      .from("notes")
+      .select()
+      .eq("userId", userId)
+      .order("updated_at", { ascending: false });
     if (error) {
       throw new Error(error);
     }

@@ -26,11 +26,11 @@ const editNoteHandler = (note, userId) =>
     .eq("userId", userId)
     .eq("id", note?.id);
 
-const fetchNotesHandler = (userId) =>
+const fetchNotesHandler = (user) =>
   supabase
     .from("notes")
     .select()
-    .eq("userId", userId)
+    .eq("userId", user?.id)
     .order("updated_at", { ascending: false });
 
 export {
