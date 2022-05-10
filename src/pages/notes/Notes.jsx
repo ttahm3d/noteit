@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Modal, NoteCard, NoteForm } from "../../components";
+import { Button, Loader, Modal, NoteCard, NoteForm } from "../../components";
 import { useNotes } from "../../context/notes";
 import styled from "styled-components";
 import { Container } from "../../styles/globals";
@@ -12,7 +12,7 @@ export default function Notes() {
     color: "blue",
     body: "",
   });
-  const { notes, addNote, editNote } = useNotes();
+  const { loading, notes, addNote, editNote } = useNotes();
 
   const toggleModal = () => setShowModal((s) => !s);
   const closeModal = () => setShowModal(false);
@@ -20,7 +20,7 @@ export default function Notes() {
   const closeAndClearForm = () => {
     setNote({
       title: "",
-      color: "gray",
+      color: "blue",
       body: "",
     });
     closeModal();
@@ -65,6 +65,8 @@ export default function Notes() {
       variant: "primary__block",
     },
   ];
+
+  if (loading) return <Loader />;
 
   return (
     <Container>

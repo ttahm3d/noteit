@@ -103,9 +103,9 @@ const DateDiv = styled.div`
   margin-top: auto;
   color: ${({ theme, color }) => `${theme.colors[color + "10"]}`};
   font-weight: 500;
+  font-size: 0.9rem;
 
   span {
-    font-size: 0.9rem;
     font-weight: 300;
   }
 `;
