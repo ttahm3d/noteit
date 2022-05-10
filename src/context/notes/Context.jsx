@@ -3,10 +3,17 @@ import { supabase } from "../../SupabaseClient";
 import { useAuth } from "../auth";
 import toast from "react-hot-toast";
 import { useLocalStorage } from "../../hooks";
+import {
+  addNoteHandler,
+  deleteNoteHandler,
+  editNoteHandler,
+  fetchNotesHandler,
+} from "./Utils";
 
 const NotesContext = createContext();
 
 const NotesProvider = ({ children }) => {
+  const [loading, setLoading] = useState(false);
   const { user } = useAuth();
   const [notes, setNotes] = useState([]);
   const [userId] = useLocalStorage("user-id");
@@ -16,27 +23,17 @@ const NotesProvider = ({ children }) => {
   }, []);
 
   const fetchNotes = async () => {
-    const { data, error } = await supabase
-      .from("notes")
-      .select()
-      .eq("userId", userId)
-      .order("updated_at", { ascending: false });
-
+    setLoading(true);
+    const { data, error } = await fetchNotesHandler(userId);
     if (error) {
       throw new Error(error);
     }
     setNotes(data);
+    setLoading(false);
   };
 
   const addNote = async (note) => {
-    const { error } = await supabase.from("notes").insert([
-      {
-        title: note.title,
-        body: note.body,
-        color: note.color,
-        userId: user?.id,
-      },
-    ]);
+    const { error } = await addNoteHandler(note, user);
     if (error) {
       toast.error("Error in saving note");
     } else {
@@ -46,11 +43,7 @@ const NotesProvider = ({ children }) => {
   };
 
   const deleteNote = async (noteId) => {
-    const { error } = await supabase
-      .from("notes")
-      .delete()
-      .match({ id: noteId })
-      .eq("userId", userId);
+    const { error } = await deleteNoteHandler(noteId, userId);
     if (error) {
       toast.error("Error in Deleteing note");
     } else {
@@ -60,27 +53,18 @@ const NotesProvider = ({ children }) => {
   };
 
   const editNote = async (note) => {
-    const { error } = await supabase
-      .from("notes")
-      .update({
-        title: note?.title,
-        body: note?.body,
-        color: note?.color,
-        updated_at: new Date(),
-      })
-      .match({ id: note?.id })
-      .eq("userId", userId)
-      .eq("id", note?.id);
+    const { error } = await editNoteHandler(note, userId);
     if (error) {
-      toast.error("Error in Deleteing note");
+      toast.error("Error in updating note");
     } else {
-      toast.success("The note has been deleted");
+      toast.success("Your changes have been saved");
     }
     fetchNotes();
   };
 
   return (
-    <NotesContext.Provider value={{ notes, addNote, deleteNote, editNote }}>
+    <NotesContext.Provider
+      value={{ notes, loading, addNote, deleteNote, editNote }}>
       {children}
     </NotesContext.Provider>
   );
