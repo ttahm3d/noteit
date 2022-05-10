@@ -3,17 +3,24 @@ import { IconButton } from "../Button/Button";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import styled from "styled-components";
 import { useNotes } from "../../context/notes";
+import { formatDate } from "../../common/utils";
 
-export default function NoteCard({ note }) {
-  const { id, title, body, color } = note;
-
+export default function NoteCard({ note, toggleModal, setNote, setIsEdit }) {
+  const { id, created_at, title, body, color } = note;
+  const date = new Date(created_at.slice(0));
   const { deleteNote } = useNotes();
+
+  const editHandler = () => {
+    setNote(note);
+    setIsEdit(true);
+    toggleModal();
+  };
 
   const actions = [
     {
       id: "edit",
       icon: <AiOutlineEdit />,
-      clickHandler: () => console.log("edit this"),
+      clickHandler: () => editHandler(),
     },
     {
       id: "delete",
@@ -32,6 +39,9 @@ export default function NoteCard({ note }) {
         dangerouslySetInnerHTML={{
           __html: DOMPurify.sanitize(body),
         }}></Body>
+      <DateDiv color={color}>
+        <span>Last updated on:</span> {formatDate(date)}
+      </DateDiv>
       <ActionContainer>
         {actions.map((action) => (
           <ActionButton
@@ -49,8 +59,31 @@ export default function NoteCard({ note }) {
 const Card = styled.div`
   position: relative;
   background-color: ${({ theme, color }) => `${theme.colors[color + "3"]}`};
-  height: 18rem;
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  /* :hover {
+    background-color: ${({ theme, color }) => `${theme.colors[color + "4"]}`};
+  } */
+`;
+
+const Title = styled.div`
+  color: ${({ theme, color }) => `${theme.colors[color + "9"]}`};
+  text-overflow: ${({ title }) => (title.length > 20 ? "elipses" : "none")};
+  font-size: 1.5rem;
+  padding-bottom: 0;
+  font-weight: 700;
+  width: 75%;
+`;
+
+const Body = styled.div`
+  font-size: 0.9rem;
+  color: ${({ theme, color }) => `${theme.colors[color + "11"]}`};
   overflow-y: auto;
+  text-align: justify;
+  padding-right: 1rem;
 
   ::-webkit-scrollbar {
     width: 0.25rem;
@@ -65,20 +98,16 @@ const Card = styled.div`
   }
 `;
 
-const Title = styled.div`
-  color: ${({ theme, color }) => `${theme.colors[color + "9"]}`};
-  text-overflow: ${({ title }) => (title.length > 20 ? "elipses" : "none")};
-  font-size: 1.5rem;
-  padding: 1rem 1rem 0;
-  font-weight: 700;
-  width: 80%;
-`;
+const DateDiv = styled.div`
+  padding-top: 1rem;
+  margin-top: auto;
+  color: ${({ theme, color }) => `${theme.colors[color + "10"]}`};
+  font-weight: 500;
 
-const Body = styled.div`
-  padding: 0.5rem 1rem 1rem;
-  font-size: 0.85rem;
-  text-overflow: ellipsis;
-  color: ${({ theme, color }) => `${theme.colors[color + "11"]}`};
+  span {
+    font-size: 0.9rem;
+    font-weight: 300;
+  }
 `;
 
 const ActionContainer = styled.div`

@@ -6,6 +6,7 @@ import { Container } from "../../styles/globals";
 
 export default function Notes() {
   const [showModal, setShowModal] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
   const [note, setNote] = useState({
     title: "",
     color: "gray",
@@ -30,7 +31,7 @@ export default function Notes() {
     closeAndClearForm();
   };
 
-  const actions = [
+  const addNoteActions = [
     {
       id: "cancel",
       text: "Cancel",
@@ -45,12 +46,33 @@ export default function Notes() {
     },
   ];
 
+  const editNoteActions = [
+    {
+      id: "cancel",
+      text: "Cancel",
+      action: () => closeAndClearForm(),
+      variant: "primary__outline",
+    },
+    {
+      id: "add",
+      text: "Save Changes",
+      action: () => console.log("update function comes here"),
+      variant: "primary__block",
+    },
+  ];
+
   return (
     <Container>
       <h3>Notes page</h3>
       <NotesContainer>
         {notes.map((note) => (
-          <NoteCard note={note} key={note.id} />
+          <NoteCard
+            note={note}
+            setNote={setNote}
+            setIsEdit={setIsEdit}
+            toggleModal={toggleModal}
+            key={note.id}
+          />
         ))}
       </NotesContainer>
       <Button variant="primary__block" onClick={toggleModal}>
@@ -58,9 +80,13 @@ export default function Notes() {
       </Button>
       <Modal
         showModal={showModal}
-        header="Add a Note"
+        header={isEdit ? "Edit Note" : "Add Note"}
         closeModal={closeAndClearForm}>
-        <NoteForm note={note} setNote={setNote} actions={actions} />
+        <NoteForm
+          note={note}
+          setNote={setNote}
+          actions={isEdit ? editNoteActions : addNoteActions}
+        />
       </Modal>
     </Container>
   );
