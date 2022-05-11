@@ -6,7 +6,7 @@ const addNoteHandler = (note, user) =>
       title: note.title,
       body: note.body,
       color: note.color,
-      userId: user?.id,
+      userId: user,
     },
   ]);
 
@@ -30,7 +30,7 @@ const fetchNotesHandler = (user) =>
   supabase
     .from("notes")
     .select()
-    .eq("userId", user?.id)
+    .eq("userId", user)
     .order("updated_at", { ascending: false });
 
 export {

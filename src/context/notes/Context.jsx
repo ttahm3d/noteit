@@ -1,8 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { supabase } from "../../SupabaseClient";
 import { useAuth } from "../auth";
 import toast from "react-hot-toast";
-import { useLocalStorage } from "../../hooks";
 import {
   addNoteHandler,
   deleteNoteHandler,
@@ -14,32 +12,25 @@ const NotesContext = createContext();
 
 const NotesProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
-  const { user } = useAuth();
+  const { user_id } = useAuth();
   const [notes, setNotes] = useState([]);
-  const [userId] = useLocalStorage("user-id");
-
-  console.log(userId);
 
   useEffect(() => {
-    fetchNotes();
-  }, []);
+    if (user_id) fetchNotes();
+  }, [user_id]);
 
   const fetchNotes = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from("notes")
-      .select()
-      .eq("userId", userId)
-      .order("updated_at", { ascending: false });
+    const { data, error } = await fetchNotesHandler(user_id);
     if (error) {
-      throw new Error(error);
+      toast.error("Error in fetching notes");
     }
     setNotes(data);
     setLoading(false);
   };
 
   const addNote = async (note) => {
-    const { error } = await addNoteHandler(note, user);
+    const { error } = await addNoteHandler(note, user_id);
     if (error) {
       toast.error("Error in saving note");
     } else {
@@ -49,7 +40,7 @@ const NotesProvider = ({ children }) => {
   };
 
   const deleteNote = async (noteId) => {
-    const { error } = await deleteNoteHandler(noteId, userId);
+    const { error } = await deleteNoteHandler(noteId, user_id);
     if (error) {
       toast.error("Error in Deleteing note");
     } else {
@@ -59,7 +50,7 @@ const NotesProvider = ({ children }) => {
   };
 
   const editNote = async (note) => {
-    const { error } = await editNoteHandler(note, userId);
+    const { error } = await editNoteHandler(note, user_id);
     if (error) {
       toast.error("Error in updating note");
     } else {
