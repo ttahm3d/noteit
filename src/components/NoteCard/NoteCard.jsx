@@ -73,7 +73,7 @@ const Title = styled.div`
   color: ${({ theme, color }) => `${theme.colors[color + "9"]}`};
   text-overflow: ${({ title }) => (title.length > 20 ? "elipses" : "none")};
   font-size: 1.5rem;
-  padding-bottom: 0;
+  padding-bottom: 1rem;
   font-weight: 700;
   width: 75%;
 `;
@@ -84,6 +84,10 @@ const Body = styled.div`
   overflow-y: auto;
   text-align: justify;
   padding-right: 1rem;
+
+  p {
+    margin: 0;
+  }
 
   ::-webkit-scrollbar {
     width: 0.25rem;
