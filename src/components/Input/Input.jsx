@@ -18,7 +18,6 @@ export default function Input(props) {
   return (
     <FormItem>
       {label && <Label htmlFor={id}>{label}</Label>}
-
       {type === "password" ? (
         <>
           <StyledInput
@@ -30,7 +29,6 @@ export default function Input(props) {
             placeholder={placeholder}
             disabled={disabled}
             onChange={onChangeHandler}
-            {...props}
           />
           <ShowButton onClick={toggleShowPassword}>
             {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
@@ -46,7 +44,6 @@ export default function Input(props) {
           required={required}
           disabled={disabled}
           onChange={onChangeHandler}
-          {...props}
         />
       )}
     </FormItem>
