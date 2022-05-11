@@ -80,6 +80,8 @@ const NotesContainer = styled.div`
 
   .ql-container.ql-snow {
     min-height: 8rem;
+    max-height: 15rem;
+    overflow: hidden auto;
     font-size: 1rem;
     font-family: inherit;
     border: none;

@@ -40,7 +40,7 @@ const StyledModalContainer = styled.div`
 
 const StyledModal = styled.div`
   width: min(30rem, 90vw);
-  max-height: 60vh;
+  max-height: 80vh;
   background-color: ${(props) => props.theme.colors.slate2};
 `;
 
