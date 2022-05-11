@@ -64,9 +64,6 @@ const Card = styled.div`
   flex-direction: column;
   padding: 1rem;
   border-radius: 0.25rem;
-  /* :hover {
-    background-color: ${({ theme, color }) => `${theme.colors[color + "4"]}`};
-  } */
 `;
 
 const Title = styled.div`
