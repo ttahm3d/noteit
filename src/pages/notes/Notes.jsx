@@ -37,6 +37,11 @@ export default function Notes() {
     closeAndClearForm();
   };
 
+  const openAddNoteModal = () => {
+    setIsEdit(false);
+    toggleModal();
+  };
+
   const addNoteActions = [
     {
       id: "cancel",
@@ -72,6 +77,9 @@ export default function Notes() {
   return (
     <Container>
       <h3>Notes page</h3>
+      <Button variant="primary__block" onClick={openAddNoteModal}>
+        Add Note
+      </Button>
       <NotesContainer>
         {notes.map((note) => (
           <NoteCard
@@ -83,9 +91,6 @@ export default function Notes() {
           />
         ))}
       </NotesContainer>
-      <Button variant="primary__block" onClick={toggleModal}>
-        Text
-      </Button>
       <Modal
         showModal={showModal}
         header={isEdit ? "Edit Note" : "Add Note"}
