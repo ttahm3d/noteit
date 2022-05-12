@@ -5,14 +5,15 @@ import styled from "styled-components";
 import { Container } from "../../styles/globals";
 
 export default function Notes() {
-  const [showModal, setShowModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const { loading, notes, addNote, editNote } = useNotes();
+
+  const [showModal, setShowModal] = useState(false);
   const [note, setNote] = useState({
     title: "",
     color: "blue",
     body: "",
   });
-  const { loading, notes, addNote, editNote } = useNotes();
 
   const toggleModal = () => setShowModal((s) => !s);
   const closeModal = () => setShowModal(false);
