@@ -1,11 +1,14 @@
 import DOMPurify from "dompurify";
 import { IconButton } from "../Button/Button";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
+import { BiDotsVerticalRounded } from "react-icons/bi";
 import styled from "styled-components";
 import { useNotes } from "../../context/notes";
 import { formatDate } from "../../common/utils";
+import { useState } from "react";
 
 export default function NoteCard({ note, toggleModal, setNote, setIsEdit }) {
+  const [showMenu, setShowMenu] = useState([]);
   const { id, created_at, title, body, color } = note;
   const date = new Date(created_at.slice(0));
   const { deleteNote } = useNotes();
@@ -15,6 +18,9 @@ export default function NoteCard({ note, toggleModal, setNote, setIsEdit }) {
     setIsEdit(true);
     toggleModal();
   };
+
+  const toggleMenu = () => setShowMenu((s) => !s);
+  const closeMenu = () => setShowMenu(false);
 
   const actions = [
     {
@@ -31,9 +37,32 @@ export default function NoteCard({ note, toggleModal, setNote, setIsEdit }) {
 
   return (
     <Card color={color}>
-      <Title color={color} title={title}>
-        {title}
-      </Title>
+      <CardHeader>
+        <Title color={color} title={title}>
+          {title}
+        </Title>
+        <ActionContainer>
+          <ActionButton
+            onClick={toggleMenu}
+            icon={<BiDotsVerticalRounded />}
+            color={color}
+          />
+          {showMenu && (
+            <Dropdown color={color}>
+              <DropdownItem color={color}>Edit</DropdownItem>
+              <DropdownItem color={color}>Edit</DropdownItem>
+            </Dropdown>
+          )}
+          {/* {actions.map((action) => (
+            <ActionButton
+              icon={action.icon}
+              onClick={action.clickHandler}
+              key={action.id}
+              color={color}
+            />
+          ))} */}
+        </ActionContainer>
+      </CardHeader>
       <Body
         color={color}
         dangerouslySetInnerHTML={{
@@ -42,16 +71,6 @@ export default function NoteCard({ note, toggleModal, setNote, setIsEdit }) {
       <DateDiv color={color}>
         <span>Last updated on:</span> {formatDate(date)}
       </DateDiv>
-      <ActionContainer>
-        {actions.map((action) => (
-          <ActionButton
-            icon={action.icon}
-            onClick={action.clickHandler}
-            key={action.id}
-            color={color}
-          />
-        ))}
-      </ActionContainer>
     </Card>
   );
 }
@@ -64,6 +83,11 @@ const Card = styled.div`
   flex-direction: column;
   padding: 1rem;
   border-radius: 0.25rem;
+`;
+
+const CardHeader = styled.div`
+  display: flex;
+  align-items: flex-start;
 `;
 
 const Title = styled.div`
@@ -112,8 +136,8 @@ const DateDiv = styled.div`
 `;
 
 const ActionContainer = styled.div`
-  padding: 1rem;
-  position: absolute;
+  margin-left: auto;
+  position: relative;
   top: 0rem;
   right: 0rem;
   display: flex;
@@ -121,7 +145,8 @@ const ActionContainer = styled.div`
 `;
 
 const ActionButton = styled(IconButton)`
-  padding: 0.55rem 0.35rem;
+  padding: 0.55rem;
+  border-radius: 50%;
   background-color: ${({ theme, color }) => `${theme.colors[color + "4"]}`};
   color: ${({ theme, color }) => `${theme.colors[color + "9"]}`};
   border: 1px solid ${({ theme, color }) => `${theme.colors[color + "7"]}`};
@@ -133,4 +158,18 @@ const ActionButton = styled(IconButton)`
   :active {
     background-color: ${({ theme, color }) => `${theme.colors[color + "6"]}`};
   }
+`;
+
+const Dropdown = styled.div`
+  position: absolute;
+  top: 100%;
+  right: 0rem;
+`;
+
+const DropdownItem = styled.div`
+  padding: 0.5rem;
+  background-color: ${({ theme, color }) => `${theme.colors[color + "4"]}`};
+  color: ${({ theme, color }) => `${theme.colors[color + "9"]}`};
+  border: 1px solid ${({ theme, color }) => `${theme.colors[color + "7"]}`};
+  width: 10rem;
 `;

@@ -6,7 +6,7 @@ import { Container } from "../../styles/globals";
 
 export default function Notes() {
   const [isEdit, setIsEdit] = useState(false);
-  const { loading, notes, addNote, editNote } = useNotes();
+  const { loading, notes, addNote, editNote, deleteNote } = useNotes();
 
   const [showModal, setShowModal] = useState(false);
   const [note, setNote] = useState({
