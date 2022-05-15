@@ -31,8 +31,6 @@ const fetchNotesHandler = (user) =>
     .from("notes")
     .select()
     .eq("userId", user)
-    .eq("isTrashed", false)
-    .eq("isArchived", false)
     .order("updated_at", { ascending: false });
 
 const moveToTrashHandler = (note, userId) =>

@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Button, Loader, Modal, NoteCard, NoteForm } from "../../components";
+import {
+  Button,
+  Empty,
+  Loader,
+  Modal,
+  NoteCard,
+  NoteForm,
+} from "../../components";
 import { useNotes } from "../../context/notes";
 import { AiOutlineDelete } from "react-icons/ai";
 import { IoArchiveOutline } from "react-icons/io5";
@@ -8,15 +15,18 @@ import { Container } from "../../styles/globals";
 
 export default function Notes() {
   const [isEdit, setIsEdit] = useState(false);
-  const { loading, notes, addNote, editNote, moveToTrash, moveToArchive } =
-    useNotes();
-
   const [showModal, setShowModal] = useState(false);
   const [note, setNote] = useState({
     title: "",
     color: "blue",
     body: "",
   });
+  const { loading, notes, addNote, editNote, moveToTrash, moveToArchive } =
+    useNotes();
+
+  const normalNotes = notes.filter(
+    (note) => !(note.isArchived || note.isTrashed)
+  );
 
   const toggleModal = () => setShowModal((s) => !s);
   const closeModal = () => setShowModal(false);
@@ -98,18 +108,32 @@ export default function Notes() {
       <Button variant="primary__block" onClick={openAddNoteModal}>
         Add Note
       </Button>
-      <NotesContainer>
-        {notes.map((note) => (
-          <NoteCard
-            note={note}
-            setNote={setNote}
-            setIsEdit={setIsEdit}
-            toggleModal={toggleModal}
-            noteActions={noteActions}
-            key={note.id}
-          />
-        ))}
-      </NotesContainer>
+      {normalNotes.length > 0 ? (
+        <NotesContainer>
+          {normalNotes.map((note) => (
+            <NoteCard
+              note={note}
+              setNote={setNote}
+              setIsEdit={setIsEdit}
+              toggleModal={toggleModal}
+              noteActions={noteActions}
+              key={note.id}
+            />
+          ))}
+        </NotesContainer>
+      ) : (
+        <Empty
+          message="There are no notes to be shown here. Want to add a note now?"
+          firstLink={{
+            text: "Archive",
+            link: "/archive",
+          }}
+          secondLink={{
+            text: "Trash",
+            link: "/trash",
+          }}
+        />
+      )}
       <Modal
         showModal={showModal}
         header={isEdit ? "Edit Note" : "Add Note"}
