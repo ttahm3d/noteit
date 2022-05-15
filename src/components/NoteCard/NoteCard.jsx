@@ -1,14 +1,21 @@
 import DOMPurify from "dompurify";
 import { IconButton } from "../Button/Button";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
+import { IoTrashBinOutline } from "react-icons/io5";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import styled from "styled-components";
 import { useNotes } from "../../context/notes";
 import { formatDate } from "../../common/utils";
 import { useState } from "react";
 
-export default function NoteCard({ note, toggleModal, setNote, setIsEdit }) {
-  const [showMenu, setShowMenu] = useState([]);
+export default function NoteCard({
+  note,
+  toggleModal,
+  setNote,
+  setIsEdit,
+  noteActions,
+}) {
+  const [showMenu, setShowMenu] = useState(false);
   const { id, created_at, title, body, color } = note;
   const date = new Date(created_at.slice(0));
   const { deleteNote } = useNotes();
@@ -47,20 +54,27 @@ export default function NoteCard({ note, toggleModal, setNote, setIsEdit }) {
             icon={<BiDotsVerticalRounded />}
             color={color}
           />
-          {showMenu && (
-            <Dropdown color={color}>
-              <DropdownItem color={color}>Edit</DropdownItem>
-              <DropdownItem color={color}>Edit</DropdownItem>
-            </Dropdown>
-          )}
-          {/* {actions.map((action) => (
-            <ActionButton
-              icon={action.icon}
-              onClick={action.clickHandler}
-              key={action.id}
+          {/* {showMenu && ( */}
+          <Dropdown color={color} showMenu={showMenu}>
+            <DropdownItem
               color={color}
-            />
-          ))} */}
+              title="Edit"
+              onClick={() => editHandler()}>
+              <AiOutlineEdit />
+            </DropdownItem>
+            {noteActions.map((action) => (
+              <DropdownItem color={color} title={action.title} key={action.id}>
+                {action.icon}
+              </DropdownItem>
+            ))}
+            <DropdownItem
+              color={color}
+              title="Delete"
+              onClick={() => deleteNote(id)}>
+              <IoTrashBinOutline />
+            </DropdownItem>
+          </Dropdown>
+          {/* )} */}
         </ActionContainer>
       </CardHeader>
       <Body
@@ -163,13 +177,25 @@ const ActionButton = styled(IconButton)`
 const Dropdown = styled.div`
   position: absolute;
   top: 100%;
-  right: 0rem;
+  right: 0.1rem;
+  color: ${({ theme, color }) => `${theme.colors[color + "9"]}`};
+  background-color: ${({ theme, color }) => `${theme.colors[color + "4"]}`};
+  border: 1px solid ${({ theme, color }) => `${theme.colors[color + "7"]}`};
+  border-radius: 5rem;
+  transition: 0.2s all linear;
+  display: ${({ showMenu }) => (showMenu ? "block" : "none")};
 `;
 
 const DropdownItem = styled.div`
-  padding: 0.5rem;
-  background-color: ${({ theme, color }) => `${theme.colors[color + "4"]}`};
-  color: ${({ theme, color }) => `${theme.colors[color + "9"]}`};
-  border: 1px solid ${({ theme, color }) => `${theme.colors[color + "7"]}`};
-  width: 10rem;
+  padding: 0.45rem;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+
+  :hover {
+    background-color: ${({ theme, color }) => `${theme.colors[color + "6"]}`};
+  }
 `;
