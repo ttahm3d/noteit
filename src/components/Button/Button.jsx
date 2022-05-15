@@ -95,8 +95,4 @@ const StyledIconButton = styled(StyledButton)`
   padding: 0.25rem;
   display: flex;
   justify-content: center;
-
-  :focus {
-    border: 2px solid ${(props) => props.theme.colors.gray7};
-  }
 `;

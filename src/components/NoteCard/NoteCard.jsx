@@ -149,6 +149,7 @@ const ActionButton = styled(IconButton)`
   background-color: ${({ theme, color }) => `${theme.colors[color + "4"]}`};
   color: ${({ theme, color }) => `${theme.colors[color + "9"]}`};
   border: 1px solid ${({ theme, color }) => `${theme.colors[color + "7"]}`};
+  outline-offset: 0;
 
   :hover {
     background-color: ${({ theme, color }) => `${theme.colors[color + "5"]}`};
@@ -157,12 +158,16 @@ const ActionButton = styled(IconButton)`
   :active {
     background-color: ${({ theme, color }) => `${theme.colors[color + "6"]}`};
   }
+
+  :focus {
+    outline: 1px solid ${({ theme, color }) => `${theme.colors[color + "7"]}`};
+  }
 `;
 
 const Dropdown = styled.div`
   position: absolute;
   top: 100%;
-  right: 0rem;
+  right: 0.1rem;
   color: ${({ theme, color }) => `${theme.colors[color + "9"]}`};
   background-color: ${({ theme, color }) => `${theme.colors[color + "4"]}`};
   border: 1px solid ${({ theme, color }) => `${theme.colors[color + "7"]}`};
