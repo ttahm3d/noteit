@@ -29,19 +29,6 @@ export default function NoteCard({
   const toggleMenu = () => setShowMenu((s) => !s);
   const closeMenu = () => setShowMenu(false);
 
-  const actions = [
-    {
-      id: "edit",
-      icon: <AiOutlineEdit />,
-      clickHandler: () => editHandler(),
-    },
-    {
-      id: "delete",
-      icon: <AiOutlineDelete />,
-      clickHandler: () => deleteNote(id),
-    },
-  ];
-
   return (
     <Card color={color}>
       <CardHeader>
@@ -54,8 +41,7 @@ export default function NoteCard({
             icon={<BiDotsVerticalRounded />}
             color={color}
           />
-          {/* {showMenu && ( */}
-          <Dropdown color={color} showMenu={showMenu}>
+          <Dropdown color={color} showMenu={showMenu} onClick={closeMenu}>
             <DropdownItem
               color={color}
               title="Edit"
@@ -74,7 +60,6 @@ export default function NoteCard({
               <IoTrashBinOutline />
             </DropdownItem>
           </Dropdown>
-          {/* )} */}
         </ActionContainer>
       </CardHeader>
       <Body
@@ -177,7 +162,7 @@ const ActionButton = styled(IconButton)`
 const Dropdown = styled.div`
   position: absolute;
   top: 100%;
-  right: 0.1rem;
+  right: 0rem;
   color: ${({ theme, color }) => `${theme.colors[color + "9"]}`};
   background-color: ${({ theme, color }) => `${theme.colors[color + "4"]}`};
   border: 1px solid ${({ theme, color }) => `${theme.colors[color + "7"]}`};
@@ -187,7 +172,7 @@ const Dropdown = styled.div`
 `;
 
 const DropdownItem = styled.div`
-  padding: 0.45rem;
+  padding: 0.4rem;
   border-radius: 50px;
   cursor: pointer;
   display: flex;
