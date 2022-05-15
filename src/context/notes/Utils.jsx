@@ -31,11 +31,61 @@ const fetchNotesHandler = (user) =>
     .from("notes")
     .select()
     .eq("userId", user)
+    .eq("isTrashed", false)
+    .eq("isArchived", false)
     .order("updated_at", { ascending: false });
+
+const moveToTrashHandler = (note, userId) =>
+  supabase
+    .from("notes")
+    .update({
+      isTrashed: true,
+      isArchived: false,
+    })
+    .match({ id: note?.id })
+    .eq("userId", userId)
+    .eq("id", note?.id);
+
+const moveToArchiveHandler = (note, userId) =>
+  supabase
+    .from("notes")
+    .update({
+      isTrashed: false,
+      isArchived: true,
+    })
+    .match({ id: note?.id })
+    .eq("userId", userId)
+    .eq("id", note?.id);
+
+const removeFromTrashHandler = (note, userId) =>
+  supabase
+    .from("notes")
+    .update({
+      isTrashed: false,
+      isArchived: true,
+    })
+    .match({ id: note?.id })
+    .eq("userId", userId)
+    .eq("id", note?.id);
+
+const removeFromArchiveHandler = (note, userId) =>
+  supabase
+    .from("notes")
+    .update({
+      isTrashed: false,
+      isArchived: true,
+    })
+    .match({ id: note?.id })
+    .eq("userId", userId)
+    .eq("id", note?.id);
 
 export {
   addNoteHandler,
   deleteNoteHandler,
   editNoteHandler,
   fetchNotesHandler,
+  moveToArchiveHandler,
+  moveToTrashHandler,
+  removeFromArchiveHandler,
+  removeFromTrashHandler,
 };
