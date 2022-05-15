@@ -1,5 +1,6 @@
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
+import Empty from "./Empty/Empty";
 import Loader from "./Loader/Loader";
 import ScrollToTop from "./ScrollToTop/ScrollToTop";
 import Sidebar from "./Sidebar/Sidebar";
@@ -15,6 +16,7 @@ export {
   Alert,
   Input,
   Modal,
+  Empty,
   NoteForm,
   NoteCard,
   Header,
