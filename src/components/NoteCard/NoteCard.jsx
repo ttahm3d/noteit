@@ -48,9 +48,13 @@ export default function NoteCard({
               onClick={() => editHandler()}>
               <AiOutlineEdit />
             </DropdownItem>
-            {noteActions.map((action) => (
-              <DropdownItem color={color} title={action.title} key={action.id}>
-                {action.icon}
+            {noteActions.map(({ title, id, actionHandler, icon }) => (
+              <DropdownItem
+                color={color}
+                title={title}
+                key={id}
+                onClick={() => actionHandler(note)}>
+                {icon}
               </DropdownItem>
             ))}
             <DropdownItem

@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { Button, Loader, Modal, NoteCard, NoteForm } from "../../components";
 import { useNotes } from "../../context/notes";
-import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineDelete } from "react-icons/ai";
 import { IoArchiveOutline } from "react-icons/io5";
 import styled from "styled-components";
 import { Container } from "../../styles/globals";
 
 export default function Notes() {
   const [isEdit, setIsEdit] = useState(false);
-  const { loading, notes, addNote, editNote } = useNotes();
+  const { loading, notes, addNote, editNote, moveToTrash, moveToArchive } =
+    useNotes();
 
   const [showModal, setShowModal] = useState(false);
   const [note, setNote] = useState({
@@ -79,11 +80,13 @@ export default function Notes() {
       id: "trash",
       icon: <AiOutlineDelete />,
       title: "Move to Trash",
+      actionHandler: moveToTrash,
     },
     {
       id: "archive",
       icon: <IoArchiveOutline />,
       title: "Archive Note",
+      actionHandler: moveToArchive,
     },
   ];
 
