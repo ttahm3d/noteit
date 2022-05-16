@@ -10,7 +10,7 @@ import {
 import { useNotes } from "../../context/notes";
 import { AiOutlineDelete } from "react-icons/ai";
 import { IoArchiveOutline } from "react-icons/io5";
-import styled from "styled-components";
+import { NotesContainer, Content } from "../styles/NotePage.styles";
 import { Container } from "../../styles/globals";
 
 export default function Notes() {
@@ -23,10 +23,6 @@ export default function Notes() {
   });
   const { loading, notes, addNote, editNote, moveToTrash, moveToArchive } =
     useNotes();
-
-  const normalNotes = notes.filter(
-    (note) => !(note.isArchived || note.isTrashed)
-  );
 
   const toggleModal = () => setShowModal((s) => !s);
   const closeModal = () => setShowModal(false);
@@ -108,9 +104,9 @@ export default function Notes() {
         <Button variant="primary__block" onClick={openAddNoteModal}>
           Add Note
         </Button>
-        {normalNotes.length > 0 ? (
+        {notes.length > 0 ? (
           <NotesContainer>
-            {normalNotes.map((note) => (
+            {notes.map((note) => (
               <NoteCard
                 note={note}
                 setNote={setNote}
@@ -122,17 +118,7 @@ export default function Notes() {
             ))}
           </NotesContainer>
         ) : (
-          <Empty
-            message="There are no notes to be shown here. Want to add a note now?"
-            firstLink={{
-              text: "Archive",
-              link: "/archive",
-            }}
-            secondLink={{
-              text: "Trash",
-              link: "/trash",
-            }}
-          />
+          <Empty message="There are no notes to be shown here. Want to add a note now?" />
         )}
         <Modal
           showModal={showModal}
@@ -148,13 +134,3 @@ export default function Notes() {
     </Container>
   );
 }
-
-const NotesContainer = styled.section`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-  gap: 1rem;
-`;
-
-const Content = styled.div`
-  padding: 2rem 0;
-`;
