@@ -10,4 +10,12 @@ const Content = styled.div`
   padding: 2rem 0;
 `;
 
-export { NotesContainer, Content };
+const AddNoteContainer = styled.div`
+  background-color: ${(props) => props.theme.colors.blue1};
+  position: sticky;
+  z-index: 2;
+  top: 65px;
+  padding: 1rem 0;
+`;
+
+export { NotesContainer, Content, AddNoteContainer };

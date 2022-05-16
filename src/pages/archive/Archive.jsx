@@ -21,8 +21,62 @@ export default function Trash() {
     color: "blue",
     body: "",
   });
-  const { notes, loading } = useNotes();
+  const { notes, loading, addNote, editNote } = useNotes();
   const archivedNotes = notes.filter((note) => note.isArchived);
+
+  const addNoteActions = [
+    {
+      id: "cancel",
+      text: "Cancel",
+      action: () => closeAndClearForm(),
+      variant: "primary__outline",
+    },
+    {
+      id: "add",
+      text: "Save Note",
+      action: () => saveNote(),
+      variant: "primary__block",
+    },
+  ];
+
+  const editNoteActions = [
+    {
+      id: "cancel",
+      text: "Cancel",
+      action: () => closeAndClearForm(),
+      variant: "primary__outline",
+    },
+    {
+      id: "add",
+      text: "Save Changes",
+      action: () => saveChanges(),
+      variant: "primary__block",
+    },
+  ];
+
+  const closeAndClearForm = () => {
+    setNote({
+      title: "",
+      color: "blue",
+      body: "",
+    });
+    closeModal();
+  };
+
+  const saveNote = () => {
+    addNote(note);
+    closeAndClearForm();
+  };
+
+  const saveChanges = () => {
+    editNote(note);
+    closeAndClearForm();
+  };
+
+  const openAddNoteModal = () => {
+    setIsEdit(false);
+    toggleModal();
+  };
 
   const toggleModal = () => setShowModal((s) => !s);
   const closeModal = () => setShowModal(false);
@@ -63,6 +117,16 @@ export default function Trash() {
         ) : (
           <Empty />
         )}
+        <Modal
+          showModal={showModal}
+          header={isEdit ? "Edit Note" : "Add Note"}
+          closeModal={closeAndClearForm}>
+          <NoteForm
+            note={note}
+            setNote={setNote}
+            actions={isEdit ? editNoteActions : addNoteActions}
+          />
+        </Modal>
       </Content>
     </Container>
   );

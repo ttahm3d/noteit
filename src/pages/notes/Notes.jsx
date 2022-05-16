@@ -8,9 +8,13 @@ import {
   NoteForm,
 } from "../../components";
 import { useNotes } from "../../context/notes";
-import { AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlinePlusCircle } from "react-icons/ai";
 import { IoArchiveOutline } from "react-icons/io5";
-import { NotesContainer, Content } from "../styles/NotePage.styles";
+import {
+  NotesContainer,
+  Content,
+  AddNoteContainer,
+} from "../styles/NotePage.styles";
 import { Container } from "../../styles/globals";
 
 export default function Notes() {
@@ -101,9 +105,14 @@ export default function Notes() {
   return (
     <Container>
       <Content>
-        <Button variant="primary__block" onClick={openAddNoteModal}>
-          Add Note
-        </Button>
+        <AddNoteContainer>
+          <Button
+            variant="primary__block"
+            onClick={openAddNoteModal}
+            title="Add Note">
+            Add Note
+          </Button>
+        </AddNoteContainer>
         {notes.length > 0 ? (
           <NotesContainer>
             {notes.map((note) => (
