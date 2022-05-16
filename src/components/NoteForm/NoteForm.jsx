@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import { Button } from "../Button/Button";
 
 export default function NoteForm({ note, setNote, actions }) {
-  const colorsList = ["teal", "crimson", "orange", "green", "plum", "blue"];
+  const colorsList = ["teal", "crimson", "orange", "brown", "plum", "blue"];
 
   const modules = {
     toolbar: [
@@ -137,7 +137,7 @@ const NotesContainer = styled.div`
 const TitleInput = styled.input`
   padding: 1rem;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 500;
   width: 100%;
   background-color: ${({ theme, color }) => `${theme.colors[color + "3"]}`};
   border: 0;
