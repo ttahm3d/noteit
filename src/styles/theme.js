@@ -6,8 +6,8 @@ import {
   orangeDark,
   red,
   redDark,
-  green,
-  greenDark,
+  brown,
+  brownDark,
   gray,
   grayDark,
   violet,
@@ -30,7 +30,7 @@ const lightTheme = {
   colors: {
     ...gray,
     ...red,
-    ...green,
+    ...brown,
     ...orange,
     ...blue,
     ...violet,
@@ -49,7 +49,7 @@ const darkTheme = {
   colors: {
     ...grayDark,
     ...redDark,
-    ...greenDark,
+    ...brownDark,
     ...orangeDark,
     ...blueDark,
     ...violetDark,
