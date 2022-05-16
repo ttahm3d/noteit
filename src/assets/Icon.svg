@@ -1,11 +1,18 @@
-<svg width="350" height="350" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_101_2)">
 <mask id="path-1-inside-1_101_2" fill="white">
-<path d="M44 35C44 33.8954 44.8954 33 46 33H249C257.284 33 264 39.7157 264 48V303C264 311.284 257.284 318 249 318H46C44.8954 318 44 317.105 44 316V35Z"/>
+<path d="M10 10C10 8.89543 10.8954 8 12 8H215C223.284 8 230 14.7157 230 23V278C230 286.284 223.284 293 215 293H12C10.8954 293 10 292.105 10 291V10Z"/>
 </mask>
-<path d="M44 35C44 33.8954 44.8954 33 46 33H249C257.284 33 264 39.7157 264 48V303C264 311.284 257.284 318 249 318H46C44.8954 318 44 317.105 44 316V35Z" stroke="#1890FF" stroke-width="8" mask="url(#path-1-inside-1_101_2)"/>
-<line x1="94" y1="126.5" x2="209" y2="126.5" stroke="#FF802B" stroke-width="13"/>
-<line x1="94" y1="154.5" x2="209" y2="154.5" stroke="#FF802B" stroke-width="13"/>
-<line x1="94" y1="183.5" x2="184" y2="183.5" stroke="#FF802B" stroke-width="13"/>
-<rect x="0.165053" y="0.687495" width="31.2931" height="194.158" transform="matrix(0.852697 0.522406 -0.522591 0.852583 307.847 33.0151)" fill="#1890FF" stroke="#1890FF"/>
-<path d="M234.306 213.484L200.217 239.487L208.651 197.456L234.306 213.484Z" fill="#FF802B" stroke="#FF802B"/>
+<path d="M10 10C10 8.89543 10.8954 8 12 8H215C223.284 8 230 14.7157 230 23V278C230 286.284 223.284 293 215 293H12C10.8954 293 10 292.105 10 291V10Z" stroke="#1890FF" stroke-width="8" mask="url(#path-1-inside-1_101_2)"/>
+<line x1="60" y1="101.5" x2="175" y2="101.5" stroke="#FF802B" stroke-width="13"/>
+<line x1="60" y1="129.5" x2="175" y2="129.5" stroke="#FF802B" stroke-width="13"/>
+<line x1="60" y1="158.5" x2="150" y2="158.5" stroke="#FF802B" stroke-width="13"/>
+<rect x="0.165053" y="0.687495" width="31.2931" height="194.158" transform="matrix(0.852697 0.522406 -0.522591 0.852583 273.847 8.01512)" fill="#1890FF" stroke="#1890FF"/>
+<path d="M200.306 188.484L166.217 214.487L174.651 172.456L200.306 188.484Z" fill="#FF802B" stroke="#FF802B"/>
+</g>
+<defs>
+<clipPath id="clip0_101_2">
+<rect width="300" height="300" fill="white"/>
+</clipPath>
+</defs>
 </svg>
