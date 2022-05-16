@@ -9,14 +9,14 @@ export default function Empty({ message, firstLink, secondLink }) {
         <img src={Icon} alt="Notes Icon" />
       </ImageWrapper>
       <Message>{message}</Message>
-      <div>
+      <LinksContainer>
         Check for notes in&nbsp;
         <NavigationLink to={firstLink.link}>
           {firstLink.text}
         </NavigationLink> or{" "}
         <NavigationLink to={secondLink.link}>{secondLink.text}</NavigationLink>{" "}
         pages.
-      </div>
+      </LinksContainer>
     </EmptyContainer>
   );
 }
@@ -27,13 +27,21 @@ const EmptyContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   width: min(100% - 2rem, 45em);
-  margin: 1rem auto;
+  margin: 2rem auto;
   font-size: 1.25rem;
 `;
 
 const ImageWrapper = styled.div``;
 
 const Message = styled.div`
+  color: ${(props) => props.theme.colors.slate12};
+  padding: 2rem 0;
+
+  div {
+    color: ${(props) => props.theme.colors.slate11};
+  }
+`;
+
+const LinksContainer = styled.div`
   color: ${(props) => props.theme.colors.slate11};
-  padding: 1rem 0;
 `;

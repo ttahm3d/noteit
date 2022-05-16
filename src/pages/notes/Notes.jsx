@@ -104,46 +104,47 @@ export default function Notes() {
 
   return (
     <Container>
-      <h3>Notes page</h3>
-      <Button variant="primary__block" onClick={openAddNoteModal}>
-        Add Note
-      </Button>
-      {normalNotes.length > 0 ? (
-        <NotesContainer>
-          {normalNotes.map((note) => (
-            <NoteCard
-              note={note}
-              setNote={setNote}
-              setIsEdit={setIsEdit}
-              toggleModal={toggleModal}
-              noteActions={noteActions}
-              key={note.id}
-            />
-          ))}
-        </NotesContainer>
-      ) : (
-        <Empty
-          message="There are no notes to be shown here. Want to add a note now?"
-          firstLink={{
-            text: "Archive",
-            link: "/archive",
-          }}
-          secondLink={{
-            text: "Trash",
-            link: "/trash",
-          }}
-        />
-      )}
-      <Modal
-        showModal={showModal}
-        header={isEdit ? "Edit Note" : "Add Note"}
-        closeModal={closeAndClearForm}>
-        <NoteForm
-          note={note}
-          setNote={setNote}
-          actions={isEdit ? editNoteActions : addNoteActions}
-        />
-      </Modal>
+      <Content>
+        <Button variant="primary__block" onClick={openAddNoteModal}>
+          Add Note
+        </Button>
+        {normalNotes.length > 0 ? (
+          <NotesContainer>
+            {normalNotes.map((note) => (
+              <NoteCard
+                note={note}
+                setNote={setNote}
+                setIsEdit={setIsEdit}
+                toggleModal={toggleModal}
+                noteActions={noteActions}
+                key={note.id}
+              />
+            ))}
+          </NotesContainer>
+        ) : (
+          <Empty
+            message="There are no notes to be shown here. Want to add a note now?"
+            firstLink={{
+              text: "Archive",
+              link: "/archive",
+            }}
+            secondLink={{
+              text: "Trash",
+              link: "/trash",
+            }}
+          />
+        )}
+        <Modal
+          showModal={showModal}
+          header={isEdit ? "Edit Note" : "Add Note"}
+          closeModal={closeAndClearForm}>
+          <NoteForm
+            note={note}
+            setNote={setNote}
+            actions={isEdit ? editNoteActions : addNoteActions}
+          />
+        </Modal>
+      </Content>
     </Container>
   );
 }
@@ -152,4 +153,8 @@ const NotesContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   gap: 1rem;
+`;
+
+const Content = styled.div`
+  padding: 2rem 0;
 `;
