@@ -11,10 +11,15 @@ export default function Empty({ message, firstLink, secondLink }) {
       <Message>{message}</Message>
       <LinksContainer>
         Check for notes in&nbsp;
-        <NavigationLink to={firstLink.link}>
-          {firstLink.text}
-        </NavigationLink> or{" "}
-        <NavigationLink to={secondLink.link}>{secondLink.text}</NavigationLink>{" "}
+        {firstLink && (
+          <NavigationLink to={firstLink.link}>{firstLink.text}</NavigationLink>
+        )}
+        or&nbsp;
+        {secondLink && (
+          <NavigationLink to={secondLink.link}>
+            {secondLink.text}
+          </NavigationLink>
+        )}
         pages.
       </LinksContainer>
     </EmptyContainer>
