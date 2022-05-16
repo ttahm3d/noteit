@@ -16,8 +16,8 @@ export default function NoteCard({
   noteActions,
 }) {
   const [showMenu, setShowMenu] = useState(false);
-  const { id, created_at, title, body, color } = note;
-  const date = new Date(created_at.slice(0));
+  const { id, updated_at, title, body, color } = note;
+  const date = new Date(updated_at);
   const { deleteNote } = useNotes();
 
   const editHandler = () => {
