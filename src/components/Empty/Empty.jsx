@@ -1,27 +1,13 @@
 import styled from "styled-components";
 import Icon from "../../assets/Icon.svg";
-import NavigationLink from "../Links/Link";
 
-export default function Empty({ message, firstLink, secondLink }) {
+export default function Empty({ message }) {
   return (
     <EmptyContainer>
       <ImageWrapper>
         <img src={Icon} alt="Notes Icon" />
       </ImageWrapper>
       <Message>{message}</Message>
-      <LinksContainer>
-        Check for notes in&nbsp;
-        {firstLink && (
-          <NavigationLink to={firstLink.link}>{firstLink.text}</NavigationLink>
-        )}
-        or&nbsp;
-        {secondLink && (
-          <NavigationLink to={secondLink.link}>
-            {secondLink.text}
-          </NavigationLink>
-        )}
-        pages.
-      </LinksContainer>
     </EmptyContainer>
   );
 }
@@ -47,6 +33,6 @@ const Message = styled.div`
   }
 `;
 
-const LinksContainer = styled.div`
-  color: ${(props) => props.theme.colors.slate11};
-`;
+// const LinksContainer = styled.div`
+//   color: ${(props) => props.theme.colors.slate11};
+// `;

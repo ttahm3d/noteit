@@ -1,18 +1,12 @@
-<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_101_2)">
+<svg width="250" height="250" viewBox="0 0 250 250" fill="none" xmlns="http://www.w3.org/2000/svg">
 <mask id="path-1-inside-1_101_2" fill="white">
-<path d="M10 10C10 8.89543 10.8954 8 12 8H215C223.284 8 230 14.7157 230 23V278C230 286.284 223.284 293 215 293H12C10.8954 293 10 292.105 10 291V10Z"/>
+<path d="M55 37C55 35.8954 55.8954 35 57 35H166C174.284 35 181 41.7157 181 50V200C181 208.284 174.284 215 166 215H57C55.8954 215 55 214.105 55 213V37Z"/>
 </mask>
-<path d="M10 10C10 8.89543 10.8954 8 12 8H215C223.284 8 230 14.7157 230 23V278C230 286.284 223.284 293 215 293H12C10.8954 293 10 292.105 10 291V10Z" stroke="#1890FF" stroke-width="8" mask="url(#path-1-inside-1_101_2)"/>
-<line x1="60" y1="101.5" x2="175" y2="101.5" stroke="#FF802B" stroke-width="13"/>
-<line x1="60" y1="129.5" x2="175" y2="129.5" stroke="#FF802B" stroke-width="13"/>
-<line x1="60" y1="158.5" x2="150" y2="158.5" stroke="#FF802B" stroke-width="13"/>
-<rect x="0.165053" y="0.687495" width="31.2931" height="194.158" transform="matrix(0.852697 0.522406 -0.522591 0.852583 273.847 8.01512)" fill="#1890FF" stroke="#1890FF"/>
-<path d="M200.306 188.484L166.217 214.487L174.651 172.456L200.306 188.484Z" fill="#FF802B" stroke="#FF802B"/>
-</g>
-<defs>
-<clipPath id="clip0_101_2">
-<rect width="300" height="300" fill="white"/>
-</clipPath>
-</defs>
+<path d="M55 37C55 35.8954 55.8954 35 57 35H166C174.284 35 181 41.7157 181 50V200C181 208.284 174.284 215 166 215H57C55.8954 215 55 214.105 55 213V37Z" stroke="#1890FF" stroke-width="8" mask="url(#path-1-inside-1_101_2)"/>
+<line x1="84" y1="91.5" x2="150" y2="91.5" stroke="#FF802B" stroke-width="13"/>
+<line x1="84" y1="73.5" x2="150" y2="73.5" stroke="#FF802B" stroke-width="13"/>
+<line x1="84" y1="109.5" x2="150" y2="109.5" stroke="#FF802B" stroke-width="13"/>
+<line x1="84" y1="127.5" x2="135" y2="127.5" stroke="#FF802B" stroke-width="13"/>
+<rect x="0.171614" y="0.718113" width="17.9806" height="119.117" transform="matrix(0.827577 0.561352 -0.484349 0.874875 205.669 34.9935)" fill="#1890FF" stroke="#1890FF"/>
+<path d="M163.229 148.994L144.41 164.889L149.066 139.198L163.229 148.994Z" fill="#FF802B" stroke="#FF802B"/>
 </svg>
