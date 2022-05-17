@@ -7,7 +7,7 @@ const NotesContainer = styled.section`
 `;
 
 const Content = styled.div`
-  padding: 2rem 0;
+  padding: 1rem 0 2rem;
 `;
 
 const AddNoteContainer = styled.div`
