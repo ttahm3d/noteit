@@ -104,15 +104,15 @@ export default function Notes() {
 
   return (
     <Container>
+      <AddNoteContainer>
+        <Button
+          variant="primary__block"
+          onClick={openAddNoteModal}
+          title="Add Note">
+          Add Note
+        </Button>
+      </AddNoteContainer>
       <Content>
-        <AddNoteContainer>
-          <Button
-            variant="primary__block"
-            onClick={openAddNoteModal}
-            title="Add Note">
-            Add Note
-          </Button>
-        </AddNoteContainer>
         {notes.length > 0 ? (
           <NotesContainer>
             {notes.map((note) => (

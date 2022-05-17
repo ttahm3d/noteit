@@ -11,7 +11,11 @@ import {
 import { AiOutlineDelete } from "react-icons/ai";
 import { IoArchiveOutline } from "react-icons/io5";
 import { useNotes } from "../../context/notes";
-import { NotesContainer, Content } from "../styles/NotePage.styles";
+import {
+  NotesContainer,
+  Content,
+  AddNoteContainer,
+} from "../styles/NotePage.styles";
 
 export default function Trash() {
   const [isEdit, setIsEdit] = useState(false);
@@ -20,8 +24,10 @@ export default function Trash() {
     title: "",
     color: "blue",
     body: "",
+    isArchived: true,
   });
-  const { notes, loading, addNote, editNote } = useNotes();
+  const { notes, loading, addNote, editNote, moveToTrash, removeFromArchive } =
+    useNotes();
   const archivedNotes = notes.filter((note) => note.isArchived);
 
   const addNoteActions = [
@@ -59,6 +65,7 @@ export default function Trash() {
       title: "",
       color: "blue",
       body: "",
+      isArchived: true,
     });
     closeModal();
   };
@@ -85,13 +92,13 @@ export default function Trash() {
       id: "trash",
       icon: <AiOutlineDelete />,
       title: "Move to Trash",
-      // actionHandler: moveToTrash,
+      actionHandler: moveToTrash,
     },
     {
       id: "archive",
       icon: <IoArchiveOutline />,
       title: "Archive Note",
-      // actionHandler: moveToArchive,
+      actionHandler: removeFromArchive,
     },
   ];
 
@@ -99,8 +106,15 @@ export default function Trash() {
 
   return (
     <Container>
+      <AddNoteContainer>
+        <Button
+          variant="primary__block"
+          onClick={openAddNoteModal}
+          title="Add Note">
+          Add Note
+        </Button>
+      </AddNoteContainer>
       <Content>
-        <h3>Archived Notes page</h3>
         {archivedNotes.length > 0 ? (
           <NotesContainer>
             {archivedNotes.map((note) => (
@@ -115,7 +129,7 @@ export default function Trash() {
             ))}
           </NotesContainer>
         ) : (
-          <Empty />
+          <Empty message="There are no archived notes." />
         )}
         <Modal
           showModal={showModal}

@@ -11,7 +11,11 @@ import {
 import { AiOutlineDelete } from "react-icons/ai";
 import { IoArchiveOutline } from "react-icons/io5";
 import { useNotes } from "../../context/notes";
-import { NotesContainer, Content } from "../styles/NotePage.styles";
+import {
+  NotesContainer,
+  Content,
+  AddNoteContainer,
+} from "../styles/NotePage.styles";
 
 export default function Trash() {
   const [isEdit, setIsEdit] = useState(false);
@@ -20,8 +24,10 @@ export default function Trash() {
     title: "",
     color: "blue",
     body: "",
+    isTrashed: true,
   });
-  const { notes, loading } = useNotes();
+  const { notes, loading, addNote, editNote, removeFromTrash, moveToArchive } =
+    useNotes();
 
   const trashedNotes = notes.filter((note) => note.isTrashed);
 
@@ -32,22 +38,84 @@ export default function Trash() {
       id: "trash",
       icon: <AiOutlineDelete />,
       title: "Move to Trash",
-      // actionHandler: moveToTrash,
+      actionHandler: removeFromTrash,
     },
     {
       id: "archive",
       icon: <IoArchiveOutline />,
       title: "Archive Note",
-      // actionHandler: moveToArchive,
+      actionHandler: moveToArchive,
     },
   ];
+
+  const addNoteActions = [
+    {
+      id: "cancel",
+      text: "Cancel",
+      action: () => closeAndClearForm(),
+      variant: "primary__outline",
+    },
+    {
+      id: "add",
+      text: "Save Note",
+      action: () => saveNote(),
+      variant: "primary__block",
+    },
+  ];
+
+  const editNoteActions = [
+    {
+      id: "cancel",
+      text: "Cancel",
+      action: () => closeAndClearForm(),
+      variant: "primary__outline",
+    },
+    {
+      id: "add",
+      text: "Save Changes",
+      action: () => saveChanges(),
+      variant: "primary__block",
+    },
+  ];
+
+  const saveNote = () => {
+    addNote(note);
+    closeAndClearForm();
+  };
+
+  const saveChanges = () => {
+    editNote(note);
+    closeAndClearForm();
+  };
+
+  const openAddNoteModal = () => {
+    setIsEdit(false);
+    toggleModal();
+  };
+
+  const closeAndClearForm = () => {
+    setNote({
+      title: "",
+      color: "blue",
+      body: "",
+      isTrashed: true,
+    });
+    closeModal();
+  };
 
   if (loading) return <Loader />;
 
   return (
     <Container>
+      <AddNoteContainer>
+        <Button
+          variant="primary__block"
+          onClick={openAddNoteModal}
+          title="Add Note">
+          Add Note
+        </Button>
+      </AddNoteContainer>
       <Content>
-        <h3>Trash page</h3>
         {trashedNotes.length > 0 ? (
           <NotesContainer>
             {trashedNotes.map((note) => (
@@ -62,8 +130,18 @@ export default function Trash() {
             ))}
           </NotesContainer>
         ) : (
-          <Empty />
+          <Empty message="There are no notes in Trash." />
         )}
+        <Modal
+          showModal={showModal}
+          header={isEdit ? "Edit Note" : "Add Note"}
+          closeModal={closeAndClearForm}>
+          <NoteForm
+            note={note}
+            setNote={setNote}
+            actions={isEdit ? editNoteActions : addNoteActions}
+          />
+        </Modal>
       </Content>
     </Container>
   );

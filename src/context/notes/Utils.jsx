@@ -7,6 +7,7 @@ const addNoteHandler = (note, user) =>
       body: note.body,
       color: note.color,
       userId: user,
+      ...note,
     },
   ]);
 

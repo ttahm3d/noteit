@@ -6,8 +6,10 @@ import {
   deleteNoteHandler,
   editNoteHandler,
   fetchNotesHandler,
-  moveToTrashHandler,
   moveToArchiveHandler,
+  moveToTrashHandler,
+  removeFromArchiveHandler,
+  removeFromTrashHandler,
 } from "./Utils";
 
 const NotesContext = createContext();
@@ -81,6 +83,26 @@ const NotesProvider = ({ children }) => {
     fetchNotes();
   };
 
+  const removeFromArchive = async (note) => {
+    const { error } = await removeFromArchiveHandler(note, user_id);
+    if (error) {
+      toast.error("Something went wrong");
+    } else {
+      toast.success("Succesfull moved the note to trash");
+    }
+    fetchNotes();
+  };
+
+  const removeFromTrash = async (note) => {
+    const { error } = await removeFromTrashHandler(note, user_id);
+    if (error) {
+      toast.error("Something went wrong");
+    } else {
+      toast.success("Succesfull moved the note to trash");
+    }
+    fetchNotes();
+  };
+
   return (
     <NotesContext.Provider
       value={{
@@ -91,6 +113,8 @@ const NotesProvider = ({ children }) => {
         editNote,
         moveToArchive,
         moveToTrash,
+        removeFromArchive,
+        removeFromTrash,
       }}>
       {children}
     </NotesContext.Provider>
