@@ -27,11 +27,18 @@ export default function Hero() {
             Signup for Free
           </CtaButton>
         ) : (
-          <CtaButton
-            variant="primary__block"
-            onClick={() => navigate("/dashboard")}>
-            View Dashboard
-          </CtaButton>
+          <CTAButtons>
+            <CtaButton
+              variant="primary__block"
+              onClick={() => navigate("/dashboard")}>
+              View Dashboard
+            </CtaButton>
+            <CtaButton
+              variant="primary__outline"
+              onClick={() => navigate("/dashboard")}>
+              Start taking notes
+            </CtaButton>
+          </CTAButtons>
         )}
       </HeroText>
       <HeroImage>
@@ -86,5 +93,10 @@ const HeroText = styled.div`
 const HeroImage = styled.div``;
 
 const CtaButton = styled(Button)`
-  padding: 1rem 3rem;
+  padding: 1rem 2rem;
+`;
+
+const CTAButtons = styled.div`
+  display: flex;
+  gap: 1rem;
 `;
