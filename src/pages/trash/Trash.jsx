@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Container, Content } from "../../styles/globals";
 import { Empty, Loader, Modal, NoteCard, NoteForm } from "../../components";
 import { AiOutlineDelete } from "react-icons/ai";
-import { IoArchiveOutline } from "react-icons/io5";
 import { useNotes } from "../../context/notes";
 import { NotesContainer } from "../../styles/NotePage.styles";
 
@@ -16,8 +15,7 @@ export default function Trash() {
     tag: "",
     isTrashed: true,
   });
-  const { notes, loading, editNote, removeFromTrash, moveToArchive } =
-    useNotes();
+  const { notes, loading, editNote, removeFromTrash } = useNotes();
 
   const trashedNotes = notes.filter((note) => note.isTrashed);
 
@@ -29,12 +27,6 @@ export default function Trash() {
       icon: <AiOutlineDelete />,
       title: "Restore Note",
       actionHandler: removeFromTrash,
-    },
-    {
-      id: "archive",
-      icon: <IoArchiveOutline />,
-      title: "Archive Note",
-      actionHandler: moveToArchive,
     },
   ];
 

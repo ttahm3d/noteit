@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Container, Content } from "../../styles/globals";
 import { Empty, Loader, Modal, NoteCard, NoteForm } from "../../components";
-import { AiOutlineDelete } from "react-icons/ai";
 import { IoArchiveOutline } from "react-icons/io5";
 import { useNotes } from "../../context/notes";
 import { NotesContainer } from "../../styles/NotePage.styles";
@@ -16,8 +15,7 @@ export default function Trash() {
     tag: "",
     isArchived: true,
   });
-  const { notes, loading, editNote, moveToTrash, removeFromArchive } =
-    useNotes();
+  const { notes, loading, editNote, removeFromArchive } = useNotes();
 
   const archivedNotes = notes.filter((note) => note.isArchived);
 
@@ -57,15 +55,9 @@ export default function Trash() {
 
   const noteActions = [
     {
-      id: "trash",
-      icon: <AiOutlineDelete />,
-      title: "Move to Trash",
-      actionHandler: moveToTrash,
-    },
-    {
       id: "archive",
       icon: <IoArchiveOutline />,
-      title: "Archive Note",
+      title: "Un-archive Note",
       actionHandler: removeFromArchive,
     },
   ];

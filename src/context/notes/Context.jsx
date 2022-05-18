@@ -35,6 +35,7 @@ const NotesProvider = ({ children }) => {
 
   const addNote = async (note) => {
     const { error } = await addNoteHandler(note, user_id);
+    setLoading(true);
     if (error) {
       toast.error("Error in saving note");
     } else {
@@ -45,6 +46,7 @@ const NotesProvider = ({ children }) => {
 
   const deleteNote = async (noteId) => {
     const { error } = await deleteNoteHandler(noteId, user_id);
+    setLoading(true);
     if (error) {
       toast.error("Error in Deleteing note");
     } else {
@@ -55,6 +57,7 @@ const NotesProvider = ({ children }) => {
 
   const editNote = async (note) => {
     const { error } = await editNoteHandler(note, user_id);
+    setLoading(true);
     if (error) {
       toast.error("Error in updating note");
     } else {
@@ -65,40 +68,44 @@ const NotesProvider = ({ children }) => {
 
   const moveToTrash = async (note) => {
     const { error } = await moveToTrashHandler(note, user_id);
+    setLoading(true);
     if (error) {
       toast.error("Something went wrong");
     } else {
-      toast.success("Succesfull moved the note to trash");
+      toast.success("Succesfully moved the note to trash");
     }
     fetchNotes();
   };
 
   const moveToArchive = async (note) => {
     const { error } = await moveToArchiveHandler(note, user_id);
+    setLoading(true);
     if (error) {
       toast.error("Something went wrong");
     } else {
-      toast.success("Succesfull moved the note to trash");
+      toast.success("Succesfully moved the note to trash");
     }
     fetchNotes();
   };
 
   const removeFromArchive = async (note) => {
     const { error } = await removeFromArchiveHandler(note, user_id);
+    setLoading(true);
     if (error) {
       toast.error("Something went wrong");
     } else {
-      toast.success("Succesfull moved the note to trash");
+      toast.success("Note un-archived successfully");
     }
     fetchNotes();
   };
 
   const removeFromTrash = async (note) => {
     const { error } = await removeFromTrashHandler(note, user_id);
+    setLoading(true);
     if (error) {
       toast.error("Something went wrong");
     } else {
-      toast.success("Succesfull moved the note to trash");
+      toast.success("Note restored successfully");
     }
     fetchNotes();
   };
