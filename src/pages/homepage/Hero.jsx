@@ -42,7 +42,7 @@ export default function Hero() {
             </CtaButton>
             <CtaButton
               variant="primary__outline"
-              onClick={() => navigate(".notes")}>
+              onClick={() => navigate("/notes")}>
               Add New Notes
             </CtaButton>
           </CTAButtons>
