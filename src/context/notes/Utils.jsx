@@ -62,7 +62,7 @@ const removeFromTrashHandler = (note, userId) =>
     .from("notes")
     .update({
       isTrashed: false,
-      isArchived: true,
+      isArchived: false,
     })
     .match({ id: note?.id })
     .eq("userId", userId)
