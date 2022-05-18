@@ -24,8 +24,9 @@ export default function Notes() {
     title: "",
     color: "blue",
     body: "",
-    label: "",
+    tag: "",
   });
+
   const { loading, notes, addNote, editNote, moveToTrash, moveToArchive } =
     useNotes();
 
@@ -37,6 +38,7 @@ export default function Notes() {
       title: "",
       color: "blue",
       body: "",
+      tag: "",
     });
     closeModal();
   };

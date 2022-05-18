@@ -16,7 +16,7 @@ export default function NoteCard({
   noteActions,
 }) {
   const [showMenu, setShowMenu] = useState(false);
-  const { id, updated_at, title, body, color } = note;
+  const { id, updated_at, title, body, color, tag } = note;
   const date = new Date(updated_at);
   const { deleteNote } = useNotes();
 
@@ -71,9 +71,16 @@ export default function NoteCard({
         dangerouslySetInnerHTML={{
           __html: DOMPurify.sanitize(body),
         }}></Body>
-      <DateDiv color={color}>
-        <span>Last updated on:</span> {formatDate(date)}
-      </DateDiv>
+      <NoteFooter>
+        <DateDiv color={color}>
+          <span>Last updated on:</span> {formatDate(date)}
+        </DateDiv>
+        {tag && (
+          <TagsContainer>
+            <Tag color={color}>{tag}</Tag>
+          </TagsContainer>
+        )}
+      </NoteFooter>
     </Card>
   );
 }
@@ -127,8 +134,6 @@ const Body = styled.div`
 `;
 
 const DateDiv = styled.div`
-  padding-top: 1rem;
-  margin-top: auto;
   color: ${({ theme, color }) => `${theme.colors[color + "10"]}`};
   font-weight: 500;
   font-size: 0.9rem;
@@ -191,5 +196,33 @@ const DropdownItem = styled.div`
 
   :hover {
     background-color: ${({ theme, color }) => `${theme.colors[color + "6"]}`};
+  }
+`;
+
+const NoteFooter = styled.div`
+  display: flex;
+  padding-top: 1rem;
+  margin-top: auto;
+`;
+
+const TagsContainer = styled.div`
+  margin-left: auto;
+`;
+
+const Tag = styled.div`
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 12px;
+  cursor: pointer;
+  background-color: ${({ theme, color }) => `${theme.colors[color + "6"]}`};
+  color: ${({ theme, color }) => `${theme.colors[color + "9"]}`};
+  border: 1px solid ${({ theme, color }) => `${theme.colors[color + "7"]}`};
+  font-weight: 600;
+  :hover {
+    background-color: ${({ theme, color }) => `${theme.colors[color + "4"]}`};
+  }
+
+  :active {
+    background-color: ${({ theme, color }) => `${theme.colors[color + "5"]}`};
   }
 `;

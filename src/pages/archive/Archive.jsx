@@ -24,6 +24,7 @@ export default function Trash() {
     title: "",
     color: "blue",
     body: "",
+    tag: "",
     isArchived: true,
   });
   const { notes, loading, addNote, editNote, moveToTrash, removeFromArchive } =
@@ -65,6 +66,7 @@ export default function Trash() {
       title: "",
       color: "blue",
       body: "",
+      tag: "",
       isArchived: true,
     });
     closeModal();

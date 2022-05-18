@@ -18,6 +18,33 @@ export default function NoteForm({ note, setNote, actions }) {
     ],
   };
 
+  const availableTags = [
+    {
+      id: 1,
+      name: "Learning",
+    },
+    {
+      id: 2,
+      name: "Work",
+    },
+    {
+      id: 3,
+      name: "Personal",
+    },
+    {
+      id: 4,
+      name: "To do",
+    },
+    {
+      id: 5,
+      name: "In progress",
+    },
+    {
+      id: 6,
+      name: "Completed",
+    },
+  ];
+
   return (
     <NotesContainer color={note?.color}>
       <TitleInput
@@ -47,17 +74,17 @@ export default function NoteForm({ note, setNote, actions }) {
             />
           ))}
         </ColorPickerContainer>
-        <Select color={note?.color} value={note.label}>
-          <Option value="" color={note?.color}>
-            10
-          </Option>
-          <Option value="" color={note?.color}>
-            10
-          </Option>
-          <Option value="" color={note?.color}>
-            10
-          </Option>
-        </Select>
+        <TagsContainer>
+          {availableTags.map(({ id, name }) => (
+            <Tag
+              color={note?.color}
+              selected={name === note?.tag}
+              key={id}
+              onClick={(e) => setNote({ ...note, tag: name })}>
+              {name}
+            </Tag>
+          ))}
+        </TagsContainer>
       </NoteFooter>
       {actions.length > 0 ? (
         <ActionsContainer>
@@ -178,7 +205,7 @@ const ColorPickerContainer = styled.div`
 `;
 
 const ColorCircle = styled.div`
-  padding: 0.7rem 0.8rem;
+  padding: 0.75rem;
   cursor: pointer;
   background-color: ${({ theme, notecolor }) =>
     `${theme.colors[notecolor + "9"]}`};
@@ -198,26 +225,30 @@ const ActionsContainer = styled.div`
 
 const NoteFooter = styled.div`
   display: flex;
+  flex-direction: column;
+  gap: 1rem;
   padding: 0.75rem 1rem;
   border-bottom: 1px solid ${({ theme }) => theme.colors.slate7};
 `;
 
-const Select = styled.select`
-  margin-left: auto;
-  padding: 0.25rem 0.75rem;
-  font-size: 1rem;
-  border-radius: 0.25rem;
-  border: 0.5px solid ${({ theme, color }) => `${theme.colors[color + "3"]}`};
-  background-color: ${({ theme, color }) => `${theme.colors[color + "2"]}`};
-  color: ${({ theme, color }) => `${theme.colors[color + "10"]}`};
-  outline: 2px solid ${({ theme, color }) => `${theme.colors[color + "9"]}`};
+const TagsContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
 `;
 
-const Option = styled.option`
-  background-color: ${({ theme, color }) => `${theme.colors[color + "3"]}`};
-  color: ${({ theme, color }) => `${theme.colors[color + "10"]}`};
-  font-size: 1.2rem;
-
+const Tag = styled.div`
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 12px;
+  cursor: pointer;
+  background-color: ${({ theme, selected, color }) =>
+    selected ? `${theme.colors[color + "6"]}` : `${theme.colors[color + "3"]}`};
+  color: ${({ theme, selected, color }) =>
+    selected
+      ? `${theme.colors[color + "10"]}`
+      : `${theme.colors[color + "9"]}`};
+  border: 1px solid ${({ theme, color }) => `${theme.colors[color + "7"]}`};
+  font-weight: ${({ selected }) => (selected ? "600" : "400")};
   :hover {
     background-color: ${({ theme, color }) => `${theme.colors[color + "4"]}`};
   }
