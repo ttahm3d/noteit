@@ -1,0 +1,12 @@
+<svg width="250" height="250" viewBox="0 0 250 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="path-1-inside-1_101_2" fill="white">
+<path d="M55 37C55 35.8954 55.8954 35 57 35H166C174.284 35 181 41.7157 181 50V200C181 208.284 174.284 215 166 215H57C55.8954 215 55 214.105 55 213V37Z"/>
+</mask>
+<path d="M55 37C55 35.8954 55.8954 35 57 35H166C174.284 35 181 41.7157 181 50V200C181 208.284 174.284 215 166 215H57C55.8954 215 55 214.105 55 213V37Z" stroke="#1890FF" stroke-width="8" mask="url(#path-1-inside-1_101_2)"/>
+<line x1="84" y1="91.5" x2="150" y2="91.5" stroke="#FF802B" stroke-width="13"/>
+<line x1="84" y1="73.5" x2="150" y2="73.5" stroke="#FF802B" stroke-width="13"/>
+<line x1="84" y1="109.5" x2="150" y2="109.5" stroke="#FF802B" stroke-width="13"/>
+<line x1="84" y1="127.5" x2="135" y2="127.5" stroke="#FF802B" stroke-width="13"/>
+<rect x="0.171614" y="0.718113" width="17.9806" height="119.117" transform="matrix(0.827577 0.561352 -0.484349 0.874875 205.669 34.9935)" fill="#1890FF" stroke="#1890FF"/>
+<path d="M163.229 148.994L144.41 164.889L149.066 139.198L163.229 148.994Z" fill="#FF802B" stroke="#FF802B"/>
+</svg>

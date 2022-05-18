@@ -14,7 +14,7 @@ export default function Login() {
   const { signIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const path = location.state?.from?.pathname || "/";
+  const path = location.state?.from?.pathname || "/dashboard";
 
   const [showAlert, setShowAlert] = useState(false);
   const [error, setError] = useState(null);
@@ -32,6 +32,23 @@ export default function Login() {
     event.preventDefault();
     try {
       const { error } = await signIn(loginForm);
+      if (error) {
+        setError(error.message);
+        setShowAlert(true);
+      } else {
+        navigate(path);
+        setLoginForm({ email: "", password: "" });
+      }
+    } catch (e) {}
+  };
+
+  const guestLogin = async (event) => {
+    event.preventDefault();
+    try {
+      const { error } = await signIn({
+        email: "tahirahmedt97@gmail.com",
+        password: "py2qry9c",
+      });
       if (error) {
         setError(error.message);
         setShowAlert(true);
@@ -86,6 +103,13 @@ export default function Login() {
           <LoginBtn variant="primary__cta" rounded="0.25" fullwidth>
             Login
           </LoginBtn>
+          <LoginBtn
+            variant="secondary__cta"
+            rounded="0.25"
+            fullwidth
+            onClick={guestLogin}>
+            Login as guest
+          </LoginBtn>
         </form>
         <div>
           Don't have an account?&nbsp;&nbsp;
@@ -116,5 +140,9 @@ const FormHeading = styled.h3`
 `;
 
 const LoginBtn = styled(Button)`
-  margin: 2rem 0;
+  margin: 2rem 0 0;
+
+  :last-child {
+    margin-bottom: 2rem;
+  }
 `;

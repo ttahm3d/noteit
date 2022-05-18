@@ -17,7 +17,7 @@ export default function Input(props) {
   } = props;
   return (
     <FormItem>
-      <Label htmlFor={id}>{label}</Label>
+      {label && <Label htmlFor={id}>{label}</Label>}
       {type === "password" ? (
         <>
           <StyledInput
@@ -85,9 +85,10 @@ const ShowButton = styled.div`
   position: absolute;
   display: flex;
   align-items: center;
+  border-radius: 0 0.25rem 0.25rem 0;
   justify-content: center;
-  padding: 0.4rem;
-  top: 47.5%;
+  padding: 0.44rem;
+  top: 46.5%;
   right: 1px;
   font-size: 1.2rem;
   cursor: pointer;

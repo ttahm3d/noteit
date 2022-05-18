@@ -4,8 +4,14 @@ import {
   MdOutlineArchive,
   MdOutlineEditNote,
   MdDeleteOutline,
+  MdBarChart,
 } from "react-icons/md";
 import { Button } from "../Button/Button";
+import { useAuth } from "../../context/auth";
+import Modal from "../Modal/Modal";
+import { useState } from "react";
+import { useNotes } from "../../context/notes";
+import NoteForm from "../NoteForm/NoteForm";
 
 const sidebarItems = [
   {
@@ -29,44 +35,108 @@ const sidebarItems = [
 ];
 
 export default function Sidebar({ showSidebar, toggleSidebar }) {
+  const { user } = useAuth();
+  const [showModal, setShowModal] = useState(false);
+  const { addNote } = useNotes();
+  const [note, setNote] = useState({
+    title: "",
+    color: "blue",
+    body: "",
+    tag: "",
+  });
+
+  const toggleModal = () => setShowModal((s) => !s);
+  const closeModal = () => setShowModal(false);
+
+  const closeAndClearForm = () => {
+    setNote({
+      title: "",
+      color: "blue",
+      body: "",
+      tag: "",
+    });
+    closeModal();
+  };
+
+  const saveNote = () => {
+    addNote(note);
+    closeAndClearForm();
+  };
+
+  const addNoteActions = [
+    {
+      id: "cancel",
+      text: "Cancel",
+      action: () => closeAndClearForm(),
+      variant: "primary__outline",
+    },
+    {
+      id: "add",
+      text: "Save Note",
+      action: () => saveNote(),
+      variant: "primary__block",
+    },
+  ];
+
   return (
     <StyledSidebar showSidebar={showSidebar}>
-      <SidebarSection>
-        <Button variant="primary__block" fullWidth>
-          Add Note
-        </Button>
-      </SidebarSection>
-      <SidebarSection>
-        <SidebarItemsContainer>
-          {sidebarItems.map((sidebarItem) => (
-            <li key={sidebarItem.id} onClick={toggleSidebar}>
-              <SidebarItem
-                to={sidebarItem.path}
-                style={({ isActive }) => console.log(isActive)}>
-                <div className="icon">{sidebarItem.icon}</div>
-                <div>{sidebarItem.text}</div>
-              </SidebarItem>
-            </li>
-          ))}
-        </SidebarItemsContainer>
-      </SidebarSection>
+      <SidebarWrapper>
+        {user?.id && (
+          <SidebarSection>
+            <Button variant="primary__block" fullwidth onClick={toggleModal}>
+              Add Note
+            </Button>
+          </SidebarSection>
+        )}
+
+        <SidebarSection>
+          <SidebarItem to="/dashboard">
+            <div className="icon">
+              <MdBarChart />
+            </div>
+            <div>Dashboard</div>
+          </SidebarItem>
+        </SidebarSection>
+
+        <SidebarSection>
+          <SidebarItemsContainer>
+            {sidebarItems.map((sidebarItem) => (
+              <li key={sidebarItem.id} onClick={toggleSidebar}>
+                <SidebarItem to={sidebarItem.path}>
+                  <div className="icon">{sidebarItem.icon}</div>
+                  <div>{sidebarItem.text}</div>
+                </SidebarItem>
+              </li>
+            ))}
+          </SidebarItemsContainer>
+        </SidebarSection>
+      </SidebarWrapper>
+      <Modal showModal={showModal} closeModal={closeModal} header="Add Note">
+        <NoteForm note={note} setNote={setNote} actions={addNoteActions} />
+      </Modal>
     </StyledSidebar>
   );
 }
 
 const StyledSidebar = styled.aside`
   border-right: 1px solid ${(props) => props.theme.colors.blue6};
-  background-color: ${(props) => props.theme.colors.blue2};
-  position: fixed;
-  z-index: 7;
-  /* height: calc(100% - 110.4px);
-   */
-  height: 100%;
+  background-color: ${(props) => props.theme.colors.blue1};
+  position: sticky;
   top: 65px;
-  width: 15rem;
-  left: ${({ showSidebar }) => (showSidebar ? "0" : "-100%")};
-  transition: ${({ showSidebar }) =>
-    showSidebar ? "0.5s left linear" : "0.5s left linear"}; ;
+  bottom: 111.4px;
+  height: calc(100vh - 179px);
+  min-height: calc(100vh - 0px);
+  z-index: 7;
+
+  @media screen and (max-width: 64em) {
+    position: fixed;
+    height: 100%;
+    top: 65px;
+    width: 15rem;
+    left: ${({ showSidebar }) => (showSidebar ? "0" : "-100%")};
+    transition: ${({ showSidebar }) =>
+      showSidebar ? "0.5s left linear" : "0.5s left linear"};
+  }
 `;
 
 const SidebarSection = styled.div`
@@ -107,4 +177,9 @@ const SidebarItem = styled(NavLink)`
     justify-content: center;
     font-size: 1.25rem;
   }
+`;
+
+const SidebarWrapper = styled.div`
+  position: sticky;
+  top: 65px;
 `;

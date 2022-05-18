@@ -3,11 +3,19 @@ import { FiSun } from "react-icons/fi";
 import { IoMdMoon } from "react-icons/io";
 import NoteIt from "../../assets/NoteIt.svg";
 import { AiOutlineMenu } from "react-icons/ai";
+import { MdOutlineLogout } from "react-icons/md";
 import { Button, IconButton } from "../Button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
+import { Container } from "../../styles/globals";
 
-export default function Header({ theme, toggleTheme, toggleSidebar }) {
+export default function Header({
+  theme,
+  toggleTheme,
+  toggleSidebar,
+  closeSidebar,
+  pathname,
+}) {
   const navigate = useNavigate();
 
   const { user, signOut } = useAuth();
@@ -17,48 +25,58 @@ export default function Header({ theme, toggleTheme, toggleSidebar }) {
 
   return (
     <HeaderComponent>
-      <Navbar>
-        <MenuButton icon={<AiOutlineMenu />} onClick={toggleSidebar} />
-        <Link to="/">
-          <Logo>
-            <img src={NoteIt} alt="NoteIt Logo" />
-          </Logo>
-        </Link>
-        <NavItems>
-          {userId ? (
-            <>
-              <UserInfo>
-                <div>Hi</div>
-                <div>{firstName}</div>
-              </UserInfo>
-              <Button variant="secondary__cta" rounded="0.25" onClick={signOut}>
-                Logout
-              </Button>
-            </>
-          ) : (
-            <Button
-              variant="secondary__cta"
-              rounded="0.25"
-              onClick={() => navigate("/auth/login")}>
-              Login
-            </Button>
-          )}
-
-          <IconButton
-            icon={theme === "light" ? <IoMdMoon /> : <FiSun />}
-            onClick={toggleTheme}
-            title="Change theme"
+      <Container>
+        <Navbar>
+          <MenuButton
+            icon={<AiOutlineMenu />}
+            onClick={toggleSidebar}
+            pathname={pathname}
           />
-        </NavItems>
-      </Navbar>
+          <Link to="/">
+            <Logo onClick={closeSidebar}>
+              <img src={NoteIt} alt="NoteIt Logo" />
+            </Logo>
+          </Link>
+          <NavItems>
+            {userId ? (
+              <>
+                <UserInfo>
+                  <div>Hi</div>
+                  <div>{firstName}</div>
+                </UserInfo>
+                <IconButton
+                  style={{ padding: "0.25rem" }}
+                  variant="secondary__cta"
+                  rounded="0.25"
+                  onClick={signOut}
+                  icon={<MdOutlineLogout />}
+                />
+              </>
+            ) : (
+              <Button
+                variant="secondary__cta"
+                rounded="0.25"
+                onClick={() => navigate("/auth/login")}>
+                Login
+              </Button>
+            )}
+
+            <IconButton
+              icon={theme === "light" ? <IoMdMoon /> : <FiSun />}
+              onClick={toggleTheme}
+              title="Change theme"
+            />
+          </NavItems>
+        </Navbar>
+      </Container>
     </HeaderComponent>
   );
 }
 
 const HeaderComponent = styled.header`
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 0;
   border-bottom: 1px solid ${(props) => props.theme.colors.blue6};
-  background-color: ${(props) => props.theme.colors.blue2};
+  background-color: ${(props) => props.theme.colors.blue1};
   z-index: 9;
   position: sticky;
   top: 0;
@@ -84,6 +102,11 @@ const Logo = styled.div`
 const MenuButton = styled(IconButton)`
   font-size: 1.25rem;
   margin-right: 1rem;
+  display: ${({ pathname }) => (pathname === "/" ? "none" : "block")};
+
+  @media screen and (min-width: 64em) {
+    display: none;
+  }
 `;
 
 const UserInfo = styled.div`

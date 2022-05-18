@@ -1,9 +1,12 @@
 import { Container } from "../../styles/globals";
+import Features from "./Features";
+import Hero from "./Hero";
 
 export default function Homepage() {
   return (
     <Container>
-      <h3>Homepage</h3>
+      <Hero />
+      <Features />
     </Container>
   );
 }

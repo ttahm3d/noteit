@@ -4,13 +4,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context//auth";
+import { NotesProvider } from "./context/notes";
 
 const root = ReactDOMClient.createRoot(document.getElementById("root"));
 
 root.render(
   <BrowserRouter>
     <AuthProvider>
-      <App />
+      <NotesProvider>
+        <App />
+      </NotesProvider>
     </AuthProvider>
   </BrowserRouter>
 );

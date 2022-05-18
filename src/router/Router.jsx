@@ -5,6 +5,7 @@ import RedirectAuth from "./RedirectAuth";
 import RequireAuth from "./RequireAuth";
 
 const Homepage = lazy(() => import("../pages/homepage/Homepage"));
+const Dashboard = lazy(() => import("../pages/dashboard/Dashboard"));
 const Archive = lazy(() => import("../pages/archive/Archive"));
 const Notes = lazy(() => import("../pages/notes/Notes"));
 const Trash = lazy(() => import("../pages/trash/Trash"));
@@ -16,11 +17,11 @@ export default function Router() {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Homepage />} />
-
         <Route element={<RequireAuth />}>
           <Route path="/archive" element={<Archive />} />
           <Route path="/notes" element={<Notes />} />
           <Route path="/trash" element={<Trash />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
         <Route element={<RedirectAuth />}>
           <Route path="/auth/signup" element={<Signup />} />

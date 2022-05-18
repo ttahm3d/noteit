@@ -3,15 +3,20 @@ import styled from "styled-components";
 const MainContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-
-  /* @media screen and (min-width: 64em) {
-    grid-template-columns: 1fr 5fr;
-  } */
+  min-height: 100vh;
+  @media screen and (min-width: 64em) {
+    grid-template-columns: ${({ pathname }) =>
+      pathname !== "/" ? "1fr 5fr" : "1fr"};
+  }
 `;
 
 const Container = styled.section`
-  width: min(100% - 2rem, 95em);
+  width: min(100% - 2rem, 90em);
   margin: 0 auto;
+`;
+
+const Content = styled.div`
+  padding: 1rem 0 2rem;
 `;
 
 const Page = styled.main`
@@ -20,4 +25,4 @@ const Page = styled.main`
   min-height: 100vh;
 `;
 
-export { Page, Container, MainContainer };
+export { Page, Container, MainContainer, Content };

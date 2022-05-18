@@ -27,16 +27,18 @@ const StyledButton = styled.button`
   outline: 2px solid transparent;
   background-color: ${(props) => {
     if (props.variant === "primary__block") return props.theme.colors.violet9;
-    if (props.variant === "secondary__block")
-      return props.theme.colors.orange10;
     if (props.variant === "primary__cta") return props.theme.colors.violet4;
+    if (props.variant === "primary__outline") return props.theme.colors.violet2;
+    if (props.variant === "secondary__block") return props.theme.colors.orange9;
     if (props.variant === "secondary__cta") return props.theme.colors.orange4;
-    if (!props.variant) return props.theme.colors.violet2;
+    if (!props.variant) return props.theme.colors.blue2;
   }};
   color: ${(props) => {
     if (props.variant === "primary__block") return props.theme.colors.white;
-    if (props.variant === "secondary__block") return props.theme.colors.white;
     if (props.variant === "primary__cta") return props.theme.colors.violet11;
+    if (props.variant === "primary__outline")
+      return props.theme.colors.violet10;
+    if (props.variant === "secondary__block") return props.theme.colors.white;
     if (props.variant === "secondary__cta") return props.theme.colors.orange11;
     if (!props.variant) return props.theme.colors.gray12;
   }};
@@ -44,6 +46,8 @@ const StyledButton = styled.button`
   border: ${(props) => {
     if (props.variant === "primary__block") return "none";
     if (props.variant === "secondary__block") return "none";
+    if (props.variant === "primary__outline")
+      return `1px solid ${props.theme.colors.violet7}`;
     if (props.variant === "primary__cta")
       return `1px solid ${props.theme.colors.violet6}`;
     if (props.variant === "secondary__cta")
@@ -57,23 +61,28 @@ const StyledButton = styled.button`
 
   :hover {
     background-color: ${(props) => {
-      if (props.variant === "primary__block") return props.theme.colors.violet9;
-      if (props.variant === "secondary__block")
-        return props.theme.colors.orange9;
+      if (props.variant === "primary__block")
+        return props.theme.colors.violet10;
       if (props.variant === "primary__cta") return props.theme.colors.violet5;
+      if (props.variant === "primary__outline")
+        return props.theme.colors.violet3;
+      if (props.variant === "secondary__block")
+        return props.theme.colors.orange10;
       if (props.variant === "secondary__cta") return props.theme.colors.orange5;
-      if (!props.variant) return props.theme.colors.violet4;
+      if (!props.variant) return props.theme.colors.blue4;
     }};
   }
 
   :active {
     background-color: ${(props) => {
       if (props.variant === "primary__block") return props.theme.colors.violet9;
+      if (props.variant === "primary__cta") return props.theme.colors.violet6;
+      if (props.variant === "primary__outline")
+        return props.theme.colors.violet4;
       if (props.variant === "secondary__block")
         return props.theme.colors.orange9;
-      if (props.variant === "primary__cta") return props.theme.colors.violet6;
       if (props.variant === "secondary__cta") return props.theme.colors.orange6;
-      if (!props.variant) return props.theme.colors.violet5;
+      if (!props.variant) return props.theme.colors.blue5;
     }};
     transform: scale(1.01);
   }
@@ -86,8 +95,4 @@ const StyledIconButton = styled(StyledButton)`
   padding: 0.25rem;
   display: flex;
   justify-content: center;
-
-  :focus {
-    border: 2px solid ${(props) => props.theme.colors.gray7};
-  }
 `;
