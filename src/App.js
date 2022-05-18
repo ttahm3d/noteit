@@ -34,6 +34,7 @@ function App() {
           toggleTheme={toggleTheme}
           toggleSidebar={toggleSidebar}
           closeSidebar={closeSidebar}
+          pathname={pathname}
         />
         <MainContainer pathname={pathname}>
           {pathname !== "/" && (

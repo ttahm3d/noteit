@@ -14,6 +14,7 @@ export default function Header({
   toggleTheme,
   toggleSidebar,
   closeSidebar,
+  pathname,
 }) {
   const navigate = useNavigate();
 
@@ -26,7 +27,11 @@ export default function Header({
     <HeaderComponent>
       <Container>
         <Navbar>
-          <MenuButton icon={<AiOutlineMenu />} onClick={toggleSidebar} />
+          <MenuButton
+            icon={<AiOutlineMenu />}
+            onClick={toggleSidebar}
+            pathname={pathname}
+          />
           <Link to="/">
             <Logo onClick={closeSidebar}>
               <img src={NoteIt} alt="NoteIt Logo" />
@@ -97,6 +102,7 @@ const Logo = styled.div`
 const MenuButton = styled(IconButton)`
   font-size: 1.25rem;
   margin-right: 1rem;
+  display: ${({ pathname }) => (pathname === "/" ? "none" : "block")};
 
   @media screen and (min-width: 64em) {
     display: none;
