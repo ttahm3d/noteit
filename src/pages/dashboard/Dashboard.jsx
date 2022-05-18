@@ -2,7 +2,7 @@ import { Container, Content } from "../../styles/globals";
 import styled from "styled-components";
 import { useAuth } from "../../context/auth";
 import { useNotes } from "../../context/notes";
-import { FaRegStickyNote } from "react-icons/fa";
+import { MdOutlineStickyNote2 } from "react-icons/md";
 import { IoArchiveOutline } from "react-icons/io5";
 import { AiOutlineDelete } from "react-icons/ai";
 import {
@@ -27,7 +27,7 @@ export default function Dashboard() {
 
   const notesInfo = [
     {
-      icon: <FaRegStickyNote />,
+      icon: <MdOutlineStickyNote2 />,
       title: "notes in Total",
       value: totalNumberOfNotes(notes),
       nav: "/notes",
@@ -167,6 +167,7 @@ const DashboardItem = styled.div`
     align-items: center;
     justify-content: center;
     gap: 0.25rem;
+    text-align: center;
 
     .value {
       color: ${(props) => props.theme.colors.blue9};
