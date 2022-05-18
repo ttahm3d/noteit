@@ -16,24 +16,13 @@ export default function Trash() {
     tag: "",
     isArchived: true,
   });
-  const { notes, loading, addNote, editNote, moveToTrash, removeFromArchive } =
+  const { notes, loading, editNote, moveToTrash, removeFromArchive } =
     useNotes();
+
   const archivedNotes = notes.filter((note) => note.isArchived);
 
-  const addNoteActions = [
-    {
-      id: "cancel",
-      text: "Cancel",
-      action: () => closeAndClearForm(),
-      variant: "primary__outline",
-    },
-    {
-      id: "add",
-      text: "Save Note",
-      action: () => saveNote(),
-      variant: "primary__block",
-    },
-  ];
+  const toggleModal = () => setShowModal((s) => !s);
+  const closeModal = () => setShowModal(false);
 
   const editNoteActions = [
     {
@@ -61,23 +50,11 @@ export default function Trash() {
     closeModal();
   };
 
-  const saveNote = () => {
-    addNote(note);
-    closeAndClearForm();
-  };
-
   const saveChanges = () => {
     editNote(note);
     closeAndClearForm();
   };
 
-  const openAddNoteModal = () => {
-    setIsEdit(false);
-    toggleModal();
-  };
-
-  const toggleModal = () => setShowModal((s) => !s);
-  const closeModal = () => setShowModal(false);
   const noteActions = [
     {
       id: "trash",
@@ -116,13 +93,9 @@ export default function Trash() {
         )}
         <Modal
           showModal={showModal}
-          header={isEdit ? "Edit Note" : "Add Note"}
+          header="Edit Note"
           closeModal={closeAndClearForm}>
-          <NoteForm
-            note={note}
-            setNote={setNote}
-            actions={isEdit ? editNoteActions : addNoteActions}
-          />
+          <NoteForm note={note} setNote={setNote} actions={editNoteActions} />
         </Modal>
       </Content>
     </Container>
