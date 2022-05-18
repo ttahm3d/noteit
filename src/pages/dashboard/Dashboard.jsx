@@ -1,5 +1,6 @@
 import { Container, Content } from "../../styles/globals";
 import styled from "styled-components";
+import { Loader } from "../../components";
 import { useAuth } from "../../context/auth";
 import { useNotes } from "../../context/notes";
 import { MdOutlineStickyNote2 } from "react-icons/md";
@@ -23,8 +24,10 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Dashboard() {
   const { user } = useAuth();
-  const { notes } = useNotes();
+  const { notes, loading } = useNotes();
   const navigate = useNavigate();
+
+  if (loading) return <Loader />;
 
   const firstName = user?.user_metadata?.firstName;
 

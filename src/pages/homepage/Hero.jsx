@@ -21,11 +21,18 @@ export default function Hero() {
           <span className="blue">realtime sync</span> between various devices.
         </div>
         {!user?.id ? (
-          <CtaButton
-            variant="secondary__block"
-            onClick={() => navigate("/auth/signup")}>
-            Signup for Free
-          </CtaButton>
+          <CTAButtons>
+            <CtaButton
+              variant="primary__block"
+              onClick={() => navigate("/auth/signup")}>
+              Signup for Free
+            </CtaButton>
+            <CtaButton
+              variant="primary__outline"
+              onClick={() => navigate("/auth/login")}>
+              Login
+            </CtaButton>
+          </CTAButtons>
         ) : (
           <CTAButtons>
             <CtaButton
@@ -35,8 +42,8 @@ export default function Hero() {
             </CtaButton>
             <CtaButton
               variant="primary__outline"
-              onClick={() => navigate("/dashboard")}>
-              Start taking notes
+              onClick={() => navigate("/notes")}>
+              Add New Notes
             </CtaButton>
           </CTAButtons>
         )}
