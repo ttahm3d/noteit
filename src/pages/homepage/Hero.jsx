@@ -29,7 +29,7 @@ export default function Hero() {
             </CtaButton>
             <CtaButton
               variant="primary__outline"
-              onClick={() => navigate("/auth/signup")}>
+              onClick={() => navigate("/auth/login")}>
               Login
             </CtaButton>
           </CTAButtons>
