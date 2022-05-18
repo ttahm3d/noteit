@@ -8,7 +8,7 @@ import {
   NoteForm,
 } from "../../components";
 import { useNotes } from "../../context/notes";
-import { AiOutlineDelete, AiOutlinePlusCircle } from "react-icons/ai";
+import { AiOutlineDelete } from "react-icons/ai";
 import { IoArchiveOutline } from "react-icons/io5";
 import {
   NotesContainer,
