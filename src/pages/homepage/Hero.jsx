@@ -36,7 +36,7 @@ export default function Hero() {
       </HeroText>
       <HeroImage>
         <img
-          src="https://res.cloudinary.com/dut75albw/image/upload/v1651404693/NoteIt/mac_1_ewejaz.png"
+          src="https://res.cloudinary.com/dut75albw/image/upload/v1652880919/NoteIt/HeroImage_oekelx.png"
           alt="preview"
         />
       </HeroImage>

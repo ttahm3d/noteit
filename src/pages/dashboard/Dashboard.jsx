@@ -184,8 +184,15 @@ const UserInfo = styled.div`
 
 const ChartContainer = styled.div`
   padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   grid-column: 1/1;
   grid-row: 2/3;
+
+  canvas {
+    width: min-content;
+  }
 
   @media screen and (min-width: 64em) {
     grid-column: 3/5;
