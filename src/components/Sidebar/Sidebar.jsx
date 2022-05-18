@@ -4,6 +4,7 @@ import {
   MdOutlineArchive,
   MdOutlineEditNote,
   MdDeleteOutline,
+  MdBarChart,
 } from "react-icons/md";
 import { Button } from "../Button/Button";
 import { useAuth } from "../../context/auth";
@@ -89,12 +90,19 @@ export default function Sidebar({ showSidebar, toggleSidebar }) {
         )}
 
         <SidebarSection>
+          <SidebarItem to="/dashboard">
+            <div className="icon">
+              <MdBarChart />
+            </div>
+            <div>Dashboard</div>
+          </SidebarItem>
+        </SidebarSection>
+
+        <SidebarSection>
           <SidebarItemsContainer>
             {sidebarItems.map((sidebarItem) => (
               <li key={sidebarItem.id} onClick={toggleSidebar}>
-                <SidebarItem
-                  to={sidebarItem.path}
-                  style={({ isActive }) => console.log(isActive)}>
+                <SidebarItem to={sidebarItem.path}>
                   <div className="icon">{sidebarItem.icon}</div>
                   <div>{sidebarItem.text}</div>
                 </SidebarItem>
