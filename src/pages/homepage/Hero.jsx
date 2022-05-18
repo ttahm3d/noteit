@@ -28,7 +28,7 @@ export default function Hero() {
               Signup for Free
             </CtaButton>
             <CtaButton
-              variant="primary__block"
+              variant="primary__outline"
               onClick={() => navigate("/auth/signup")}>
               Login
             </CtaButton>
