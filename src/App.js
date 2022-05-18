@@ -14,8 +14,6 @@ function App() {
   const toggleSidebar = () => setShowSidebar((s) => !s);
   const { pathname } = useLocation();
 
-  console.log(pathname);
-
   useEffect(() => {
     if (theme) setTheme(theme);
     else setTheme("light");
@@ -45,12 +43,7 @@ function App() {
               closeSidebar={closeSidebar}
             />
           )}
-          {/* <Sidebar
-            showSidebar={showSidebar}
-            toggleSidebar={toggleSidebar}
-            closeSidebar={closeSidebar}
-            pathname={pathname}
-          /> */}
+
           <Router />
         </MainContainer>
         <Footer />

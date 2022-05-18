@@ -1,6 +1,6 @@
 import DOMPurify from "dompurify";
 import { IconButton } from "../Button/Button";
-import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineEdit } from "react-icons/ai";
 import { IoTrashBinOutline } from "react-icons/io5";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import styled from "styled-components";

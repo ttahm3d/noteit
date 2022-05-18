@@ -22,6 +22,7 @@ const editNoteHandler = (note, userId) =>
       body: note?.body,
       color: note?.color,
       updated_at: new Date(),
+      ...note,
     })
     .match({ id: note?.id })
     .eq("userId", userId)
