@@ -29,6 +29,8 @@ export default function Notes() {
   const toggleModal = () => setShowModal((s) => !s);
   const closeModal = () => setShowModal(false);
 
+  const normalNotes = notes.filter((note) => note.isArchived);
+
   const closeAndClearForm = () => {
     setNote({
       title: "",
@@ -113,9 +115,9 @@ export default function Notes() {
         </Button>
       </AddNoteContainer>
       <Content>
-        {notes.length > 0 ? (
+        {normalNotes.length > 0 ? (
           <NotesContainer>
-            {notes.map((note) => (
+            {normalNotes.map((note) => (
               <NoteCard
                 note={note}
                 setNote={setNote}
