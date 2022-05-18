@@ -16,7 +16,10 @@ import {
   trashedNotes,
   workNotes,
 } from "./Utils";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Pie } from "react-chartjs-2";
 import { useNavigate } from "react-router-dom";
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -73,6 +76,47 @@ export default function Dashboard() {
     },
   ];
 
+  const data = {
+    labels: [
+      "Personal",
+      "Learning",
+      "Work",
+      "To do",
+      "In progress",
+      "Completed",
+    ],
+    datasets: [
+      {
+        label: "Number of notes per tag",
+        data: [
+          personalNotes(notes),
+          learningNotes(notes),
+          workNotes(notes),
+          todoNotes(notes),
+          inprogressNotes(notes),
+          completedNotes(notes),
+        ],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(153, 102, 255, 0.2)",
+          "rgba(255, 159, 64, 0.2)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
   return (
     <Container>
       <Content>
@@ -81,18 +125,21 @@ export default function Dashboard() {
             Hi <span>{firstName}</span>
             <p>Here is breif summary of your notes</p>
           </UserInfo>
-          <ChartContainer></ChartContainer>
+
           <NotesInformation>
             {notesInfo.map(({ icon, title, value, nav }) => (
-              <DashboardItem key={title} onClick={() => navigate(nav)}>
+              <NotesItem key={title} onClick={() => navigate(nav)}>
                 <div className="icon">{icon}</div>
                 <div className="text">
                   <div className="value">{value}</div>
                   <div>{title}</div>
                 </div>
-              </DashboardItem>
+              </NotesItem>
             ))}
           </NotesInformation>
+          <ChartContainer>
+            <Pie data={data} />
+          </ChartContainer>
           <TaggedInfo>
             {tagsInfo.map(({ tag, value }) => (
               <TagInfo key={tag}>
@@ -107,10 +154,22 @@ export default function Dashboard() {
   );
 }
 
+const DashboardWrapper = styled.section`
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+
+  @media screen and (min-width: 64em) {
+    grid-template-rows: auto;
+    grid-template-columns: repeat(4, 1fr);
+  }
+`;
+
 const UserInfo = styled.div`
   padding: 1rem 0;
   font-weight: 400;
   font-size: 2.5rem;
+  grid-column: 1/5;
 
   span {
     font-weight: 600;
@@ -121,21 +180,16 @@ const UserInfo = styled.div`
     font-size: 1.25rem;
     margin: 0;
   }
-
-  @media screen and (min-width: 64em) {
-    grid-column: 1/5;
-  }
 `;
 
-const ChartContainer = styled.div``;
-
-const DashboardWrapper = styled.section`
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: 1fr;
+const ChartContainer = styled.div`
+  padding: 1rem;
+  grid-column: 1/1;
+  grid-row: 2/3;
 
   @media screen and (min-width: 64em) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-column: 3/5;
+    grid-row: 2/4;
   }
 `;
 
@@ -146,15 +200,16 @@ const NotesInformation = styled.section`
   gap: 1rem;
 `;
 
-const DashboardItem = styled.div`
+const NotesItem = styled.div`
   padding: 1rem;
   cursor: pointer;
   background-color: ${(props) => props.theme.colors.blue3};
-  min-height: 10rem;
+  min-height: 8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  max-height: fit-content;
 
   .icon {
     font-size: 3rem;
