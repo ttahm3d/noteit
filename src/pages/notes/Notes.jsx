@@ -25,11 +25,12 @@ export default function Notes() {
 
   const { loading, notes, addNote, editNote, moveToTrash, moveToArchive } =
     useNotes();
-
   const toggleModal = () => setShowModal((s) => !s);
   const closeModal = () => setShowModal(false);
 
-  const normalNotes = notes.filter((note) => note.isArchived);
+  const normalNotes = notes.filter(
+    (note) => !(note.isArchived || note.isTrashed)
+  );
 
   const closeAndClearForm = () => {
     setNote({
