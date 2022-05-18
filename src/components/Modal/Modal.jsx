@@ -35,7 +35,7 @@ const StyledModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 3;
+  z-index: 8;
   transition: all 0.3s linear;
 `;
 
