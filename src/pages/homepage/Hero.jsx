@@ -29,8 +29,8 @@ export default function Hero() {
         ) : (
           <CtaButton
             variant="primary__block"
-            onClick={() => navigate("/notes")}>
-            Start Taking Notes
+            onClick={() => navigate("/dashboard")}>
+            View Dashboard
           </CtaButton>
         )}
       </HeroText>

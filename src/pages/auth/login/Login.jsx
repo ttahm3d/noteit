@@ -14,7 +14,7 @@ export default function Login() {
   const { signIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const path = location.state?.from?.pathname || "/";
+  const path = location.state?.from?.pathname || "/dashboard";
 
   const [showAlert, setShowAlert] = useState(false);
   const [error, setError] = useState(null);
