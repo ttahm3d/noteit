@@ -1,21 +1,10 @@
 import { useState } from "react";
-import { Container } from "../../styles/globals";
-import {
-  Button,
-  Empty,
-  Loader,
-  Modal,
-  NoteCard,
-  NoteForm,
-} from "../../components";
+import { Container, Content } from "../../styles/globals";
+import { Empty, Loader, Modal, NoteCard, NoteForm } from "../../components";
 import { AiOutlineDelete } from "react-icons/ai";
 import { IoArchiveOutline } from "react-icons/io5";
 import { useNotes } from "../../context/notes";
-import {
-  NotesContainer,
-  Content,
-  AddNoteContainer,
-} from "../styles/NotePage.styles";
+import { NotesContainer } from "../../styles/NotePage.styles";
 
 export default function Trash() {
   const [isEdit, setIsEdit] = useState(false);

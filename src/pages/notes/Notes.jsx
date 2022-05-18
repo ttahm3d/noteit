@@ -10,12 +10,8 @@ import {
 import { useNotes } from "../../context/notes";
 import { AiOutlineDelete } from "react-icons/ai";
 import { IoArchiveOutline } from "react-icons/io5";
-import {
-  NotesContainer,
-  Content,
-  AddNoteContainer,
-} from "../styles/NotePage.styles";
-import { Container } from "../../styles/globals";
+import { NotesContainer, AddNoteContainer } from "../../styles/NotePage.styles";
+import { Container, Content } from "../../styles/globals";
 
 export default function Notes() {
   const [isEdit, setIsEdit] = useState(false);

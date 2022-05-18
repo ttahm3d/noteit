@@ -6,10 +6,6 @@ const NotesContainer = styled.section`
   gap: 1rem;
 `;
 
-const Content = styled.div`
-  padding: 1rem 0 2rem;
-`;
-
 const AddNoteContainer = styled.div`
   background-color: ${(props) => props.theme.colors.blue1};
   position: sticky;
@@ -18,4 +14,4 @@ const AddNoteContainer = styled.div`
   padding: 1rem 0;
 `;
 
-export { NotesContainer, Content, AddNoteContainer };
+export { NotesContainer, AddNoteContainer };

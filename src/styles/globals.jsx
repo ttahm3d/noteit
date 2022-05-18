@@ -15,10 +15,14 @@ const Container = styled.section`
   margin: 0 auto;
 `;
 
+const Content = styled.div`
+  padding: 1rem 0 2rem;
+`;
+
 const Page = styled.main`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 `;
 
-export { Page, Container, MainContainer };
+export { Page, Container, MainContainer, Content };
