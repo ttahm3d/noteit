@@ -24,6 +24,7 @@ export default function Notes() {
     title: "",
     color: "blue",
     body: "",
+    label: "",
   });
   const { loading, notes, addNote, editNote, moveToTrash, moveToArchive } =
     useNotes();

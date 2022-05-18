@@ -36,16 +36,29 @@ export default function NoteForm({ note, setNote, actions }) {
         preserveWhitespace={true}
         onChange={(e) => setNote({ ...note, body: e })}
       />
-      <ColorPickerContainer>
-        {colorsList.map((notecolor) => (
-          <ColorCircle
-            notecolor={notecolor}
-            color={note?.color}
-            key={notecolor}
-            onClick={() => setNote({ ...note, color: notecolor })}
-          />
-        ))}
-      </ColorPickerContainer>
+      <NoteFooter color={note?.color}>
+        <ColorPickerContainer>
+          {colorsList.map((notecolor) => (
+            <ColorCircle
+              notecolor={notecolor}
+              color={note?.color}
+              key={notecolor}
+              onClick={() => setNote({ ...note, color: notecolor })}
+            />
+          ))}
+        </ColorPickerContainer>
+        <Select color={note?.color} value={note.label}>
+          <Option value="" color={note?.color}>
+            10
+          </Option>
+          <Option value="" color={note?.color}>
+            10
+          </Option>
+          <Option value="" color={note?.color}>
+            10
+          </Option>
+        </Select>
+      </NoteFooter>
       {actions.length > 0 ? (
         <ActionsContainer>
           {actions?.map((action) => (
@@ -161,13 +174,11 @@ const TitleInput = styled.input`
 
 const ColorPickerContainer = styled.div`
   display: flex;
-  padding: 1rem;
   gap: 1rem;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.slate7};
 `;
 
 const ColorCircle = styled.div`
-  padding: 0.75rem;
+  padding: 0.7rem 0.8rem;
   cursor: pointer;
   background-color: ${({ theme, notecolor }) =>
     `${theme.colors[notecolor + "9"]}`};
@@ -183,4 +194,35 @@ const ActionsContainer = styled.div`
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
+`;
+
+const NoteFooter = styled.div`
+  display: flex;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.slate7};
+`;
+
+const Select = styled.select`
+  margin-left: auto;
+  padding: 0.25rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: 0.5px solid ${({ theme, color }) => `${theme.colors[color + "3"]}`};
+  background-color: ${({ theme, color }) => `${theme.colors[color + "2"]}`};
+  color: ${({ theme, color }) => `${theme.colors[color + "10"]}`};
+  outline: 2px solid ${({ theme, color }) => `${theme.colors[color + "9"]}`};
+`;
+
+const Option = styled.option`
+  background-color: ${({ theme, color }) => `${theme.colors[color + "3"]}`};
+  color: ${({ theme, color }) => `${theme.colors[color + "10"]}`};
+  font-size: 1.2rem;
+
+  :hover {
+    background-color: ${({ theme, color }) => `${theme.colors[color + "4"]}`};
+  }
+
+  :active {
+    background-color: ${({ theme, color }) => `${theme.colors[color + "5"]}`};
+  }
 `;
