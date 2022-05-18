@@ -83,7 +83,7 @@ const NotesProvider = ({ children }) => {
     if (error) {
       toast.error("Something went wrong");
     } else {
-      toast.success("Succesfully moved the note to trash");
+      toast.success("Succesfully Archived note");
     }
     fetchNotes();
   };
