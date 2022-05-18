@@ -126,7 +126,7 @@ export default function Dashboard() {
         <DashboardWrapper>
           <UserInfo>
             Hi <span>{firstName}</span>
-            <p>Here is breif summary of your notes</p>
+            <p>Here is brief summary of your notes</p>
           </UserInfo>
 
           <NotesInformation>
