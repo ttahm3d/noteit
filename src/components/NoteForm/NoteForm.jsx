@@ -234,6 +234,7 @@ const NoteFooter = styled.div`
 const TagsContainer = styled.div`
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
 `;
 
 const Tag = styled.div`
@@ -242,13 +243,14 @@ const Tag = styled.div`
   font-size: 12px;
   cursor: pointer;
   background-color: ${({ theme, selected, color }) =>
-    selected ? `${theme.colors[color + "6"]}` : `${theme.colors[color + "3"]}`};
+    selected ? `${theme.colors[color + "5"]}` : `${theme.colors[color + "3"]}`};
   color: ${({ theme, selected, color }) =>
     selected
       ? `${theme.colors[color + "10"]}`
       : `${theme.colors[color + "9"]}`};
   border: 1px solid ${({ theme, color }) => `${theme.colors[color + "7"]}`};
   font-weight: ${({ selected }) => (selected ? "600" : "400")};
+
   :hover {
     background-color: ${({ theme, color }) => `${theme.colors[color + "4"]}`};
   }

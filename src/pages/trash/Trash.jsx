@@ -27,7 +27,7 @@ export default function Trash() {
     tag: "",
     isTrashed: true,
   });
-  const { notes, loading, addNote, editNote, removeFromTrash, moveToArchive } =
+  const { notes, loading, editNote, removeFromTrash, moveToArchive } =
     useNotes();
 
   const trashedNotes = notes.filter((note) => note.isTrashed);
@@ -38,7 +38,7 @@ export default function Trash() {
     {
       id: "trash",
       icon: <AiOutlineDelete />,
-      title: "Move to Trash",
+      title: "Restore Note",
       actionHandler: removeFromTrash,
     },
     {
@@ -46,21 +46,6 @@ export default function Trash() {
       icon: <IoArchiveOutline />,
       title: "Archive Note",
       actionHandler: moveToArchive,
-    },
-  ];
-
-  const addNoteActions = [
-    {
-      id: "cancel",
-      text: "Cancel",
-      action: () => closeAndClearForm(),
-      variant: "primary__outline",
-    },
-    {
-      id: "add",
-      text: "Save Note",
-      action: () => saveNote(),
-      variant: "primary__block",
     },
   ];
 
@@ -79,19 +64,9 @@ export default function Trash() {
     },
   ];
 
-  const saveNote = () => {
-    addNote(note);
-    closeAndClearForm();
-  };
-
   const saveChanges = () => {
     editNote(note);
     closeAndClearForm();
-  };
-
-  const openAddNoteModal = () => {
-    setIsEdit(false);
-    toggleModal();
   };
 
   const closeAndClearForm = () => {
@@ -109,14 +84,6 @@ export default function Trash() {
 
   return (
     <Container>
-      <AddNoteContainer>
-        <Button
-          variant="primary__block"
-          onClick={openAddNoteModal}
-          title="Add Note">
-          Add Note
-        </Button>
-      </AddNoteContainer>
       <Content>
         {trashedNotes.length > 0 ? (
           <NotesContainer>
@@ -136,13 +103,9 @@ export default function Trash() {
         )}
         <Modal
           showModal={showModal}
-          header={isEdit ? "Edit Note" : "Add Note"}
+          header={"Edit Note"}
           closeModal={closeAndClearForm}>
-          <NoteForm
-            note={note}
-            setNote={setNote}
-            actions={isEdit ? editNoteActions : addNoteActions}
-          />
+          <NoteForm note={note} setNote={setNote} actions={editNoteActions} />
         </Modal>
       </Content>
     </Container>

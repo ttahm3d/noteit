@@ -108,14 +108,6 @@ export default function Trash() {
 
   return (
     <Container>
-      <AddNoteContainer>
-        <Button
-          variant="primary__block"
-          onClick={openAddNoteModal}
-          title="Add Note">
-          Add Note
-        </Button>
-      </AddNoteContainer>
       <Content>
         {archivedNotes.length > 0 ? (
           <NotesContainer>

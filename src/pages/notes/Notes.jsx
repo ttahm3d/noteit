@@ -51,6 +51,7 @@ export default function Notes() {
   const saveChanges = () => {
     editNote(note);
     closeAndClearForm();
+    setIsEdit(false);
   };
 
   const openAddNoteModal = () => {

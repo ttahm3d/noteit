@@ -7,6 +7,10 @@ import {
 } from "react-icons/md";
 import { Button } from "../Button/Button";
 import { useAuth } from "../../context/auth";
+import Modal from "../Modal/Modal";
+import { useState } from "react";
+import { useNotes } from "../../context/notes";
+import NoteForm from "../NoteForm/NoteForm";
 
 const sidebarItems = [
   {
@@ -31,13 +35,54 @@ const sidebarItems = [
 
 export default function Sidebar({ showSidebar, toggleSidebar }) {
   const { user } = useAuth();
+  const [showModal, setShowModal] = useState(false);
+  const { addNote } = useNotes();
+  const [note, setNote] = useState({
+    title: "",
+    color: "blue",
+    body: "",
+    tag: "",
+  });
+
+  const toggleModal = () => setShowModal((s) => !s);
+  const closeModal = () => setShowModal(false);
+
+  const closeAndClearForm = () => {
+    setNote({
+      title: "",
+      color: "blue",
+      body: "",
+      tag: "",
+    });
+    closeModal();
+  };
+
+  const saveNote = () => {
+    addNote(note);
+    closeAndClearForm();
+  };
+
+  const addNoteActions = [
+    {
+      id: "cancel",
+      text: "Cancel",
+      action: () => closeAndClearForm(),
+      variant: "primary__outline",
+    },
+    {
+      id: "add",
+      text: "Save Note",
+      action: () => saveNote(),
+      variant: "primary__block",
+    },
+  ];
 
   return (
     <StyledSidebar showSidebar={showSidebar}>
       <SidebarWrapper>
         {user?.id && (
           <SidebarSection>
-            <Button variant="primary__block" fullwidth>
+            <Button variant="primary__block" fullwidth onClick={toggleModal}>
               Add Note
             </Button>
           </SidebarSection>
@@ -58,6 +103,9 @@ export default function Sidebar({ showSidebar, toggleSidebar }) {
           </SidebarItemsContainer>
         </SidebarSection>
       </SidebarWrapper>
+      <Modal showModal={showModal} closeModal={closeModal} header="Add Note">
+        <NoteForm note={note} setNote={setNote} actions={addNoteActions} />
+      </Modal>
     </StyledSidebar>
   );
 }
