@@ -97,6 +97,10 @@ const Logo = styled.div`
 const MenuButton = styled(IconButton)`
   font-size: 1.25rem;
   margin-right: 1rem;
+
+  @media screen and (min-width: 64em) {
+    display: none;
+  }
 `;
 
 const UserInfo = styled.div`

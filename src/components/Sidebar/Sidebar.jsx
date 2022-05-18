@@ -34,28 +34,30 @@ export default function Sidebar({ showSidebar, toggleSidebar }) {
 
   return (
     <StyledSidebar showSidebar={showSidebar}>
-      {user?.id && (
-        <SidebarSection>
-          <Button variant="primary__block" fullwidth>
-            Add Note
-          </Button>
-        </SidebarSection>
-      )}
+      <SidebarWrapper>
+        {user?.id && (
+          <SidebarSection>
+            <Button variant="primary__block" fullwidth>
+              Add Note
+            </Button>
+          </SidebarSection>
+        )}
 
-      <SidebarSection>
-        <SidebarItemsContainer>
-          {sidebarItems.map((sidebarItem) => (
-            <li key={sidebarItem.id} onClick={toggleSidebar}>
-              <SidebarItem
-                to={sidebarItem.path}
-                style={({ isActive }) => console.log(isActive)}>
-                <div className="icon">{sidebarItem.icon}</div>
-                <div>{sidebarItem.text}</div>
-              </SidebarItem>
-            </li>
-          ))}
-        </SidebarItemsContainer>
-      </SidebarSection>
+        <SidebarSection>
+          <SidebarItemsContainer>
+            {sidebarItems.map((sidebarItem) => (
+              <li key={sidebarItem.id} onClick={toggleSidebar}>
+                <SidebarItem
+                  to={sidebarItem.path}
+                  style={({ isActive }) => console.log(isActive)}>
+                  <div className="icon">{sidebarItem.icon}</div>
+                  <div>{sidebarItem.text}</div>
+                </SidebarItem>
+              </li>
+            ))}
+          </SidebarItemsContainer>
+        </SidebarSection>
+      </SidebarWrapper>
     </StyledSidebar>
   );
 }
@@ -63,22 +65,26 @@ export default function Sidebar({ showSidebar, toggleSidebar }) {
 const StyledSidebar = styled.aside`
   border-right: 1px solid ${(props) => props.theme.colors.blue6};
   background-color: ${(props) => props.theme.colors.blue1};
-  position: fixed;
-  z-index: 7;
-  height: 100%;
+  position: sticky;
   top: 65px;
-  width: 15rem;
-  left: ${({ showSidebar }) => (showSidebar ? "0" : "-100%")};
-  transition: ${({ showSidebar }) =>
-    showSidebar ? "0.5s left linear" : "0.5s left linear"};
+  bottom: 111.4px;
+  height: calc(100vh - 179px);
+  min-height: calc(100vh - 0px);
+  z-index: 7;
 
   @media screen and (max-width: 64em) {
-    top: 59px;
+    position: fixed;
+    height: 100%;
+    top: 65px;
+    width: 15rem;
+    left: ${({ showSidebar }) => (showSidebar ? "0" : "-100%")};
+    transition: ${({ showSidebar }) =>
+      showSidebar ? "0.5s left linear" : "0.5s left linear"};
   }
 `;
 
 const SidebarSection = styled.div`
-  padding: 1rem 0.25rem;
+  padding: 1rem;
 `;
 
 const SidebarItemsContainer = styled.ul`
@@ -115,4 +121,9 @@ const SidebarItem = styled(NavLink)`
     justify-content: center;
     font-size: 1.25rem;
   }
+`;
+
+const SidebarWrapper = styled.div`
+  position: sticky;
+  top: 65px;
 `;
