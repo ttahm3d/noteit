@@ -102,7 +102,7 @@ const Logo = styled.div`
 const MenuButton = styled(IconButton)`
   font-size: 1.25rem;
   margin-right: 1rem;
-  display: ${({ pathname }) => (pathname === "/" ? "none" : "block")};
+  display: ${({ pathname }) => (pathname === "/" ? "none" : "flex")};
 
   @media screen and (min-width: 64em) {
     display: none;
