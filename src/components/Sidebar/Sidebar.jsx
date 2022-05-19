@@ -89,7 +89,7 @@ export default function Sidebar({ showSidebar, toggleSidebar }) {
           </SidebarSection>
         )}
 
-        <SidebarSection>
+        <SidebarSection onClick={toggleSidebar}>
           <SidebarItem to="/dashboard">
             <div className="icon">
               <MdBarChart />
