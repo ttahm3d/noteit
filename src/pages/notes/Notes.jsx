@@ -15,6 +15,12 @@ import { Container, Content } from "../../styles/globals";
 
 export default function Notes() {
   const [isEdit, setIsEdit] = useState(false);
+  const [eNote, setENote] = useState({
+    title: "",
+    color: "blue",
+    body: "",
+    tag: "",
+  });
   const [showModal, setShowModal] = useState(false);
   const [note, setNote] = useState({
     title: "",
@@ -59,18 +65,35 @@ export default function Notes() {
     toggleModal();
   };
 
+  const isValidAdd = note.title !== "";
+
+  const isValidEdit = (initNote, note) => {
+    const { title: iTitle, body: iBody, color: iColor, tag: iTag } = initNote;
+    const { title: mTitle, body: mBody, color: mColor, tag: mTag } = note;
+    const isValueSame = !(
+      iTitle === mTitle &&
+      iBody === mBody &&
+      iColor === mColor &&
+      iTag === mTag
+    );
+
+    return isValueSame && isValidAdd;
+  };
+
   const addNoteActions = [
     {
       id: "cancel",
       text: "Cancel",
       action: () => closeAndClearForm(),
       variant: "primary__outline",
+      disabled: false,
     },
     {
       id: "add",
       text: "Save Note",
       action: () => saveNote(),
       variant: "primary__block",
+      disabled: !isValidAdd,
     },
   ];
 
@@ -80,12 +103,14 @@ export default function Notes() {
       text: "Cancel",
       action: () => closeAndClearForm(),
       variant: "primary__outline",
+      disabled: false,
     },
     {
       id: "add",
       text: "Save Changes",
       action: () => saveChanges(),
       variant: "primary__block",
+      disabled: !isValidEdit(eNote, note),
     },
   ];
 
@@ -124,6 +149,7 @@ export default function Notes() {
                 note={note}
                 setNote={setNote}
                 setIsEdit={setIsEdit}
+                setENote={setENote}
                 toggleModal={toggleModal}
                 noteActions={noteActions}
                 key={note.id}

@@ -12,6 +12,7 @@ export default function NoteCard({
   note,
   toggleModal,
   setNote,
+  setENote,
   setIsEdit,
   noteActions,
 }) {
@@ -22,6 +23,7 @@ export default function NoteCard({
 
   const editHandler = () => {
     setNote(note);
+    setENote(note);
     setIsEdit(true);
     toggleModal();
   };

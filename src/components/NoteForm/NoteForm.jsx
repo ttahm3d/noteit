@@ -93,6 +93,7 @@ export default function NoteForm({ note, setNote, actions }) {
               variant={action.variant}
               key={action.id}
               rounded={0.25}
+              disabled={action?.disabled}
               onClick={action.action}>
               {action.text}
             </Button>
