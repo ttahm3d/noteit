@@ -159,8 +159,8 @@ export default function Dashboard() {
 
 const DashboardWrapper = styled.section`
   display: grid;
-  gap: 1rem;
   grid-template-columns: 1fr;
+  gap: 1rem;
 
   @media screen and (min-width: 64em) {
     grid-template-rows: auto;
@@ -172,7 +172,10 @@ const UserInfo = styled.div`
   padding: 1rem 0;
   font-weight: 400;
   font-size: 2.5rem;
-  grid-column: 1/5;
+
+  @media screen and (min-width: 64em) {
+    grid-column: 1/5;
+  }
 
   span {
     font-weight: 600;
