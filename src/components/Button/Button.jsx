@@ -75,7 +75,7 @@ const StyledButton = styled.button`
 
   :active {
     background-color: ${(props) => {
-      if (props.variant === "primary__block") return props.theme.colors.violet9;
+      if (props.variant === "primary__block") return props.theme.colors.violet6;
       if (props.variant === "primary__cta") return props.theme.colors.violet6;
       if (props.variant === "primary__outline")
         return props.theme.colors.violet4;
@@ -84,7 +84,11 @@ const StyledButton = styled.button`
       if (props.variant === "secondary__cta") return props.theme.colors.orange6;
       if (!props.variant) return props.theme.colors.blue5;
     }};
-    transform: scale(1.01);
+  }
+
+  :disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
   }
 `;
 
