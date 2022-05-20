@@ -18,7 +18,7 @@ export default function Trash() {
     title: "",
     color: "blue",
     body: "",
-    tag: "",
+    tag: "Personal",
   });
   const { notes, loading, editNote, removeFromArchive } = useNotes();
 
@@ -64,8 +64,7 @@ export default function Trash() {
       title: "",
       color: "blue",
       body: "",
-      tag: "",
-      isArchived: true,
+      tag: "Personal",
     });
     closeModal();
   };
