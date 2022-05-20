@@ -79,6 +79,17 @@ export default function Dashboard() {
     },
   ];
 
+  const taggedNotesData = [
+    personalNotes(notes),
+    learningNotes(notes),
+    workNotes(notes),
+    todoNotes(notes),
+    inprogressNotes(notes),
+    completedNotes(notes),
+  ];
+
+  const isTaggedNotesEmpty = taggedNotesData.every((value) => value === 0);
+
   const data = {
     labels: [
       "Personal",
@@ -91,14 +102,7 @@ export default function Dashboard() {
     datasets: [
       {
         label: "Number of notes per tag",
-        data: [
-          personalNotes(notes),
-          learningNotes(notes),
-          workNotes(notes),
-          todoNotes(notes),
-          inprogressNotes(notes),
-          completedNotes(notes),
-        ],
+        data: taggedNotesData,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -141,7 +145,11 @@ export default function Dashboard() {
             ))}
           </NotesInformation>
           <ChartContainer>
-            <Pie data={data} />
+            {isTaggedNotesEmpty ? (
+              <>Add notes to see a Graph</>
+            ) : (
+              <Pie data={data} />
+            )}
           </ChartContainer>
           <TaggedInfo>
             {tagsInfo.map(({ tag, value }) => (
@@ -195,6 +203,7 @@ const ChartContainer = styled.div`
   justify-content: center;
   grid-column: 1/1;
   grid-row: 2/3;
+  background-color: ${(props) => props.theme.colors.blue3};
 
   canvas {
     width: min-content;
