@@ -7,6 +7,12 @@ import { NotesContainer } from "../../styles/NotePage.styles";
 
 export default function Trash() {
   const [isEdit, setIsEdit] = useState(false);
+  const [eNote, setENote] = useState({
+    title: "",
+    color: "blue",
+    body: "",
+    tag: "Personal",
+  });
   const [showModal, setShowModal] = useState(false);
   const [note, setNote] = useState({
     title: "",
@@ -21,14 +27,21 @@ export default function Trash() {
 
   const toggleModal = () => setShowModal((s) => !s);
   const closeModal = () => setShowModal(false);
-  const noteActions = [
-    {
-      id: "trash",
-      icon: <AiOutlineDelete />,
-      title: "Restore Note",
-      actionHandler: removeFromTrash,
-    },
-  ];
+
+  const isValidAdd = note.title !== "";
+
+  const isValidEdit = (initNote, note) => {
+    const { title: iTitle, body: iBody, color: iColor, tag: iTag } = initNote;
+    const { title: mTitle, body: mBody, color: mColor, tag: mTag } = note;
+    const isValueSame = !(
+      iTitle === mTitle &&
+      iBody === mBody &&
+      iColor === mColor &&
+      iTag === mTag
+    );
+
+    return isValueSame && isValidAdd;
+  };
 
   const editNoteActions = [
     {
@@ -36,12 +49,14 @@ export default function Trash() {
       text: "Cancel",
       action: () => closeAndClearForm(),
       variant: "primary__outline",
+      disabled: false,
     },
     {
       id: "add",
       text: "Save Changes",
       action: () => saveChanges(),
       variant: "primary__block",
+      disabled: !isValidEdit(eNote, note),
     },
   ];
 
@@ -61,6 +76,15 @@ export default function Trash() {
     closeModal();
   };
 
+  const noteActions = [
+    {
+      id: "trash",
+      icon: <AiOutlineDelete />,
+      title: "Restore Note",
+      actionHandler: removeFromTrash,
+    },
+  ];
+
   if (loading) return <Loader />;
 
   return (
@@ -73,6 +97,7 @@ export default function Trash() {
                 note={note}
                 setNote={setNote}
                 setIsEdit={setIsEdit}
+                setENote={setENote}
                 toggleModal={toggleModal}
                 noteActions={noteActions}
                 key={note.id}

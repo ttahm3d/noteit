@@ -19,14 +19,14 @@ export default function Notes() {
     title: "",
     color: "blue",
     body: "",
-    tag: "",
+    tag: "Personal",
   });
   const [showModal, setShowModal] = useState(false);
   const [note, setNote] = useState({
     title: "",
     color: "blue",
     body: "",
-    tag: "",
+    tag: "Personal",
   });
 
   const { loading, notes, addNote, editNote, moveToTrash, moveToArchive } =
@@ -44,7 +44,7 @@ export default function Notes() {
       title: "",
       color: "blue",
       body: "",
-      tag: "",
+      tag: "Personal",
     });
     closeModal();
   };
@@ -106,7 +106,7 @@ export default function Notes() {
       disabled: false,
     },
     {
-      id: "add",
+      id: "edit",
       text: "Save Changes",
       action: () => saveChanges(),
       variant: "primary__block",
