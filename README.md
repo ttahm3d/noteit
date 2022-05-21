@@ -20,12 +20,12 @@ User can
     - To do
     - In Progress
     - Completed
-- Can view a breif summary of their notes in the dashboard
+- Can view a brief summary of their notes in the dashboard
 - Edit notes
 - Archive notes that are no longer actively being referred to
 - Move notes to trash that he / she is not sure if it may or may not be required in future
 - Persisting light / dark mode
-- Authentication is via Supabase
+- Authentication via Supabase
 
 ---
 
