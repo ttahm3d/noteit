@@ -50,7 +50,7 @@ export default function Hero() {
       </HeroText>
       <HeroImage>
         <img
-          src="https://res.cloudinary.com/dut75albw/image/upload/v1652880919/NoteIt/HeroImage_oekelx.png"
+          src="https://res.cloudinary.com/dut75albw/image/upload/v1653040037/NoteIt/HeroImage_cbxe12.png"
           alt="preview"
         />
       </HeroImage>

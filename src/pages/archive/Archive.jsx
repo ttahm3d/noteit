@@ -7,13 +7,18 @@ import { NotesContainer } from "../../styles/NotePage.styles";
 
 export default function Trash() {
   const [isEdit, setIsEdit] = useState(false);
+  const [eNote, setENote] = useState({
+    title: "",
+    color: "blue",
+    body: "",
+    tag: "Personal",
+  });
   const [showModal, setShowModal] = useState(false);
   const [note, setNote] = useState({
     title: "",
     color: "blue",
     body: "",
-    tag: "",
-    isArchived: true,
+    tag: "Personal",
   });
   const { notes, loading, editNote, removeFromArchive } = useNotes();
 
@@ -22,18 +27,35 @@ export default function Trash() {
   const toggleModal = () => setShowModal((s) => !s);
   const closeModal = () => setShowModal(false);
 
+  const isValidAdd = note.title !== "";
+
+  const isValidEdit = (initNote, note) => {
+    const { title: iTitle, body: iBody, color: iColor, tag: iTag } = initNote;
+    const { title: mTitle, body: mBody, color: mColor, tag: mTag } = note;
+    const isValueSame = !(
+      iTitle === mTitle &&
+      iBody === mBody &&
+      iColor === mColor &&
+      iTag === mTag
+    );
+
+    return isValueSame && isValidAdd;
+  };
+
   const editNoteActions = [
     {
       id: "cancel",
       text: "Cancel",
       action: () => closeAndClearForm(),
       variant: "primary__outline",
+      disabled: false,
     },
     {
-      id: "add",
+      id: "edit",
       text: "Save Changes",
       action: () => saveChanges(),
       variant: "primary__block",
+      disabled: !isValidEdit(eNote, note),
     },
   ];
 
@@ -42,8 +64,7 @@ export default function Trash() {
       title: "",
       color: "blue",
       body: "",
-      tag: "",
-      isArchived: true,
+      tag: "Personal",
     });
     closeModal();
   };
@@ -74,6 +95,7 @@ export default function Trash() {
                 note={note}
                 setNote={setNote}
                 setIsEdit={setIsEdit}
+                setENote={setENote}
                 toggleModal={toggleModal}
                 noteActions={noteActions}
                 key={note.id}

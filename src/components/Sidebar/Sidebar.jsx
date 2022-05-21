@@ -42,7 +42,7 @@ export default function Sidebar({ showSidebar, toggleSidebar }) {
     title: "",
     color: "blue",
     body: "",
-    tag: "",
+    tag: "Personal",
   });
 
   const toggleModal = () => setShowModal((s) => !s);
@@ -53,7 +53,7 @@ export default function Sidebar({ showSidebar, toggleSidebar }) {
       title: "",
       color: "blue",
       body: "",
-      tag: "",
+      tag: "Personal",
     });
     closeModal();
   };
